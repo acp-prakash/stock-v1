@@ -1,0 +1,2144 @@
+{
+	"responseHeader": {
+		"status": 0,
+		"QTime": 4,
+		"params": {
+			"fl": "ticker,issue_name,LetterGradeRating,CurrentRating,LetterGradeSort,type,Risk,recommendation,exchange",
+			"sort": "ticker asc",
+			"indent": "off",
+			"q": "type:equity AND ticker:(AAL OR AAPL OR ABT OR ACAD OR ACHC OR ACN OR ARM OR ADBE OR ALL OR AMC OR AMD OR AMPL OR AMZN OR ANF OR AR OR ARCT OR ARLP OR AVAV OR AVGO OR AXON OR AZN OR BA OR BABA OR BAC OR BAH OR BGC OR BHVN OR BP OR BRBR OR BSM OR BXSL OR C OR CALX OR CAT OR CAVA OR CCI OR CCL OR CHRD OR CI OR CME OR CNC OR CNK OR COHR OR COP OR COR OR COST OR CPE OR CPNG OR CRBG OR CRM OR CRWD OR CSCO OR CSX OR CTGO OR CTRA OR CVS OR CVX OR CWAN OR DAL OR DDOG OR DELL OR DINO OR DIS OR DKNG OR DRS OR DVN OR EA OR EBAY OR ED OR EMR OR ENLC OR ENPH OR ENSG OR EOG OR EPD OR EQT OR ESMT OR ESTE OR F OR FANG OR FCFS OR FDX OR FTI OR FUBO OR GD OR GDX OR GE OR GES OR GILD OR GM OR GME OR GOOG OR GPOR OR GTLB OR HAL OR HD OR HES OR HESM OR HII OR HL OR HMC OR HON OR HOOD OR HPK OR IBM OR IMAX OR INFY OR INSW OR INTC OR JBLU OR JD OR JNJ OR JPM OR KNTK OR KO OR KR OR KRP OR KSS OR KTB OR KTOS OR LBRT OR LCID OR LLY OR LNW OR LOW OR LUV OR LVS OR LYFT OR MA OR MCD OR MCK OR MDT OR META OR MMM OR MOH OR MPC OR MPLX OR MRK OR MRNA OR MRO OR MRTX OR MRVL OR MS OR MSFT OR MSTR OR MTDR OR MU OR MUR OR NCLH OR NEE OR NEM OR NFLX OR NIO OR NKE OR NOC OR NOW OR NSANY OR NU OR NVDA OR NVO OR NVS OR NWS OR O OR OKE OR OKTA OR OLLI OR ON OR OVV OR OXY OR PAA OR PAGP OR PARA OR PEP OR PFE OR PG OR PGR OR PLTR OR PM OR PR OR PSN OR PTGX OR PXD OR PYPL OR QCOM OR RBLX OR RCL OR RELY OR RIVN OR RL OR RMD OR ROAD OR ROKU OR RRC OR RRR OR RTX OR SAVE OR SBUX OR SCHW OR SEDG OR SHEL OR SHOO OR SHOP OR SLB OR SM OR SONY OR SOXL OR SPCE OR SPXL OR SPY OR SQ OR SSRM OR SUN OR T OR TDW OR TECK OR TGT OR THG OR TJX OR TM OR TNA OR TOST OR TQQQ OR TRGP OR TSLA OR TSM OR TTWO OR TW OR UA OR UAA OR UAL OR UAN OR UBER OR UPS OR USB OR V OR VALE OR VNOM OR VRNS OR VRRM OR VRTX OR VZ OR W OR WES OR WFC OR WFRD OR WH OR WHD OR WMB OR WMT OR XOM) AND LetterGradeSort:[ 25 TO 100 ] AND Growth:[ 0 TO 5 ]  AND TotalReturn:[ 0 TO 5 ]  AND Efficiency:[ 0 TO 5 ]  AND Pricevolatility:[ 0 TO 5 ]  AND Solvency:[ 0 TO 5 ]  AND Income:[ 0 TO 5 ] ",
+			"wt": "json",
+			"rows": "500"
+		}
+	},
+	"response": {
+		"numFound": 236,
+		"start": 0,
+		"docs": [
+			{
+				"type": "equity",
+				"ticker": "AAL",
+				"issue_name": "AMERICAN AIRLINES GROUP INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "AAPL",
+				"issue_name": "APPLE INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "ABT",
+				"issue_name": "ABBOTT LABORATORIES",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "ACAD",
+				"issue_name": "ACADIA PHARMACEUTICALS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "ACHC",
+				"issue_name": "ACADIA HEALTHCARE CO INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "ACN",
+				"issue_name": "ACCENTURE PLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "ADBE",
+				"issue_name": "ADOBE INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "ALL",
+				"issue_name": "ALLSTATE CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "AMC",
+				"issue_name": "AMC ENTERTAINMENT HOLDINGS",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "AMD",
+				"issue_name": "ADVANCED MICRO DEVICES",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "AMPL",
+				"issue_name": "AMPLITUDE INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "AMZN",
+				"issue_name": "AMAZON.COM INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "ANF",
+				"issue_name": "ABERCROMBIE & FITCH",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "AR",
+				"issue_name": "ANTERO RESOURCES CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "ARCT",
+				"issue_name": "ARCTURUS THERAPETCS HOLD INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "ARLP",
+				"issue_name": "ALLIANCE RESOURCE PTNRS  -LP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "AVAV",
+				"issue_name": "AEROVIRONMENT INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "AVGO",
+				"issue_name": "BROADCOM INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "AXON",
+				"issue_name": "AXON ENTERPRISE INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "AZN",
+				"issue_name": "ASTRAZENECA PLC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "BA",
+				"issue_name": "BOEING CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "BABA",
+				"issue_name": "ALIBABA GROUP HLDG",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "BAC",
+				"issue_name": "BANK OF AMERICA CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "BAH",
+				"issue_name": "BOOZ ALLEN HAMILTON HLDG CP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "BGC",
+				"issue_name": "BGC GROUP INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "BP",
+				"issue_name": "BP PLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "BRBR",
+				"issue_name": "BELLRING BRANDS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "BSM",
+				"issue_name": "BLACK STONE MINERALS LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "BXSL",
+				"issue_name": "BLACKSTONE SECURED LENDING F",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "C",
+				"issue_name": "CITIGROUP INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "CALX",
+				"issue_name": "CALIX INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "CAT",
+				"issue_name": "CATERPILLAR INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "CCI",
+				"issue_name": "CROWN CASTLE INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "CCL",
+				"issue_name": "CARNIVAL CORPORATION & PLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "CHRD",
+				"issue_name": "CHORD ENERGY CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "CI",
+				"issue_name": "CIGNA GROUP (THE)",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CME",
+				"issue_name": "CME GROUP INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "CNC",
+				"issue_name": "CENTENE CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CNK",
+				"issue_name": "CINEMARK HOLDINGS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "COHR",
+				"issue_name": "COHERENT CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "COP",
+				"issue_name": "CONOCOPHILLIPS",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "COR",
+				"issue_name": "CENCORA INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "COST",
+				"issue_name": "COSTCO WHOLESALE CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "CPE",
+				"issue_name": "CALLON PETROLEUM CO/DE",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "CPNG",
+				"issue_name": "COUPANG INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "CRBG",
+				"issue_name": "COREBRIDGE FINANCIAL INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CRM",
+				"issue_name": "SALESFORCE INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "CRWD",
+				"issue_name": "CROWDSTRIKE HOLDINGS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CSCO",
+				"issue_name": "CISCO SYSTEMS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "CSX",
+				"issue_name": "CSX CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CTRA",
+				"issue_name": "COTERRA ENERGY INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CVS",
+				"issue_name": "CVS HEALTH CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "CVX",
+				"issue_name": "CHEVRON CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "CWAN",
+				"issue_name": "CLEARWATER ANA HOL INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "DAL",
+				"issue_name": "DELTA AIR LINES INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "DDOG",
+				"issue_name": "DATADOG INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "DELL",
+				"issue_name": "DELL TECHNOLOGIES INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "DINO",
+				"issue_name": "HF SINCLAIR CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "DIS",
+				"issue_name": "DISNEY (WALT) CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "DKNG",
+				"issue_name": "DRAFTKINGS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "DVN",
+				"issue_name": "DEVON ENERGY CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "EA",
+				"issue_name": "ELECTRONIC ARTS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "EBAY",
+				"issue_name": "EBAY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "ED",
+				"issue_name": "CONSOLIDATED EDISON INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "EMR",
+				"issue_name": "EMERSON ELECTRIC CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "ENLC",
+				"issue_name": "ENLINK MIDSTREAM LLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "ENPH",
+				"issue_name": "ENPHASE ENERGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "ENSG",
+				"issue_name": "ENSIGN GROUP INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "EOG",
+				"issue_name": "EOG RESOURCES INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "EPD",
+				"issue_name": "ENTERPRISE PRODCT PARTNRS LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "EQT",
+				"issue_name": "EQT CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "ESMT",
+				"issue_name": "ENGAGESMART LLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "F",
+				"issue_name": "FORD MOTOR CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "FANG",
+				"issue_name": "DIAMONDBACK ENERGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "FCFS",
+				"issue_name": "FIRSTCASH HOLDINGS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 100,
+				"LetterGradeRating": "A+"
+			},
+			{
+				"type": "equity",
+				"ticker": "FDX",
+				"issue_name": "FEDEX CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "FTI",
+				"issue_name": "TECHNIPFMC PLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "FUBO",
+				"issue_name": "FUBOTV INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 40,
+				"LetterGradeRating": "E+"
+			},
+			{
+				"type": "equity",
+				"ticker": "GD",
+				"issue_name": "GENERAL DYNAMICS CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "GE",
+				"issue_name": "GENERAL ELECTRIC CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "GES",
+				"issue_name": "GUESS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "GILD",
+				"issue_name": "GILEAD SCIENCES INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "GM",
+				"issue_name": "GENERAL MOTORS CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "GME",
+				"issue_name": "GAMESTOP CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "GOOG",
+				"issue_name": "ALPHABET INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "GPOR",
+				"issue_name": "GULFPORT ENERGY CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "GTLB",
+				"issue_name": "GITLAB INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "HAL",
+				"issue_name": "HALLIBURTON CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "HD",
+				"issue_name": "HOME DEPOT INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "HES",
+				"issue_name": "HESS CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "HESM",
+				"issue_name": "HESS MIDSTREAM LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "HII",
+				"issue_name": "HUNTINGTON INGALLS IND INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "HL",
+				"issue_name": "HECLA MINING CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "HMC",
+				"issue_name": "HONDA MOTOR CO LTD",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "HON",
+				"issue_name": "HONEYWELL INTERNATIONAL INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "HOOD",
+				"issue_name": "ROBINHOOD MARKETS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "HPK",
+				"issue_name": "HIGHPEAK ENERGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "IBM",
+				"issue_name": "INTL BUSINESS MACHINES CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "IMAX",
+				"issue_name": "IMAX CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "INFY",
+				"issue_name": "INFOSYS LTD",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "INSW",
+				"issue_name": "INTERNATIONAL SEAWAYS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "INTC",
+				"issue_name": "INTEL CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "JBLU",
+				"issue_name": "JETBLUE AIRWAYS CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "JD",
+				"issue_name": "JD.COM INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "JNJ",
+				"issue_name": "JOHNSON & JOHNSON",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "JPM",
+				"issue_name": "JPMORGAN CHASE & CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "KNTK",
+				"issue_name": "KINETIK HOLDINGS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "KO",
+				"issue_name": "COCA-COLA CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "KR",
+				"issue_name": "KROGER CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "KRP",
+				"issue_name": "KIMBELL ROYALTY PARTNERS LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "KSS",
+				"issue_name": "KOHL'S CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "KTB",
+				"issue_name": "KONTOOR BRANDS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "KTOS",
+				"issue_name": "KRATOS DEFENSE & SECURITY",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "LBRT",
+				"issue_name": "LIBERTY ENERGY INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "LCID",
+				"issue_name": "LUCID GROUP INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "LLY",
+				"issue_name": "LILLY (ELI) & CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "LNW",
+				"issue_name": "LIGHT & WONDER INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "LOW",
+				"issue_name": "LOWE'S COS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "LUV",
+				"issue_name": "SOUTHWEST AIRLINES",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "LVS",
+				"issue_name": "LAS VEGAS SANDS CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "LYFT",
+				"issue_name": "LYFT INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "MA",
+				"issue_name": "MASTERCARD INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "MCD",
+				"issue_name": "MCDONALD'S CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "MCK",
+				"issue_name": "MCKESSON CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "MDT",
+				"issue_name": "MEDTRONIC PLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "META",
+				"issue_name": "META PLATFORMS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "MMM",
+				"issue_name": "3M CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "MOH",
+				"issue_name": "MOLINA HEALTHCARE INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "MPC",
+				"issue_name": "MARATHON PETROLEUM CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "MPLX",
+				"issue_name": "MPLX LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "MRK",
+				"issue_name": "MERCK & CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "MRNA",
+				"issue_name": "MODERNA INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "MRO",
+				"issue_name": "MARATHON OIL CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "MRTX",
+				"issue_name": "MIRATI THERAPEUTICS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "MRVL",
+				"issue_name": "MARVELL TECHNOLOGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "MS",
+				"issue_name": "MORGAN STANLEY",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "MSFT",
+				"issue_name": "MICROSOFT CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "MSTR",
+				"issue_name": "MICROSTRATEGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "MTDR",
+				"issue_name": "MATADOR RESOURCES CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "MU",
+				"issue_name": "MICRON TECHNOLOGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "MUR",
+				"issue_name": "MURPHY OIL CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "NCLH",
+				"issue_name": "NORWEGIAN CRUISE LINE HLDGS",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "NEE",
+				"issue_name": "NEXTERA ENERGY INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "NEM",
+				"issue_name": "NEWMONT CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "NFLX",
+				"issue_name": "NETFLIX INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "NIO",
+				"issue_name": "NIO INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "NKE",
+				"issue_name": "NIKE INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "NOC",
+				"issue_name": "NORTHROP GRUMMAN CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "NOW",
+				"issue_name": "SERVICENOW INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "NU",
+				"issue_name": "NU HOLDINGS LTD",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "NVDA",
+				"issue_name": "NVIDIA CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "NVO",
+				"issue_name": "NOVO NORDISK A/S",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 100,
+				"LetterGradeRating": "A+"
+			},
+			{
+				"type": "equity",
+				"ticker": "NVS",
+				"issue_name": "NOVARTIS AG",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "NWS",
+				"issue_name": "NEWS CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "O",
+				"issue_name": "REALTY INCOME CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "OKE",
+				"issue_name": "ONEOK INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			},
+			{
+				"type": "equity",
+				"ticker": "OKTA",
+				"issue_name": "OKTA INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "OLLI",
+				"issue_name": "OLLIE'S BARGAIN OUTLET HLDGS",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "ON",
+				"issue_name": "ON SEMICONDUCTOR CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "OVV",
+				"issue_name": "OVINTIV INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "OXY",
+				"issue_name": "OCCIDENTAL PETROLEUM CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "PAA",
+				"issue_name": "PLAINS ALL AMER PIPELNE  -LP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "PAGP",
+				"issue_name": "PLAINS GP HOLDINGS LP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "PARA",
+				"issue_name": "PARAMOUNT GLOBAL",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "PEP",
+				"issue_name": "PEPSICO INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "PFE",
+				"issue_name": "PFIZER INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "PG",
+				"issue_name": "PROCTER & GAMBLE CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "PGR",
+				"issue_name": "PROGRESSIVE CORP-OHIO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "PLTR",
+				"issue_name": "PALANTIR TECHNOLOG INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "PM",
+				"issue_name": "PHILIP MORRIS INTERNATIONAL",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "PR",
+				"issue_name": "PERMIAN RESOURCES CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "PSN",
+				"issue_name": "PARSONS CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "PXD",
+				"issue_name": "PIONEER NATURAL RESOURCES CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "PYPL",
+				"issue_name": "PAYPAL HOLDINGS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "QCOM",
+				"issue_name": "QUALCOMM INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "RBLX",
+				"issue_name": "ROBLOX CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 45,
+				"LetterGradeRating": "D-"
+			},
+			{
+				"type": "equity",
+				"ticker": "RCL",
+				"issue_name": "ROYAL CARIBBEAN GROUP",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "RELY",
+				"issue_name": "REMITLY GLOBAL INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "RIVN",
+				"issue_name": "RIVIAN AUTOMOTIVE INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "RL",
+				"issue_name": "RALPH LAUREN CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "RMD",
+				"issue_name": "RESMED INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "ROAD",
+				"issue_name": "CONSTRUCTION PRTNR INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "ROKU",
+				"issue_name": "ROKU INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "RRC",
+				"issue_name": "RANGE RESOURCES CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "RRR",
+				"issue_name": "RED ROCK RESORTS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "RTX",
+				"issue_name": "RTX CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "SAVE",
+				"issue_name": "SPIRIT AIRLINES INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "SBUX",
+				"issue_name": "STARBUCKS CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "SCHW",
+				"issue_name": "SCHWAB (CHARLES) CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "SEDG",
+				"issue_name": "SOLAREDGE TECHNOLOGIES INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "SHEL",
+				"issue_name": "SHELL PLC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "SHOO",
+				"issue_name": "MADDEN STEVEN LTD",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "SHOP",
+				"issue_name": "SHOPIFY INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "SLB",
+				"issue_name": "SCHLUMBERGER LTD",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "SM",
+				"issue_name": "SM ENERGY CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "SONY",
+				"issue_name": "SONY GROUP CORPORATION",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "SPCE",
+				"issue_name": "VIRGIN GALACTIC HOLDINGS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "SQ",
+				"issue_name": "BLOCK INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 55,
+				"LetterGradeRating": "D+"
+			},
+			{
+				"type": "equity",
+				"ticker": "SSRM",
+				"issue_name": "SSR MINING INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "SUN",
+				"issue_name": "SUNOCO LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "T",
+				"issue_name": "AT&T INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "TDW",
+				"issue_name": "TIDEWATER INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "TECK",
+				"issue_name": "TECK RESOURCES LTD",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "TGT",
+				"issue_name": "TARGET CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "THG",
+				"issue_name": "HANOVER INSURANCE GROUP INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "TJX",
+				"issue_name": "TJX COS INC (THE)",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "TM",
+				"issue_name": "TOYOTA MOTOR CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "TOST",
+				"issue_name": "TOAST INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "TRGP",
+				"issue_name": "TARGA RESOURCES CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "TSLA",
+				"issue_name": "TESLA INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "TSM",
+				"issue_name": "TAIWAN SEMICONDUCTOR MFG CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "TTWO",
+				"issue_name": "TAKE-TWO INTERACTIVE SFTWR",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "TW",
+				"issue_name": "TRADEWEB MARKETS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "UA",
+				"issue_name": "UNDER ARMOUR INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "UAA",
+				"issue_name": "UNDER ARMOUR INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 50,
+				"LetterGradeRating": "D"
+			},
+			{
+				"type": "equity",
+				"ticker": "UAL",
+				"issue_name": "UNITED AIRLINES HOLDINGS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "UAN",
+				"issue_name": "CVR PARTNERS LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "UBER",
+				"issue_name": "UBER TECHNOLOGIES INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "UPS",
+				"issue_name": "UNITED PARCEL SERVICE INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "USB",
+				"issue_name": "US BANCORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "V",
+				"issue_name": "VISA INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "VALE",
+				"issue_name": "VALE SA",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "VNOM",
+				"issue_name": "VIPER ENERGY INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "VRNS",
+				"issue_name": "VARONIS SYSTEMS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 60,
+				"LetterGradeRating": "C-"
+			},
+			{
+				"type": "equity",
+				"ticker": "VRRM",
+				"issue_name": "VERRA MOBILITY CORP",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "VRTX",
+				"issue_name": "VERTEX PHARMACEUTICALS INC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 95,
+				"LetterGradeRating": "A"
+			},
+			{
+				"type": "equity",
+				"ticker": "VZ",
+				"issue_name": "VERIZON COMMUNICATIONS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 70,
+				"LetterGradeRating": "C+"
+			},
+			{
+				"type": "equity",
+				"ticker": "W",
+				"issue_name": "WAYFAIR INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Sell",
+				"LetterGradeSort": 45,
+				"LetterGradeRating": "D-"
+			},
+			{
+				"type": "equity",
+				"ticker": "WES",
+				"issue_name": "WESTERN MIDSTRM PRTNRS LP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "WFC",
+				"issue_name": "WELLS FARGO & CO",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "WFRD",
+				"issue_name": "WEATHERFORD INTL PLC",
+				"exchange": "NASDAQ",
+				"CurrentRating": "Hold",
+				"LetterGradeSort": 65,
+				"LetterGradeRating": "C"
+			},
+			{
+				"type": "equity",
+				"ticker": "WH",
+				"issue_name": "WYNDHAM HOTELS & RESRTS",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "WHD",
+				"issue_name": "CACTUS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 80,
+				"LetterGradeRating": "B"
+			},
+			{
+				"type": "equity",
+				"ticker": "WMB",
+				"issue_name": "WILLIAMS COS INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 85,
+				"LetterGradeRating": "B+"
+			},
+			{
+				"type": "equity",
+				"ticker": "WMT",
+				"issue_name": "WALMART INC",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 75,
+				"LetterGradeRating": "B-"
+			},
+			{
+				"type": "equity",
+				"ticker": "XOM",
+				"issue_name": "EXXON MOBIL CORP",
+				"exchange": "NYSE",
+				"CurrentRating": "Buy",
+				"LetterGradeSort": 90,
+				"LetterGradeRating": "A-"
+			}
+		]
+	}
+}

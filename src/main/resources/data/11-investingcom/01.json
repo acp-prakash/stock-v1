@@ -1,0 +1,702 @@
+{
+    "FINBOX:SQQQ": {
+        "asset_price_latest": 16.28000069,
+        "analyst_target_upside": null,
+        "analyst_rec": null,
+        "asset_price_latest_change_pct": 0.000307,
+        "quote_currency": "USD"
+    },
+    "ARCA:SVXY": {
+        "asset_price_latest": 94.63999939,
+        "analyst_target_upside": null,
+        "analyst_rec": null,
+        "asset_price_latest_change_pct": 0.00874,
+        "quote_currency": "USD"
+    },
+    "ARCA:UVXY": {
+        "asset_price_latest": 11.14999962,
+        "analyst_target_upside": null,
+        "analyst_rec": null,
+        "asset_price_latest_change_pct": -0.02193,
+        "quote_currency": "USD"
+    },
+    "NASDAQCM:XELA": {
+        "asset_price_latest": 3.22000003,
+        "analyst_target_upside": 127.20513272518096,
+        "analyst_rec": 3,
+        "asset_price_latest_change_pct": 0.025478,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AAL": {
+        "asset_price_latest": 12.28999996,
+        "analyst_target_upside": 0.06644794486531058,
+        "analyst_rec": 2.85714,
+        "asset_price_latest_change_pct": 0.008203,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AAPL": {
+        "asset_price_latest": 189.69000244,
+        "analyst_target_upside": 0.05424064585970845,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": -0.000105,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ABT": {
+        "asset_price_latest": 99.55000305,
+        "analyst_target_upside": 0.1524237529745882,
+        "analyst_rec": 1.75,
+        "asset_price_latest_change_pct": -0.007082,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ACAD": {
+        "asset_price_latest": 22.84000015,
+        "analyst_target_upside": 0.5165031168010592,
+        "analyst_rec": 2.05556,
+        "asset_price_latest_change_pct": 0.034889,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ACHC": {
+        "asset_price_latest": 72.70999908,
+        "analyst_target_upside": 0.18999328775496327,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": -0.016768,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ACN": {
+        "asset_price_latest": 327.82998657,
+        "analyst_target_upside": 0.04179393979612711,
+        "analyst_rec": 2.07407,
+        "asset_price_latest_change_pct": 0.001558,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ADBE": {
+        "asset_price_latest": 602.65997314,
+        "analyst_target_upside": 0.0271863378470949,
+        "analyst_rec": 1.89474,
+        "asset_price_latest_change_pct": 0.000997,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ALL": {
+        "asset_price_latest": 134.19000244,
+        "analyst_target_upside": 0.024118738404452778,
+        "analyst_rec": 2.35,
+        "asset_price_latest_change_pct": -0.004156,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AMC": {
+        "asset_price_latest": 7.42999983,
+        "analyst_target_upside": 0.2178619970665845,
+        "analyst_rec": 3.71429,
+        "asset_price_latest_change_pct": 0.005413,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:AMD": {
+        "asset_price_latest": 120.62000275,
+        "analyst_target_upside": 0.08659311821148274,
+        "analyst_rec": 1.78261,
+        "asset_price_latest_change_pct": 0.006593,
+        "quote_currency": "USD"
+    },
+    "NASDAQCM:AMPL": {
+        "asset_price_latest": 10.46000004,
+        "analyst_target_upside": 0.15273776877143752,
+        "analyst_rec": 2.7,
+        "asset_price_latest_change_pct": -0.001908,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AMZN": {
+        "asset_price_latest": 145.17999268,
+        "analyst_target_upside": 0.22523277853268953,
+        "analyst_rec": 1.28302,
+        "asset_price_latest_change_pct": 0.016453,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ANF": {
+        "asset_price_latest": 73.56999969,
+        "analyst_target_upside": 0.04378075518841218,
+        "analyst_rec": 2.33333,
+        "asset_price_latest_change_pct": 0.066541,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AR": {
+        "asset_price_latest": 25.62000084,
+        "analyst_target_upside": 0.253918472695827,
+        "analyst_rec": 2.22222,
+        "asset_price_latest_change_pct": 0.003918,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ADHD": {
+        "asset_price_latest": 24.98999977,
+        "analyst_target_upside": 1.3491479576792318,
+        "analyst_rec": 1.77778,
+        "asset_price_latest_change_pct": 0.126691,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ARLP": {
+        "asset_price_latest": 21.63999939,
+        "analyst_target_upside": 0.3453954805347901,
+        "analyst_rec": 1,
+        "asset_price_latest_change_pct": 0.009328,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AVAV": {
+        "asset_price_latest": 125.01999664,
+        "analyst_target_upside": 0.0017421699566475546,
+        "analyst_rec": 1.4,
+        "asset_price_latest_change_pct": -0.009978,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AVGO": {
+        "asset_price_latest": 977.72998047,
+        "analyst_target_upside": 0.025651661784236834,
+        "analyst_rec": 1.67742,
+        "asset_price_latest_change_pct": 0.018946,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:AXON": {
+        "asset_price_latest": 223.47999573,
+        "analyst_target_upside": 0.09310471359824413,
+        "analyst_rec": 1.61538,
+        "asset_price_latest_change_pct": 0.003232,
+        "quote_currency": "USD"
+    },
+    "FINBOX:AZN": {
+        "asset_price_latest": 64.12999725,
+        "analyst_target_upside": 0.24843261675248907,
+        "analyst_rec": 1.4,
+        "asset_price_latest_change_pct": 0.005172,
+        "quote_currency": "USD"
+    },
+    "FINBOX:BA": {
+        "asset_price_latest": 208.03999329,
+        "analyst_target_upside": 0.20232329460710496,
+        "analyst_rec": 1.66667,
+        "asset_price_latest_change_pct": 0.00697,
+        "quote_currency": "USD"
+    },
+    "FINBOX:BABA": {
+        "asset_price_latest": 77.59999847,
+        "analyst_target_upside": 0.7661960653497712,
+        "analyst_rec": 1.4,
+        "asset_price_latest_change_pct": -0.019087,
+        "quote_currency": "USD"
+    },
+    "FINBOX:BAC": {
+        "asset_price_latest": 29.97999954,
+        "analyst_target_upside": 0.07889413896945796,
+        "analyst_rec": 2.24,
+        "asset_price_latest_change_pct": 0.014895,
+        "quote_currency": "USD"
+    },
+    "FINBOX:BAH": {
+        "asset_price_latest": 126.81999969,
+        "analyst_target_upside": 0.06857681451976183,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": -0.007901,
+        "quote_currency": "USD"
+    },
+    "NYSE:BHVN": {
+        "asset_price_latest": 30.11000061,
+        "analyst_target_upside": -0.056285813127641915,
+        "analyst_rec": 1.33333,
+        "asset_price_latest_change_pct": 0.015003,
+        "quote_currency": "USD"
+    },
+    "FINBOX:BP": {
+        "asset_price_latest": 35.61000061,
+        "analyst_target_upside": 0.22786977256367513,
+        "analyst_rec": 2.11765,
+        "asset_price_latest_change_pct": 0.016848,
+        "quote_currency": "USD"
+    },
+    "NYSE:BRBR": {
+        "asset_price_latest": 45.36000061,
+        "analyst_target_upside": 0.037985893691316,
+        "analyst_rec": 1.46667,
+        "asset_price_latest_change_pct": 0.001767,
+        "quote_currency": "USD"
+    },
+    "FINBOX:BSM": {
+        "asset_price_latest": 17.47999954,
+        "analyst_target_upside": -0.017908693211531435,
+        "analyst_rec": 2.6,
+        "asset_price_latest_change_pct": 0.009821,
+        "quote_currency": "USD"
+    },
+    "NYSE:BXSL": {
+        "asset_price_latest": 28.31999969,
+        "analyst_target_upside": null,
+        "analyst_rec": 1.7,
+        "asset_price_latest_change_pct": 0.010707,
+        "quote_currency": "USD"
+    },
+    "FINBOX:C": {
+        "asset_price_latest": 45.36000061,
+        "analyst_target_upside": 0.02977393965718167,
+        "analyst_rec": 2.41667,
+        "asset_price_latest_change_pct": 0.015447,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CALX": {
+        "asset_price_latest": 38.18999863,
+        "analyst_target_upside": 0.519674418591638,
+        "analyst_rec": 1.5,
+        "asset_price_latest_change_pct": 0.036364,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CAT": {
+        "asset_price_latest": 253.07000732,
+        "analyst_target_upside": 0.06965872778127369,
+        "analyst_rec": 2.55556,
+        "asset_price_latest_change_pct": 0.01958,
+        "quote_currency": "USD"
+    },
+    "XNYS:CAVA": {
+        "asset_price_latest": 34.13000107,
+        "analyst_target_upside": 0.22717749727855807,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": -0.004376,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CCI": {
+        "asset_price_latest": 103.91999817,
+        "analyst_target_upside": -0.010756845182661068,
+        "analyst_rec": 2.63158,
+        "asset_price_latest_change_pct": -0.001921,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CCL": {
+        "asset_price_latest": 14.78999996,
+        "analyst_target_upside": 0.28291691162558386,
+        "analyst_rec": 1.92,
+        "asset_price_latest_change_pct": -0.00135,
+        "quote_currency": "USD"
+    },
+    "XNGS:CHRD": {
+        "asset_price_latest": 162.58999634,
+        "analyst_target_upside": 0.1868419819061895,
+        "analyst_rec": 1.41667,
+        "asset_price_latest_change_pct": 0.030812,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CI": {
+        "asset_price_latest": 282.55999756,
+        "analyst_target_upside": 0.24362249202874064,
+        "analyst_rec": 2.04545,
+        "asset_price_latest_change_pct": 0.001134,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CME": {
+        "asset_price_latest": 213.41999817,
+        "analyst_target_upside": 0.09333207889384565,
+        "analyst_rec": 2.17647,
+        "asset_price_latest_change_pct": 0.005797,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CNC": {
+        "asset_price_latest": 72.61000061,
+        "analyst_target_upside": 0.13372491521686825,
+        "analyst_rec": 2.05556,
+        "asset_price_latest_change_pct": -0.008196,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CNK": {
+        "asset_price_latest": 14.39999962,
+        "analyst_target_upside": 0.47161873322041914,
+        "analyst_rec": 2.1,
+        "asset_price_latest_change_pct": 0.00911,
+        "quote_currency": "USD"
+    },
+    "INVESTING:15773": {
+        "asset_price_latest": 36.08000183,
+        "analyst_target_upside": 0.1673151900212615,
+        "analyst_rec": 1.82353,
+        "asset_price_latest_change_pct": 0.017198,
+        "quote_currency": "USD"
+    },
+    "FINBOX:COP": {
+        "asset_price_latest": 114.58999634,
+        "analyst_target_upside": 0.21789782871477104,
+        "analyst_rec": 1.7931,
+        "asset_price_latest_change_pct": 0.023216,
+        "quote_currency": "USD"
+    },
+    "FINBOX:COR": {
+        "asset_price_latest": 195.00999451,
+        "analyst_target_upside": 0.08822185571805452,
+        "analyst_rec": 1.93333,
+        "asset_price_latest_change_pct": -0.009649,
+        "quote_currency": "USD"
+    },
+    "FINBOX:COST": {
+        "asset_price_latest": 577.15002441,
+        "analyst_target_upside": 0.041847498816639295,
+        "analyst_rec": 1.81579,
+        "asset_price_latest_change_pct": -0.002472,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CPE": {
+        "asset_price_latest": 33.13000107,
+        "analyst_target_upside": 0.5232411988540773,
+        "analyst_rec": 2.33333,
+        "asset_price_latest_change_pct": 0.040515,
+        "quote_currency": "USD"
+    },
+    "NYSE:CPNG": {
+        "asset_price_latest": 16.04999924,
+        "analyst_target_upside": 0.35561163057427203,
+        "analyst_rec": 1.94444,
+        "asset_price_latest_change_pct": 0.01198,
+        "quote_currency": "USD"
+    },
+    "XNYS:CRBG": {
+        "asset_price_latest": 19.45000076,
+        "analyst_target_upside": 0.28468659722053813,
+        "analyst_rec": 1.85714,
+        "asset_price_latest_change_pct": -0.000514,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CRM": {
+        "asset_price_latest": 221.22000122,
+        "analyst_target_upside": 0.15025484773051634,
+        "analyst_rec": 1.92,
+        "asset_price_latest_change_pct": -0.001039,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:CRWD": {
+        "asset_price_latest": 207.08999634,
+        "analyst_target_upside": -0.023351467030348183,
+        "analyst_rec": 1.38776,
+        "asset_price_latest_change_pct": 0.013805,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CSCO": {
+        "asset_price_latest": 47.75500107,
+        "analyst_target_upside": 0.121961329721616,
+        "analyst_rec": 2.46154,
+        "asset_price_latest_change_pct": -0.005933,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CSX": {
+        "asset_price_latest": 31.62000084,
+        "analyst_target_upside": 0.1809767026644793,
+        "analyst_rec": 1.78571,
+        "asset_price_latest_change_pct": 0.009256,
+        "quote_currency": "USD"
+    },
+    "OTCPK:CTGO": {
+        "asset_price_latest": 20.79999924,
+        "analyst_target_upside": 0.7910447422588556,
+        "analyst_rec": 1.66667,
+        "asset_price_latest_change_pct": 0.022593,
+        "quote_currency": "USD"
+    },
+    "FINBOX:COG": {
+        "asset_price_latest": 26.75,
+        "analyst_target_upside": 0.17781156402437626,
+        "analyst_rec": 2.37037,
+        "asset_price_latest_change_pct": 0.015761,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CVS": {
+        "asset_price_latest": 68.80999756,
+        "analyst_target_upside": 0.26007326007326004,
+        "analyst_rec": 1.61538,
+        "asset_price_latest_change_pct": 0.008205,
+        "quote_currency": "USD"
+    },
+    "FINBOX:CVX": {
+        "asset_price_latest": 144.46000671,
+        "analyst_target_upside": 0.26966209055895396,
+        "analyst_rec": 1.8,
+        "asset_price_latest_change_pct": 0.018974,
+        "quote_currency": "USD"
+    },
+    "NYSE:CWAN": {
+        "asset_price_latest": 21.20999908,
+        "analyst_target_upside": 0.12781951230284472,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": 0.001889,
+        "quote_currency": "USD"
+    },
+    "FINBOX:DAL": {
+        "asset_price_latest": 36.06000137,
+        "analyst_target_upside": 0.4005601942737884,
+        "analyst_rec": 1.33333,
+        "asset_price_latest_change_pct": 0.015489,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:DDOG": {
+        "asset_price_latest": 109.54000092,
+        "analyst_target_upside": 0.06304982658186375,
+        "analyst_rec": 1.94872,
+        "asset_price_latest_change_pct": 0.003849,
+        "quote_currency": "USD"
+    },
+    "NYSE:DELL": {
+        "asset_price_latest": 73.62000275,
+        "analyst_target_upside": 0.034054891238755935,
+        "analyst_rec": 1.95,
+        "asset_price_latest_change_pct": 0.014888,
+        "quote_currency": "USD"
+    },
+    "NYSE:DINO": {
+        "asset_price_latest": 53.66999817,
+        "analyst_target_upside": 0.1839363309486377,
+        "analyst_rec": 2.53333,
+        "asset_price_latest_change_pct": 0.01667,
+        "quote_currency": "USD"
+    },
+    "FINBOX:DIS": {
+        "asset_price_latest": 94.15000153,
+        "analyst_target_upside": 0.12686485650734536,
+        "analyst_rec": 1.75,
+        "asset_price_latest_change_pct": -0.003809,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:DKNG": {
+        "asset_price_latest": 38.36999893,
+        "analyst_target_upside": 0.03484416803156476,
+        "analyst_rec": 1.74194,
+        "asset_price_latest_change_pct": 0.028411,
+        "quote_currency": "USD"
+    },
+    "XNGS:DRS": {
+        "asset_price_latest": 18.55999947,
+        "analyst_target_upside": 0.15591395487917725,
+        "analyst_rec": 1.25,
+        "asset_price_latest_change_pct": 0.005417,
+        "quote_currency": "USD"
+    },
+    "FINBOX:DVN": {
+        "asset_price_latest": 45.36000061,
+        "analyst_target_upside": 0.25310451224077335,
+        "analyst_rec": 2.16667,
+        "asset_price_latest_change_pct": 0.024159,
+        "quote_currency": "USD"
+    },
+    "FINBOX:EA": {
+        "asset_price_latest": 133.69999695,
+        "analyst_target_upside": 0.12351139366397668,
+        "analyst_rec": 1.92,
+        "asset_price_latest_change_pct": 0.002249,
+        "quote_currency": "USD"
+    },
+    "FINBOX:EBAY": {
+        "asset_price_latest": 40.13999939,
+        "analyst_target_upside": 0.12387609805279709,
+        "analyst_rec": 2.74194,
+        "asset_price_latest_change_pct": -0.000996,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ED": {
+        "asset_price_latest": 91.36000061,
+        "analyst_target_upside": -0.026471212190355642,
+        "analyst_rec": 3.17647,
+        "asset_price_latest_change_pct": 0.002524,
+        "quote_currency": "USD"
+    },
+    "FINBOX:EMR": {
+        "asset_price_latest": 89.26999664,
+        "analyst_target_upside": 0.20509323679724623,
+        "analyst_rec": 1.625,
+        "asset_price_latest_change_pct": 0.020229,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ENLC": {
+        "asset_price_latest": 12.89000034,
+        "analyst_target_upside": 0.12359550201092939,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": 0.03451,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ENPH": {
+        "asset_price_latest": 92.86000061,
+        "analyst_target_upside": 0.26610644257703076,
+        "analyst_rec": 2.18421,
+        "asset_price_latest_change_pct": 0.024154,
+        "quote_currency": "USD"
+    },
+    "FINBOX:ENSG": {
+        "asset_price_latest": 107.38999939,
+        "analyst_target_upside": 0.054713225600336424,
+        "analyst_rec": 1.6,
+        "asset_price_latest_change_pct": 0.0113,
+        "quote_currency": "USD"
+    },
+    "FINBOX:EOG": {
+        "asset_price_latest": 124,
+        "analyst_target_upside": 0.23446564842684525,
+        "analyst_rec": 1.8125,
+        "asset_price_latest_change_pct": 0.027341,
+        "quote_currency": "USD"
+    },
+    "FINBOX:EPD": {
+        "asset_price_latest": 26.27000046,
+        "analyst_target_upside": 0.18819470378577208,
+        "analyst_rec": 1.63636,
+        "asset_price_latest_change_pct": 0.010773,
+        "quote_currency": "USD"
+    },
+    "FINBOX:EQT": {
+        "asset_price_latest": 40.36999893,
+        "analyst_target_upside": 0.19641079960517338,
+        "analyst_rec": 2.08333,
+        "asset_price_latest_change_pct": 0.00799,
+        "quote_currency": "USD"
+    },
+    "NYSE:ESMT": {
+        "asset_price_latest": 22.80999947,
+        "analyst_target_upside": 0.010100989694929563,
+        "analyst_rec": 2.77778,
+        "asset_price_latest_change_pct": 0.003961,
+        "quote_currency": "USD"
+    },
+    "DB:ESTE": {
+        "asset_price_latest": 32.47999954,
+        "analyst_target_upside": null,
+        "analyst_rec": null,
+        "asset_price_latest_change_pct": -0.0028,
+        "quote_currency": "EUR"
+    },
+    "FINBOX:F": {
+        "asset_price_latest": 10.27000046,
+        "analyst_target_upside": 0.328740177097542,
+        "analyst_rec": 2.43478,
+        "asset_price_latest_change_pct": 0.010827,
+        "quote_currency": "USD"
+    },
+    "FINBOX:FANG": {
+        "asset_price_latest": 156.1499939,
+        "analyst_target_upside": 0.17373921619968846,
+        "analyst_rec": 1.68966,
+        "asset_price_latest_change_pct": 0.023934,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:FCFS": {
+        "asset_price_latest": 111.88999939,
+        "analyst_target_upside": 0.08313023741781911,
+        "analyst_rec": 2.2,
+        "asset_price_latest_change_pct": 0.009838,
+        "quote_currency": "USD"
+    },
+    "FINBOX:FDX": {
+        "asset_price_latest": 255.94999695,
+        "analyst_target_upside": 0.13752254343941717,
+        "analyst_rec": 1.93548,
+        "asset_price_latest_change_pct": 0.003962,
+        "quote_currency": "USD"
+    },
+    "NYSE:FTI": {
+        "asset_price_latest": 20.62999916,
+        "analyst_target_upside": 0.24131086182719086,
+        "analyst_rec": 1.6087,
+        "asset_price_latest_change_pct": 0.02433,
+        "quote_currency": "USD"
+    },
+    "OTCPK:FUBO": {
+        "asset_price_latest": 3.19000006,
+        "analyst_target_upside": 0.05863194596229193,
+        "analyst_rec": 2.77778,
+        "asset_price_latest_change_pct": 0.098276,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GD": {
+        "asset_price_latest": 244.69000244,
+        "analyst_target_upside": 0.08841597978786586,
+        "analyst_rec": 1.70833,
+        "asset_price_latest_change_pct": -0.002324,
+        "quote_currency": "USD"
+    },
+    "ARCA:GDX": {
+        "asset_price_latest": 28.43000031,
+        "analyst_target_upside": null,
+        "analyst_rec": null,
+        "asset_price_latest_change_pct": -0.006292,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GE": {
+        "asset_price_latest": 119.93000031,
+        "analyst_target_upside": 0.11790321592499486,
+        "analyst_rec": 2,
+        "asset_price_latest_change_pct": 0.008324,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GES": {
+        "asset_price_latest": 23.90999985,
+        "analyst_target_upside": 0.22270744387025454,
+        "analyst_rec": 1.8,
+        "asset_price_latest_change_pct": 0.044105,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GILD": {
+        "asset_price_latest": 75.44999695,
+        "analyst_target_upside": 0.2144391315152372,
+        "analyst_rec": 2.1875,
+        "asset_price_latest_change_pct": 0.01248,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GM": {
+        "asset_price_latest": 28.03000069,
+        "analyst_target_upside": 0.4849691812447954,
+        "analyst_rec": 2.04,
+        "asset_price_latest_change_pct": 0.020015,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GME": {
+        "asset_price_latest": 13.02999973,
+        "analyst_target_upside": 0.026045770948408764,
+        "analyst_rec": 4,
+        "asset_price_latest_change_pct": 0.039904,
+        "quote_currency": "USD"
+    },
+    "FINBOX:GOOG": {
+        "asset_price_latest": 136.94000244,
+        "analyst_target_upside": 0.09313510178090056,
+        "analyst_rec": 1.59259,
+        "asset_price_latest_change_pct": -0.012689,
+        "quote_currency": "USD"
+    },
+    "NYSE:GPOR": {
+        "asset_price_latest": 129.22999573,
+        "analyst_target_upside": 0.21347785403847097,
+        "analyst_rec": 1.16667,
+        "asset_price_latest_change_pct": 0.015081,
+        "quote_currency": "USD"
+    },
+    "NASDAQGS:GTLB": {
+        "asset_price_latest": 46.81000137,
+        "analyst_target_upside": 0.32365499149128407,
+        "analyst_rec": 1.8,
+        "asset_price_latest_change_pct": -0.035839,
+        "quote_currency": "USD"
+    },
+    "FINBOX:HAL": {
+        "asset_price_latest": 37.99000168,
+        "analyst_target_upside": 0.31791284538588016,
+        "analyst_rec": 1.51613,
+        "asset_price_latest_change_pct": 0.021786,
+        "quote_currency": "USD"
+    },
+    "FINBOX:HD": {
+        "asset_price_latest": 307.26998901,
+        "analyst_target_upside": 0.07688290488319316,
+        "analyst_rec": 2.10811,
+        "asset_price_latest_change_pct": 0.002709,
+        "quote_currency": "USD"
+    },
+    "FINBOX:HES": {
+        "asset_price_latest": 144.44999695,
+        "analyst_target_upside": 0.17347654549676506,
+        "analyst_rec": 2.57895,
+        "asset_price_latest_change_pct": 0.021137,
+        "quote_currency": "USD"
+    },
+    "NYSE:HESM": {
+        "asset_price_latest": 31.29999924,
+        "analyst_target_upside": 0.10317976450310606,
+        "analyst_rec": 1.8,
+        "asset_price_latest_change_pct": 0.025557,
+        "quote_currency": "USD"
+    }
+}

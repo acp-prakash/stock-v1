@@ -1,0 +1,140 @@
+{
+	"responseHeader": {
+		"status": 0,
+		"QTime": 2,
+		"params": {
+			"fl": "ticker,issue_name,LetterGradeRating,recommendation,InvestmentRating,LetterGradeSort,FundFamily,FundObjective,type,Risk,recommendation,exchange",
+			"sort": "ticker asc",
+			"indent": "off",
+			"q": "type:etf AND ticker:(GDX OR SOXL OR NSANY OR NWS OR UAN OR SPXL OR SPY OR TNA OR TQQQ OR SQQQ OR TZA OR UVXY OR SVXY) AND LetterGradeSort:[ 0 TO 100 ]",
+			"wt": "json",
+			"rows": "200"
+		}
+	},
+	"response": {
+		"numFound": 10,
+		"start": 0,
+		"docs": [
+			{
+				"type": "etf",
+				"ticker": "GDX",
+				"issue_name": "VanEck Gold Miners",
+				"exchange": "ARCA",
+				"FundFamily": "Van Eck Associates Corporation",
+				"FundObjective": "Sector - Precious Metals",
+				"recommendation": "SELL",
+				"LetterGradeSort": 45,
+				"InvestmentRating": "D-",
+				"Risk": "C+"
+			},
+			{
+				"type": "etf",
+				"ticker": "SOXL",
+				"issue_name": "Direxion Daily Semiconductor Bull3X",
+				"exchange": "ARCA",
+				"FundFamily": "Rafferty Asset Management LLC",
+				"FundObjective": "Equity Income",
+				"recommendation": "SELL",
+				"LetterGradeSort": 50,
+				"InvestmentRating": "D",
+				"Risk": "D"
+			},
+			{
+				"type": "etf",
+				"ticker": "SPXL",
+				"issue_name": "Direxion S&P 500 Bull 3X Shares",
+				"exchange": "ARCA",
+				"FundFamily": "Rafferty Asset Management LLC",
+				"FundObjective": "Growth - Domestic",
+				"recommendation": "HOLD",
+				"LetterGradeSort": 65,
+				"InvestmentRating": "C",
+				"Risk": "C-"
+			},
+			{
+				"type": "etf",
+				"ticker": "SPY",
+				"issue_name": "SPDR S&P 500 ETF",
+				"exchange": "ARCA",
+				"FundFamily": "SSgA Funds Management Inc",
+				"FundObjective": "Growth - Domestic",
+				"recommendation": "BUY",
+				"LetterGradeSort": 80,
+				"InvestmentRating": "B",
+				"Risk": "B-"
+			},
+			{
+				"type": "etf",
+				"ticker": "SQQQ",
+				"issue_name": "ProShares UltraPro Short QQQ",
+				"exchange": "NASD",
+				"FundFamily": "ProShare Advisors LLC",
+				"FundObjective": "Growth - Domestic",
+				"recommendation": "SELL",
+				"LetterGradeSort": 30,
+				"InvestmentRating": "E-",
+				"Risk": "E-"
+			},
+			{
+				"type": "etf",
+				"ticker": "SVXY",
+				"issue_name": "ProShares Short VIX Sh Tm Fut ETF",
+				"exchange": "",
+				"FundFamily": "ProShare Advisors LLC",
+				"FundObjective": "Growth & Income",
+				"recommendation": "BUY",
+				"LetterGradeSort": 100,
+				"InvestmentRating": "A+",
+				"Risk": "B-"
+			},
+			{
+				"type": "etf",
+				"ticker": "TNA",
+				"issue_name": "Direxion Daily Small Cap Bull 3x",
+				"exchange": "ARCA",
+				"FundFamily": "Rafferty Asset Management LLC",
+				"FundObjective": "Growth - Domestic",
+				"recommendation": "SELL",
+				"LetterGradeSort": 30,
+				"InvestmentRating": "E-",
+				"Risk": "D+"
+			},
+			{
+				"type": "etf",
+				"ticker": "TQQQ",
+				"issue_name": "ProShares UltraPro QQQ",
+				"exchange": "NASD",
+				"FundFamily": "ProShare Advisors LLC",
+				"FundObjective": "Growth - Domestic",
+				"recommendation": "HOLD",
+				"LetterGradeSort": 60,
+				"InvestmentRating": "C-",
+				"Risk": "D"
+			},
+			{
+				"type": "etf",
+				"ticker": "TZA",
+				"issue_name": "Direxion Daily Small Cap Bear 3x",
+				"exchange": "ARCA",
+				"FundFamily": "Rafferty Asset Management LLC",
+				"FundObjective": "Growth - Domestic",
+				"recommendation": "SELL",
+				"LetterGradeSort": 30,
+				"InvestmentRating": "E-",
+				"Risk": "D-"
+			},
+			{
+				"type": "etf",
+				"ticker": "UVXY",
+				"issue_name": "ProShares Ultra VIX Sh Tm Fut ETF",
+				"exchange": "",
+				"FundFamily": "ProShare Advisors LLC",
+				"FundObjective": "Growth & Income",
+				"recommendation": "SELL",
+				"LetterGradeSort": 30,
+				"InvestmentRating": "E-",
+				"Risk": "E-"
+			}
+		]
+	}
+}
