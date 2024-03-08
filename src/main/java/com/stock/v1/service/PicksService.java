@@ -99,8 +99,8 @@ public class PicksService{
 			}
 		}
 		
-		picksList.forEach( x -> 
-		x.setMaxDiff(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(x.getL()) - Double.valueOf(x.getEntry())), false)));
+		picksList.forEach( x -> {if(x.getL() != null) {
+			x.setMaxDiff(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(x.getL()) - Double.valueOf(x.getEntry())), false));}});
 
 		return picksList;
 	}

@@ -1,6 +1,7 @@
 package com.stock.v1.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,11 +49,28 @@ public class StocksController {
 		return mv;
 	}
 	
+	@GetMapping(Constants.CONTEXT_FUTURES)
+	public ModelAndView loadFuturesView()
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName(PAGES.FUTURES.value);		
+		return mv;
+	}
+	
 	@CrossOrigin
 	@GetMapping("/stock/masterList")
 	public @ResponseBody List<Master> getMasterStocks()
 	{
-		return stockService.getMasterList();		
+		List<Master> masterList = stockService.getMasterList();
+		return masterList.stream().filter(x -> !x.isFuture()).collect(Collectors.toList());
+	}
+	
+	@CrossOrigin
+	@GetMapping("/getFutures")
+	public @ResponseBody List<Master> getFutures()
+	{
+		List<Master> masterList = stockService.getMasterList();
+		return masterList.stream().filter(x -> x.isFuture()).collect(Collectors.toList());
 	}
 	
 	@CrossOrigin

@@ -667,6 +667,28 @@ public class LiveStockCache  {
 		s.setAddedDate("2024-03-06");
 		s.setAddPrice("77.81");
 		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("DELL");
+		s.setEntry("119.67");
+		s.setExit1("125");
+		s.setExit2("126.5");
+		s.setStop("119.61");
+		s.setTargetDate("2024-03-19");
+		s.setAddedDate("2024-03-07");
+		s.setAddPrice("120.5");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("NFLX");
+		s.setEntry("606.51");
+		s.setExit1("619");
+		s.setExit2("622");
+		s.setStop("603.07");
+		s.setTargetDate("2024-03-14");
+		s.setAddedDate("2024-03-07");
+		s.setAddPrice("608.51");
+		picksList.add(s);
 
 		return picksList;
 	}

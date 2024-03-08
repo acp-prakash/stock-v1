@@ -143,6 +143,12 @@ public class StockService{
 		for (Master master : list) {
 			Stock stock = stockMap.get(master.getTicker().toLowerCase());
 			if (stock != null) {
+				master.setContractName(stock.getContractName());
+				master.setContractExpiry(stock.getContractExpiry());
+				master.setContractPoint(stock.getContractPoint());
+				master.setContractMargin(stock.getContractMargin());
+				master.setOpenInterest(stock.getOpenInterest());
+                
 				master.setRating(stock.getRating());
 				String btTrend = stock.getRating().getBtTrend();
 				String siusTrend = stock.getRating().getSiusRating();

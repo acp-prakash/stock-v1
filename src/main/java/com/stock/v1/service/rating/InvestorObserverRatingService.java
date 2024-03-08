@@ -154,20 +154,13 @@ public class InvestorObserverRatingService{
 		response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
 		processResponse(response);
 		
-		queryString = IntStream.range(0, 50)
+		queryString = IntStream.range(0, 46)
 				.mapToObj(index -> "&filter[symbol][" + index + "]=" + filteredList.get(index + 500).getTicker())
 				.collect(Collectors.joining());
 		url = OriginalUrl.replace("REPLACE", queryString);
 		response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
 		processResponse(response);
-		
-		queryString = IntStream.range(0, 1)
-				.mapToObj(index -> "&filter[symbol][" + index + "]=" + filteredList.get(index + 550).getTicker())
-				.collect(Collectors.joining());
-		url = OriginalUrl.replace("REPLACE", queryString);
-		response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
-		processResponse(response);
-
+	
 		System.out.println("12 - INVESTOR OBSERVER RATING DONE ==> AUTO");
 	}
 	private void processManual() throws IOException

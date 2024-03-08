@@ -45,4 +45,9 @@ public class Master implements Serializable {
 	public int buyTrend = 0;
 	public int sellTrend = 0;
 	public boolean isFuture = false;
+	public String contractName;
+	public String contractExpiry;
+	public String contractPoint;
+	public String contractMargin;
+	public String openInterest;
 }

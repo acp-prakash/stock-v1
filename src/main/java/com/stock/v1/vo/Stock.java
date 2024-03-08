@@ -39,5 +39,10 @@ public class Stock implements Serializable {
 	public int buyStrength;
 	public int sellStrength;
 	public int buyTrend;
-	public int sellTrend;
+	public int sellTrend;	
+	public String contractName;
+	public String contractExpiry;
+	public String contractPoint;
+	public String contractMargin;
+	public String openInterest;
 }

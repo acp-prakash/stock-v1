@@ -194,6 +194,21 @@ public class StockServiceDB{
 	                    break;
 	                case "VOLUME":
 	                    stock.setVolume((String) value);
+	                    break;	                    
+	                case "CONTRACT_NAME":
+	                    stock.setContractName((String) value);
+	                    break;	                    
+	                case "CONTRACT_EXP":
+	                    stock.setContractExpiry((String) value);
+	                    break;	                    
+	                case "CONTRACT_POINT":
+	                    stock.setContractPoint((String) value);
+	                    break;	                    
+	                case "CONTRACT_MARGIN":
+	                    stock.setContractMargin((String) value);
+	                    break;	                    
+	                case "OPEN_INT":
+	                    stock.setOpenInterest((String) value);
 	                    break;
 	                case "EARNINGS_DAY":
 	                    stock.setEarningDay((String) value);
@@ -404,10 +419,11 @@ public class StockServiceDB{
         		+ "TICKERON_RATING,TICKERON_RATING_AT,TICKERON_RATING_ON,TICKERON_AI_RATING,TICKERON_UNDER_OVER,"
         		+ "PORTFOLIO123_RATING,PORTFOLIO123_HIGH_PT,PORTFOLIO123_LOW_PT,PORTFOLIO123_ANALYSTS,"
         		+ "FINSCREENER_RATING,FINSCREENER_PT,FINSCREENER_ANALYSTS,MARKETEDGE_RATING,MARKETEDGE_CONF_SCORE, "
-        		+ "BUY_TREND, SELL_TREND) "
+        		+ "BUY_TREND, SELL_TREND, CONTRACT_NAME, CONTRACT_EXP, CONTRACT_POINT, CONTRACT_MARGIN, OPEN_INT) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
                 + " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
-                + ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
+                + ", ?, ?, ?, ?, ?)";
         
         try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -480,7 +496,12 @@ public class StockServiceDB{
                 ps.setString(i, stock.getRating().getMarketEdgeRating());i++;
                 ps.setString(i, stock.getRating().getMarketEdgeConfScore());i++;
                 ps.setInt(i, stock.getBuyTrend());i++;
-                ps.setInt(i, stock.getSellTrend());i++;
+                ps.setInt(i, stock.getSellTrend());i++;                
+                ps.setString(i, stock.getContractName());i++;
+                ps.setString(i, stock.getContractExpiry());i++;
+                ps.setString(i, stock.getContractPoint());i++;
+                ps.setString(i, stock.getContractMargin());i++;
+                ps.setString(i, stock.getOpenInterest());i++;
                 
                 ps.addBatch();
             }

@@ -252,7 +252,10 @@ public class UtilityService{
 				"$VIX".equalsIgnoreCase(ticker)  || "VIH24".equalsIgnoreCase(ticker) ||
 				"VIJ24".equalsIgnoreCase(ticker)  || "VIK24".equalsIgnoreCase(ticker) ||
 				"VIM24".equalsIgnoreCase(ticker)  || "VIN24".equalsIgnoreCase(ticker) ||
-				"VIQ24".equalsIgnoreCase(ticker)  || "VIU24".equalsIgnoreCase(ticker) ||
+				"VIQ24".equalsIgnoreCase(ticker)  || "VIU24".equalsIgnoreCase(ticker) ||				
+				"EWH24".equalsIgnoreCase(ticker)  || "EWM24".equalsIgnoreCase(ticker) ||
+				"EWU24".equalsIgnoreCase(ticker)  || "EWZ24".equalsIgnoreCase(ticker) ||
+				"EWH25".equalsIgnoreCase(ticker)  ||				
 				"VIV24".equalsIgnoreCase(ticker)  || "VIX24".equalsIgnoreCase(ticker))    		
     		return true;
     	return false;

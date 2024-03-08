@@ -10,6 +10,7 @@
 	        <ul class="menu">
 	            <li><a href="/stock-v1/picks_user">PICKS</a></li>
 	            <li><a href="/stock-v1/master">MASTER</a></li>
+	            <li><a href="/stock-v1/futures">FUTURES</a></li>
 	            <li><a href="/stock-v1/options">OPTIONS</a></li>
                 <li><a href="/stock-v1/earnings">EARNINGS</a></li>
                 <li><a href="/stock-v1/pattern/getPatternHistory">PATTERNS</a></li>

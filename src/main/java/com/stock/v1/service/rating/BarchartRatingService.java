@@ -151,6 +151,12 @@ public class BarchartRatingService{
 				stock.setPriceChg10(UtilityService.checkForPresence(obj, "priceChange10d"));
 				stock.setLastEarningsDate(UtilityService.checkForPresence(obj, "epsDate"));
 				stock.setNextEarningsDate(UtilityService.checkForPresence(obj, "nextEarningsDate"));				
+				
+				stock.setContractName(UtilityService.checkForPresence(obj, "contractName"));
+				stock.setContractExpiry(UtilityService.checkForPresence(obj, "daysToContractExpiration"));
+				stock.setContractPoint(UtilityService.checkForPresence(obj, "pointValue"));
+				stock.setContractMargin(UtilityService.checkForPresence(obj, "margin"));
+				stock.setOpenInterest(UtilityService.checkForPresence(obj, "openInterest"));
 			}
 			else
 			{
@@ -168,7 +174,13 @@ public class BarchartRatingService{
 				stock.setPriceChg5(UtilityService.checkForPresence(obj, "dailyPriceChange5d"));
 				stock.setPriceChg10(UtilityService.checkForPresence(obj, "dailyPriceChange10d"));
 				stock.setLastEarningsDate(UtilityService.checkForPresence(obj, "epsDate"));
-				stock.setNextEarningsDate(UtilityService.checkForPresence(obj, "nextEarningsDate"));				
+				stock.setNextEarningsDate(UtilityService.checkForPresence(obj, "nextEarningsDate"));
+				
+				stock.setContractName(UtilityService.checkForPresence(obj, "contractName"));
+				stock.setContractExpiry(UtilityService.checkForPresence(obj, "daysToContractExpiration"));
+				stock.setContractPoint(UtilityService.checkForPresence(obj, "pointValue"));
+				stock.setContractMargin(UtilityService.checkForPresence(obj, "margin"));
+				stock.setOpenInterest(UtilityService.checkForPresence(obj, "dailyOpenInterest"));
 			}
 
 			if("unch".equalsIgnoreCase(stock.getChange()))
