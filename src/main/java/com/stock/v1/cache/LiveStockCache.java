@@ -689,6 +689,39 @@ public class LiveStockCache  {
 		s.setAddedDate("2024-03-07");
 		s.setAddPrice("608.51");
 		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("CLF");
+		s.setEntry("21.02");
+		s.setExit1("22.5");
+		s.setExit2("22.8");
+		s.setStop("20.61");
+		s.setTargetDate("2024-04-02");
+		s.setAddedDate("2024-03-08");
+		s.setAddPrice("20.99");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("HOOD");
+		s.setEntry("16.89");
+		s.setExit1("18.7");
+		s.setExit2("19");
+		s.setStop("16.4");
+		s.setTargetDate("2024-04-01");
+		s.setAddedDate("2024-03-08");
+		s.setAddPrice("17");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("HAL");
+		s.setEntry("35.71");
+		s.setExit1("37.2");
+		s.setExit2("37.5");
+		s.setStop("35.31");
+		s.setTargetDate("2024-03-27");
+		s.setAddedDate("2024-03-08");
+		s.setAddPrice("36.21");
+		picksList.add(s);
 
 		return picksList;
 	}
