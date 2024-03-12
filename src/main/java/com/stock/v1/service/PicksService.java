@@ -91,7 +91,7 @@ public class PicksService{
 								else
 									pick.setResult("DELAY-HIT-T2");
 							}
-							if("A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
+							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) && "A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
 								pick.setResult("MISSED");
 						}
 					}
