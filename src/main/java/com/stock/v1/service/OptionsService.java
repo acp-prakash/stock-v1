@@ -42,9 +42,7 @@ public class OptionsService{
 		List<Options> histList = optionsServiceDB.getOptionsHistory(null);
 		List<Pattern> patternList = patternServiceDB.getPatternHistory(null);
 
-		list.forEach(option -> {
-			if(option.getKey().equalsIgnoreCase("DIS_Apr_19_24_110_Call"))
-				System.out.println("1");
+		list.forEach(option -> {			
 			List<Options> hList = optionsServiceDB.getOptionsHistory(option.getKey());
 			String upPrice = hList.get(0).getPrice();
 			String downPrice = hList.get(0).getPrice();

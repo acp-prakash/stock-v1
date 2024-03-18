@@ -33,7 +33,7 @@ function createFUTURESTable() {
             { title: 'NAME', field: 'contractName', headerFilter: true, width: 180, frozen: true },
             { title: 'CHANGE', field: 'change', sorter:'number',headerFilter:true, frozen: true, width:85},
             { title: 'PRICE', field: 'price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", frozen: true, width:70},
-            { title: 'EXPIRY', field: 'contractExpiry', sorter:'number',headerFilter:true, width:84},
+            { title: 'EXPIRY', field: 'contractExpiry', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:84},
             { title: 'OPEN-INT', field: 'openInterest', sorter:'number',headerFilter:true, width:95},
             { title: 'TRP', field: 'trackingPrice', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
             { title: 'TRD', field: 'trackingDiff', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},

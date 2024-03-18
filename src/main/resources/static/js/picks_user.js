@@ -47,16 +47,16 @@ function createPICKSTable() {
 			    }
 			}},
             { title: 'ADD-DATE', field:'addedDate', headerFilter:true, width:125},
-            { title: 'TODAY\'S CHG', field: 'master.change', sorter:'number',headerFilter:true, width:145},
-            { title: 'LOW', field: 'l', sorter:'number',headerFilter:true, width:80},
             { title: 'PRICE ON ADD', field: 'addPrice', sorter:'number',headerFilter:true, width:155},
-            { title: 'HIGH', field: 'h', sorter:'number',headerFilter:true, width:80},
             { title: 'PRICE NOW', field: 'master.price', sorter:'number',headerFilter:true, width:130},
-            { title: 'ENTRY', field: 'entry', sorter:'number',headerFilter:true, width:90},                        
             { title: 'TARGET-1', field: 'exit1', headerFilter: true, width: 115 },
             { title: 'TARGET-2', field: 'exit2', headerFilter: true, width: 115 },
-            { title: 'STOP', field: 'stop', headerFilter: true, width: 85 },
-            { title: 'TARGET-DATE', field:'targetDate', headerFilter:true, width:150},                        
+            { title: 'TARGET-DATE', field:'targetDate', headerFilter:true, width:150},
+            { title: 'TODAY\'S CHG', field: 'master.change', sorter:'number',headerFilter:true, width:145},
+            { title: 'LOW', field: 'l', sorter:'number',headerFilter:true, width:80},            
+            { title: 'HIGH', field: 'h', sorter:'number',headerFilter:true, width:80},            
+            { title: 'ENTRY', field: 'entry', sorter:'number',headerFilter:true, width:90},
+            { title: 'STOP', field: 'stop', headerFilter: true, width: 85 },                                    
         ],
     });
 }
