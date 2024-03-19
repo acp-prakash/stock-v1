@@ -87,9 +87,9 @@ function createSTOCKHISTORYTable() {
 			//{ title: 'P123-LT', field: 'rating.portfolio123LowPT', sorter:'string',headerFilter:true, width:91},
 			{ title: 'P123-AT', field: 'rating.portfolio123Analysts', sorter:'string',headerFilter:true, width:86},			
 			
-			//{ title: 'FS-RAT', field: 'rating.finscreenerRating', sorter:'string',headerFilter:true, width:95},
-			//{ title: 'FS-PT', field: 'rating.finscreenerPT', sorter:'string',headerFilter:true, width:89},
-			//{ title: 'FS-AT', field: 'rating.finscreenerAnalysts', sorter:'number',headerFilter:true, width:86},
+			{ title: 'FS-RAT', field: 'rating.finscreenerRating', sorter:'string',headerFilter:true, width:95},
+			{ title: 'FS-PT', field: 'rating.finscreenerPT', sorter:'string',headerFilter:true, width:89},
+			{ title: 'FS-AT', field: 'rating.finscreenerAnalysts', sorter:'number',headerFilter:true, width:86},
         ],
     });
 }

@@ -8,13 +8,13 @@ const table = createPICKSTable();
 
 function createPICKSTable() {
     return new Tabulator(`#${TABLE_CONTAINER_ID}`, {
-       	height: '61.7%',
-        maxHeight: '61.7%',
+       	height: '81.7%',
+        maxHeight: '81.7%',
         placeholder: "<div style='display:inline-block; border:4px solid #333; border-radius:10px; background:#fff; font-weight:bold; font-size:16px; color:#000; padding:10px 20px;margin-left: -7500px;'>Loading Data</div",
         data: [],
         layout: 'fitDataTable',
         pagination: 'local',
-        paginationSize: 12,
+        paginationSize: 16,
         paginationCounter: 'rows',
         movableColumns: true,
         //resizableRows: true,

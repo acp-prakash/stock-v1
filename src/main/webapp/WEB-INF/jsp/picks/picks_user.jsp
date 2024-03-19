@@ -25,7 +25,7 @@
 		<a id="clear_PICKS" href="#" style="font-size: small;margin-left: 12px;">Clear Filters</a>
 		<a id="download_PICKS" href="#" style="font-size: small; margin-left: 12px;">Download (XLSX)</a>
 		<br>
-		<div id="PICKS" style="width: 84.3%; height: 63%; max-height: 63%; font: small-caption; font-size:17px;"></div>
+		<div id="PICKS" style="width: 84.3%; height: 83%; max-height: 83%; font: small-caption; font-size:17px;"></div>
 		<script type="text/javascript">
 			var ticker='${TICKER}';		 
  		</script>

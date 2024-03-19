@@ -109,6 +109,9 @@ function createPICKSTable() {
             { title: 'SS', field:'master.sellStrength', headerFilter:true, width:48},
             { title: 'B', field:'master.buyTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
             { title: 'S', field:'master.sellTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
+            { title: 'BT-S', field: 'master.rating.btShortRating', sorter:'string',headerFilter:true, width:80},
+			{ title: 'BT-L', field: 'master.rating.btLongRating', sorter:'string',headerFilter:true, width:70},
+			{ title: 'BT-R', field: 'master.rating.btRating', sorter:'string',headerFilter:true, width:80},
         ],
     });
 }

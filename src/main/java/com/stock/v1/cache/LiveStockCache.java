@@ -122,6 +122,26 @@ public class LiveStockCache  {
 		s.setTicker("DOCU");
 		s.setTrackingPrice("49.12");
 		stockWatchList.add(s);
+		
+		s = new Stock();
+		s.setTicker("PYPL");
+		s.setTrackingPrice("56");
+		stockWatchList.add(s);
+		
+		s = new Stock();
+		s.setTicker("BA");
+		s.setTrackingPrice("177");
+		stockWatchList.add(s);
+		
+		s = new Stock();
+		s.setTicker("F");
+		s.setTrackingPrice("10.9");
+		stockWatchList.add(s);
+		
+		s = new Stock();
+		s.setTicker("NIO");
+		s.setTrackingPrice("4.7");
+		stockWatchList.add(s);
 
 		return stockWatchList;
 	}
@@ -864,6 +884,73 @@ public class LiveStockCache  {
 		s.setTargetDate("2024-03-18");
 		s.setAddedDate("2024-03-15");
 		s.setAddPrice("27.94");
+		picksList.add(s);
+		
+		
+		s = new Picks();
+		s.setTicker("MSFT");
+		s.setEntry("416.6");
+		s.setExit1("431");
+		s.setExit2("435");
+		s.setStop("412.73");
+		s.setTargetDate("2024-04-24");
+		s.setAddedDate("2024-03-18");
+		s.setAddPrice("417.32");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("D");
+		s.setEntry("47.95");
+		s.setExit1("52.5");
+		s.setExit2("53.5");
+		s.setStop("46.7");
+		s.setTargetDate("2024-05-01");
+		s.setAddedDate("2024-03-18");
+		s.setAddPrice("48.51");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("TGT");
+		s.setEntry("166.88");
+		s.setExit1("169.8");
+		s.setExit2("170.4");
+		s.setStop("166.07");
+		s.setTargetDate("2024-03-26");
+		s.setAddedDate("2024-03-18");
+		s.setAddPrice("167.59");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("NVDA");
+		s.setEntry("881.54");
+		s.setExit1("924");
+		s.setExit2("934");
+		s.setStop("869.65");
+		s.setTargetDate("2024-03-19");
+		s.setAddedDate("2024-03-18");
+		s.setAddPrice("884.55");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("MU");
+		s.setEntry("94.54");
+		s.setExit1("98.4");
+		s.setExit2("99.2");
+		s.setStop("93.48");
+		s.setTargetDate("2024-03-22");
+		s.setAddedDate("2024-03-18");
+		s.setAddPrice("93.78");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("DXCM");
+		s.setEntry("133.54");
+		s.setExit1("137.3");
+		s.setExit2("138.1");
+		s.setStop("132.51");
+		s.setTargetDate("2024-03-22");
+		s.setAddedDate("2024-03-18");
+		s.setAddPrice("134.72");
 		picksList.add(s);
 
 		return picksList;

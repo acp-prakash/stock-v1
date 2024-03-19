@@ -15,6 +15,8 @@ import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.Constants.PAGES;
 import com.stock.v1.vo.Picks;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class PicksController {
 
@@ -30,10 +32,12 @@ public class PicksController {
 	}
 	
 	@GetMapping({Constants.CONTEXT_PATH_SLASH, Constants.CONTEXT_HOME, Constants.CONTEXT_PATH_WELCOME, Constants.CONTEXT_PICKS_USER})
-	public ModelAndView loadPicksUserView()
+	public ModelAndView loadPicksUserView(HttpServletRequest request, String user)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(PAGES.PICKS_USER.value);
+		mv.addObject("USER", user);
+		request.getSession().setAttribute("USER", user);
 		return mv;
 	}
 	
