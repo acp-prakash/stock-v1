@@ -9,7 +9,7 @@
 	 	<nav style="text-align: -webkit-center;margin: 5px">
 	        <ul class="menu">
 	            <li><a href="/stock-v1/picks_user">PICKS</a></li>
-	            <c:if test="${USER eq 'ACP'}">
+	            <c:if test="${USER ne 'ACP'}">
 		            <li><a href="/stock-v1/master">MASTER</a></li>
 		            <li><a href="/stock-v1/futures">FUTURES</a></li>
 		            <li><a href="/stock-v1/options">OPTIONS</a></li>

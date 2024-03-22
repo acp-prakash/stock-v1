@@ -132,10 +132,10 @@ function getPicks() {
 			}
 			const hit = hitt1 + hitt2 + stophitt1 + stophitt2 + delayhitt1 + delayhitt2;
 			const miss = stopped + missed;
-			const total = pending + hit + miss;
+			const total = hit + miss;
 			document.querySelector('#hit').innerText = 'HIT:('+hit+') '+Math.round((hit/(total)*100).toFixed(2))+'%';
 			document.querySelector('#miss').innerText = 'MISS:('+miss+') '+Math.round((miss/(total)*100).toFixed(2))+'%';
-			document.querySelector('#pending').innerText = 'PENDING:('+pending+') '+Math.round((pending/(total)*100).toFixed(2))+'%';
+			document.querySelector('#pending').innerText = 'PENDING:('+pending+') ';
         },
         error: function (error) {
             console.log(error);
