@@ -1018,6 +1018,50 @@ public class LiveStockCache  {
 		s.setAddedDate("2024-03-22");
 		s.setAddPrice("140.54");
 		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("CVX");
+		s.setEntry("152.27");
+		s.setExit1("158.5");
+		s.setExit2("160");
+		s.setStop("150.52");
+		s.setTargetDate("2024-04-23");
+		s.setAddedDate("2024-03-25");
+		s.setAddPrice("156.47");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("HOOD");
+		s.setEntry("18.81");
+		s.setExit1("20.4");
+		s.setExit2("20.7");
+		s.setStop("18.38");
+		s.setTargetDate("2024-04-05");
+		s.setAddedDate("2024-03-25");
+		s.setAddPrice("19.08");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("RRC");
+		s.setEntry("33.08");
+		s.setExit1("34.8");
+		s.setExit2("35.1");
+		s.setStop("32.62");
+		s.setTargetDate("2024-04-29");
+		s.setAddedDate("2024-03-25");
+		s.setAddPrice("33.44");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("ARM");
+		s.setEntry("139");
+		s.setExit1("149");
+		s.setExit2("151");
+		s.setStop("136.25");
+		s.setTargetDate("2024-03-26");
+		s.setAddedDate("2024-03-25");
+		s.setAddPrice("138.31");
+		picksList.add(s);
 
 		return picksList;
 	}
