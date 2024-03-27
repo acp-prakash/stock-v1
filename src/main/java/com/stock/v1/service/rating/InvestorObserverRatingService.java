@@ -154,7 +154,7 @@ public class InvestorObserverRatingService{
 		response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
 		processResponse(response);
 		
-		queryString = IntStream.range(0, 46)
+		queryString = IntStream.range(0, 48)
 				.mapToObj(index -> "&filter[symbol][" + index + "]=" + filteredList.get(index + 500).getTicker())
 				.collect(Collectors.joining());
 		url = OriginalUrl.replace("REPLACE", queryString);

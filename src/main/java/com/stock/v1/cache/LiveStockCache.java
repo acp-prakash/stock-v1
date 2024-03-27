@@ -1062,7 +1062,29 @@ public class LiveStockCache  {
 		s.setAddedDate("2024-03-25");
 		s.setAddPrice("138.31");
 		picksList.add(s);
-
+		
+		s = new Picks();
+		s.setTicker("BHVN");
+		s.setEntry("57.48");
+		s.setExit1("64.75");
+		s.setExit2("66.5");
+		s.setStop("55.56");
+		s.setTargetDate("2024-04-23");
+		s.setAddedDate("2024-03-26");
+		s.setAddPrice("56.29");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("CVNA");
+		s.setEntry("86.68");
+		s.setExit1("101");
+		s.setExit2("104");
+		s.setStop("82.73");
+		s.setTargetDate("2024-05-06");
+		s.setAddedDate("2024-03-26");
+		s.setAddPrice("90.81");
+		picksList.add(s);
+		
 		return picksList;
 	}
 }
