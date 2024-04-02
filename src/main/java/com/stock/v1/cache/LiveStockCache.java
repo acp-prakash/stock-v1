@@ -1085,6 +1085,94 @@ public class LiveStockCache  {
 		s.setAddPrice("90.81");
 		picksList.add(s);
 		
+		s = new Picks();
+		s.setTicker("TNA");
+		s.setEntry("41.17");
+		s.setExit1("47");
+		s.setExit2("48.25");
+		s.setStop("39.56");
+		s.setTargetDate("2024-05-15");
+		s.setAddedDate("2024-03-28");
+		s.setAddPrice("42.92");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("TDW");
+		s.setEntry("91.91");
+		s.setExit1("94.8");
+		s.setExit2("95.4");
+		s.setStop("91.11");
+		s.setTargetDate("2024-04-10");
+		s.setAddedDate("2024-03-28");
+		s.setAddPrice("92");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("OVV");
+		s.setEntry("51.84");
+		s.setExit1("53.6");
+		s.setExit2("53.9");
+		s.setStop("51.36");
+		s.setTargetDate("2024-04-23");
+		s.setAddedDate("2024-03-28");
+		s.setAddPrice("51.9");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("MDT");
+		s.setEntry("85.61");
+		s.setExit1("91.4");
+		s.setExit2("92.3");
+		s.setStop("86.16");
+		s.setTargetDate("2024-04-17");
+		s.setAddedDate("2024-03-28");
+		s.setAddPrice("87.15");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("DASH");
+		s.setEntry("134.35");
+		s.setExit1("141.25");
+		s.setExit2("142.75");
+		s.setStop("132.44");
+		s.setTargetDate("2024-04-03");
+		s.setAddedDate("2024-03-28");
+		s.setAddPrice("137.72");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("CMA");
+		s.setEntry("52.03");
+		s.setExit1("57");
+		s.setExit2("58.25");
+		s.setStop("50.63");
+		s.setTargetDate("2024-05-06");
+		s.setAddedDate("2024-03-28");
+		s.setAddPrice("54.99");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("SRRK");
+		s.setEntry("17.16");
+		s.setExit1("20");
+		s.setExit2("22");
+		s.setStop("16.39");
+		s.setTargetDate("2024-05-16");
+		s.setAddedDate("2024-04-01");
+		s.setAddPrice("16.88");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("QCOM");
+		s.setEntry("171.13");
+		s.setExit1("179.5");
+		s.setExit2("181.25");
+		s.setStop("168.83");
+		s.setTargetDate("2024-04-29");
+		s.setAddedDate("2024-04-01");
+		s.setAddPrice("171.72");
+		picksList.add(s);
+		
 		return picksList;
 	}
 }
