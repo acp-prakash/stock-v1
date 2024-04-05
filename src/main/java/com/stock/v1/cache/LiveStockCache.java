@@ -1173,6 +1173,83 @@ public class LiveStockCache  {
 		s.setAddPrice("171.72");
 		picksList.add(s);
 		
+		s = new Picks();
+		s.setTicker("DOCU");
+		s.setEntry("60.28");
+		s.setExit1("62.8");
+		s.setExit2("63.4");
+		s.setStop("59.57");
+		s.setTargetDate("2024-04-18");
+		s.setAddedDate("2024-04-03");
+		s.setAddPrice("60.55");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("HPK");
+		s.setEntry("16.04");
+		s.setExit1("16.8");
+		s.setExit2("17");
+		s.setStop("15.82");
+		s.setTargetDate("2024-04-30");
+		s.setAddedDate("2024-04-03");
+		s.setAddPrice("15.83");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("LBRT");
+		s.setEntry("21.04");
+		s.setExit1("23.4");
+		s.setExit2("24");
+		s.setStop("20.38");
+		s.setTargetDate("2024-04-15");
+		s.setAddedDate("2024-04-04");
+		s.setAddPrice("22.62");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("TENB");
+		s.setEntry("46.92");
+		s.setExit1("50.5");
+		s.setExit2("51.1");
+		s.setStop("46.32");
+		s.setTargetDate("2024-04-19");
+		s.setAddedDate("2024-04-04");
+		s.setAddPrice("47.51");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("FULT");
+		s.setEntry("15.38");
+		s.setExit1("16.5");
+		s.setExit2("16.8");
+		s.setStop("15.06");
+		s.setTargetDate("2024-05-03");
+		s.setAddedDate("2024-04-04");
+		s.setAddPrice("15.33");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("LAZ");
+		s.setEntry("39.49");
+		s.setExit1("41.8");
+		s.setExit2("42.4");
+		s.setStop("38.85");
+		s.setTargetDate("2024-04-16");
+		s.setAddedDate("2024-04-04");
+		s.setAddPrice("40.15");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("CLSK");
+		s.setEntry("15.89");
+		s.setExit1("23.25");
+		s.setExit2("24.5");
+		s.setStop("15.65");
+		s.setTargetDate("2024-04-30");
+		s.setAddedDate("2024-04-04");
+		s.setAddPrice("15.89");
+		picksList.add(s);
+		
 		return picksList;
 	}
 }
