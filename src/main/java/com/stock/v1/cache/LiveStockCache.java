@@ -1250,6 +1250,50 @@ public class LiveStockCache  {
 		s.setAddPrice("15.89");
 		picksList.add(s);
 		
+		s = new Picks();
+		s.setTicker("LLY");
+		s.setEntry("781.8");
+		s.setExit1("805");
+		s.setExit2("810");
+		s.setStop("775.4");
+		s.setTargetDate("2024-04-09");
+		s.setAddedDate("2024-04-05");
+		s.setAddPrice("784.21");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("DKNG");
+		s.setEntry("45.71");
+		s.setExit1("47.4");
+		s.setExit2("47.7");
+		s.setStop("45.25");
+		s.setTargetDate("2024-04-15");
+		s.setAddedDate("2024-04-08");
+		s.setAddPrice("45.51");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("HESM");
+		s.setEntry("35.58");
+		s.setExit1("36.7");
+		s.setExit2("37.1");
+		s.setStop("33.49");
+		s.setTargetDate("2024-05-09");
+		s.setAddedDate("2024-04-08");
+		s.setAddPrice("36.04");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("COIN");
+		s.setEntry("257.4");
+		s.setExit1("274");
+		s.setExit2("277");
+		s.setStop("252.89");
+		s.setTargetDate("2024-04-11");
+		s.setAddedDate("2024-04-08");
+		s.setAddPrice("256.99");
+		picksList.add(s);
+		
 		return picksList;
 	}
 }
