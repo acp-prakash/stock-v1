@@ -4165,7 +4165,7 @@
     },
     "PricesLastDate": "2024-04-01T20:00:00Z",
     "DumpSQL": null,
-    "ExecutionTime": "491ms",
+    "ExecutionTime": "592ms",
     "USMarketWillCloseIn": 0,
     "UserInfo": null,
     "RequestContext": {
@@ -4175,15 +4175,15 @@
         "ApplyWatchlist": true
     },
     "Logs": [
-        "FetchingRows: 00:00:00.3647649",
-        "CountingRows: 00:00:00.0772983",
-        "FetchingData: 00:00:00.4426609",
-        "GetFilteredRows: 00:00:00.4453160",
-        "SetWatchlistData: 00:00:00.0058710",
-        "SetFundHasAlerts: 00:00:00.0000134",
-        "SetPredictions: 00:00:00.0233045",
-        "SetPricesLastDate: 00:00:00.0000891",
-        "FillUpResponse: 00:00:00.0237407",
-        "GetFilteredFunds: 00:00:00.4753373"
+        "FetchingRows: 00:00:00.4587294",
+        "CountingRows: 00:00:00.0869114",
+        "FetchingData: 00:00:00.5461775",
+        "GetFilteredRows: 00:00:00.5468466",
+        "SetWatchlistData: 00:00:00.0046847",
+        "SetFundHasAlerts: 00:00:00.0000222",
+        "SetPredictions: 00:00:00.0198750",
+        "SetPricesLastDate: 00:00:00.0000459",
+        "FillUpResponse: 00:00:00.0203730",
+        "GetFilteredFunds: 00:00:00.5727697"
     ]
 }

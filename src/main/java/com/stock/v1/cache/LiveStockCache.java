@@ -1294,6 +1294,28 @@ public class LiveStockCache  {
 		s.setAddPrice("256.99");
 		picksList.add(s);
 		
+		s = new Picks();
+		s.setTicker("SLB");
+		s.setEntry("53.99");
+		s.setExit1("56.4");
+		s.setExit2("56.9");
+		s.setStop("53.56");
+		s.setTargetDate("2024-05-10");
+		s.setAddedDate("2024-04-09");
+		s.setAddPrice("54.17");
+		picksList.add(s);
+		
+		s = new Picks();
+		s.setTicker("CGNX");
+		s.setEntry("41.8");
+		s.setExit1("43.9");
+		s.setExit2("44.3");
+		s.setStop("41.23");
+		s.setTargetDate("2024-05-06");
+		s.setAddedDate("2024-04-09");
+		s.setAddPrice("42.19");
+		picksList.add(s);
+		
 		return picksList;
 	}
 }
