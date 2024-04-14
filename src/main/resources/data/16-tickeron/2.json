@@ -2425,10 +2425,10 @@
                 "AI_PredictionMonthOrder": -87,
                 "AI_Patterns": true,
                 "HI_PredictionWeek": null,
-                "HI_PredictionMonth": -1,
-                "HI_BullishMonth": 68,
-                "HI_BearishMonth": 13,
-                "HI_SidewaysMonth": 19,
+                "HI_PredictionMonth": 0,
+                "HI_BullishMonth": 46,
+                "HI_BearishMonth": 5,
+                "HI_SidewaysMonth": 49,
                 "HI_BullishWeek": null,
                 "HI_BearishWeek": null,
                 "HI_SidewaysWeek": null,
@@ -4165,7 +4165,7 @@
     },
     "PricesLastDate": "2024-04-01T20:00:00Z",
     "DumpSQL": null,
-    "ExecutionTime": "592ms",
+    "ExecutionTime": "495ms",
     "USMarketWillCloseIn": 0,
     "UserInfo": null,
     "RequestContext": {
@@ -4175,15 +4175,15 @@
         "ApplyWatchlist": true
     },
     "Logs": [
-        "FetchingRows: 00:00:00.4587294",
-        "CountingRows: 00:00:00.0869114",
-        "FetchingData: 00:00:00.5461775",
-        "GetFilteredRows: 00:00:00.5468466",
-        "SetWatchlistData: 00:00:00.0046847",
-        "SetFundHasAlerts: 00:00:00.0000222",
-        "SetPredictions: 00:00:00.0198750",
-        "SetPricesLastDate: 00:00:00.0000459",
-        "FillUpResponse: 00:00:00.0203730",
-        "GetFilteredFunds: 00:00:00.5727697"
+        "FetchingRows: 00:00:00.3787396",
+        "CountingRows: 00:00:00.0772848",
+        "FetchingData: 00:00:00.4563469",
+        "GetFilteredRows: 00:00:00.4570987",
+        "SetWatchlistData: 00:00:00.0041368",
+        "SetFundHasAlerts: 00:00:00.0000089",
+        "SetPredictions: 00:00:00.0202673",
+        "SetPricesLastDate: 00:00:00.0000174",
+        "FillUpResponse: 00:00:00.0205739",
+        "GetFilteredFunds: 00:00:00.4820610"
     ]
 }
