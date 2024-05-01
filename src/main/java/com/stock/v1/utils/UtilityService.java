@@ -240,7 +240,7 @@ public class UtilityService{
     
     public static boolean excludedTick(String ticker)
     {
-    	if("ESH24".equalsIgnoreCase(ticker) || 
+    	if("CPE".equalsIgnoreCase(ticker) || "ESH24".equalsIgnoreCase(ticker) || 
 				"ESM24".equalsIgnoreCase(ticker) || "ESU24".equalsIgnoreCase(ticker) || 
 				"ESZ24".equalsIgnoreCase(ticker) || "ESH25".equalsIgnoreCase(ticker) || 
 				"ESM25".equalsIgnoreCase(ticker) || "ESU25".equalsIgnoreCase(ticker) || 
