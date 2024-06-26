@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stock.v1.service.StockHistoryService;
 import com.stock.v1.service.StockService;
 import com.stock.v1.vo.Master;
 import com.stock.v1.vo.Stock;
@@ -23,6 +24,9 @@ public class StocksController {
 
 	@Autowired
 	StockService stockService;
+	
+	@Autowired
+	StockHistoryService stockHistoryService;
 
 	@GetMapping({Constants.CONTEXT_STOCK_MASTER})
 	public ModelAndView loadMasterView()
@@ -84,14 +88,14 @@ public class StocksController {
 	@PostMapping("/stock/add-initial-history/{ticker}")
 	public @ResponseBody String populateInitialStockHistory(@PathVariable String ticker)
 	{
-		return stockService.populateInitialStockHistory(ticker);		
+		return stockHistoryService.populateInitialStockHistory(ticker, false);		
 	}
 	
 	@CrossOrigin
 	@PostMapping("/stock/add-initial-history-all")
 	public @ResponseBody String populateInitialStockHistoryAll()
 	{
-		return stockService.populateInitialStockHistoryAll();		
+		return stockHistoryService.populateInitialStockHistoryAll();		
 	}	
 	
 	@CrossOrigin
@@ -183,5 +187,5 @@ public class StocksController {
 	public @ResponseBody List<Master> getMyTrackList()
 	{
 		return stockService.getMyTrackList();
-	}	
+	}
 }
