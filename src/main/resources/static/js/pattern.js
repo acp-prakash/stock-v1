@@ -33,7 +33,7 @@ function createPATTERNTable() {
             { title: 'STATUS', field:'status', headerFilter:true, width:78},
             { title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},            
             { title: 'AL', field:'count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:50},
-            { title: 'BL', field:'bull', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:50},
+            { title: 'BL', field:'bull', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},
             { title: 'BR', field:'bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},
             { title: 'PRICE', field: 'all.price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", width:70},            
 			{ title: 'ENTRY', field:'entry', headerFilter:"number", headerFilterFunc:">=", width:75},

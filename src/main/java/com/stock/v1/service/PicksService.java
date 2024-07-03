@@ -14,21 +14,21 @@ import com.stock.v1.vo.Stock;
 
 @Service
 public class PicksService{
-	
+
 	@Autowired
 	StockService stockService;
 	public List<Picks> getPicks()
 	{
 		List<Picks> picksList = LiveStockCache.getPicks();
 		List<Master> masterList = stockService.getMasterList();	
-		
+
 		picksList.forEach(x -> masterList.forEach(y -> {
-		    if (x.getTicker().equalsIgnoreCase(y.getTicker())) {
-		        x.setMaster(y);
-		        x.setDiff(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(y.getPrice()) - Double.valueOf(x.getEntry())), false));
-		    }
+			if (x.getTicker().equalsIgnoreCase(y.getTicker())) {
+				x.setMaster(y);
+				x.setDiff(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(y.getPrice()) - Double.valueOf(x.getEntry())), false));
+			}
 		})	
-		);
+				);
 
 		for(Picks pick : picksList)
 		{
@@ -37,72 +37,140 @@ public class PicksService{
 			{
 				for(Stock hist : histList)
 				{
-					if("A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getAddedDate())))
+					if("L".equalsIgnoreCase(pick.getType()))
 					{
-						if(StringUtils.isBlank(pick.getH()) || Double.valueOf(pick.getH()) <  Double.valueOf(hist.getHigh()))
-							pick.setH(hist.getHigh());
-						
-						if(StringUtils.isBlank(pick.getL()) || Double.valueOf(pick.getL()) >  Double.valueOf(hist.getLow()))
-							pick.setL(hist.getLow());
-						
-						if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) && !"Y".equalsIgnoreCase(pick.getTarget2Met()) && 
-								!"Y".equalsIgnoreCase(pick.getStopReached()) && Double.valueOf(hist.getLow()) <= Double.valueOf(pick.getStop()))
+						if("A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getAddedDate())))
 						{
-							pick.setStopReached("Y");
-							pick.setStopReachedDate(hist.getDate());
-							pick.setResult("STOPPED");
-						}
-						
-						if(!"Y".equalsIgnoreCase(pick.getTarget1Met()))
-						{
-							if(Double.valueOf(hist.getHigh()) >= Double.valueOf(pick.getExit1()))
-							{
-								pick.setTarget1Met("Y");
-								pick.setTarget1MetDate(hist.getDate());
-								if("A".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())) ||
-										"E".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())))
-								{
-									if("Y".equalsIgnoreCase(pick.getStopReached()))
-										pick.setResult("STOP-HIT-T1");
-									else
-										pick.setResult("HIT-T1");
-								}
-								else
-									pick.setResult("DELAY-HIT-T1");
-							}
-							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) &&
-									!"Y".equalsIgnoreCase(pick.getTarget2Met()) &&
-									"A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
-								pick.setResult("MISSED");
-						}
+							if(StringUtils.isBlank(pick.getH()) || Double.valueOf(pick.getH()) <  Double.valueOf(hist.getHigh()))
+								pick.setH(hist.getHigh());
 
-						if(!"Y".equalsIgnoreCase(pick.getTarget2Met()))
-						{
-							if(Double.valueOf(hist.getHigh()) >= Double.valueOf(pick.getExit2()))
+							if(StringUtils.isBlank(pick.getL()) || Double.valueOf(pick.getL()) >  Double.valueOf(hist.getLow()))
+								pick.setL(hist.getLow());
+
+							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) && !"Y".equalsIgnoreCase(pick.getTarget2Met()) && 
+									!"Y".equalsIgnoreCase(pick.getStopReached()) && Double.valueOf(hist.getLow()) <= Double.valueOf(pick.getStop()))
 							{
-								pick.setTarget2Met("Y");
-								pick.setTarget2MetDate(hist.getDate());
-								if("A".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())) ||
-										"E".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())))
-								{
-									if("Y".equalsIgnoreCase(pick.getStopReached()))
-										pick.setResult("STOP-HIT-T2");
-									else
-										pick.setResult("HIT-T2");
-								}
-								else
-									pick.setResult("DELAY-HIT-T2");
+								pick.setStopReached("Y");
+								pick.setStopReachedDate(hist.getDate());
+								pick.setResult("STOPPED");
 							}
-							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) &&
-									!"Y".equalsIgnoreCase(pick.getTarget2Met()) &&
-									"A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
-								pick.setResult("MISSED");
+
+							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()))
+							{
+								if(Double.valueOf(hist.getHigh()) >= Double.valueOf(pick.getExit1()))
+								{
+									pick.setTarget1Met("Y");
+									pick.setTarget1MetDate(hist.getDate());
+									if("A".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())) ||
+											"E".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())))
+									{
+										if("Y".equalsIgnoreCase(pick.getStopReached()))
+											pick.setResult("STOP-HIT-T1");
+										else
+											pick.setResult("HIT-T1");
+									}
+									else
+										pick.setResult("DELAY-HIT-T1");
+								}
+								if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) &&
+										!"Y".equalsIgnoreCase(pick.getTarget2Met()) &&
+										"A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
+									pick.setResult("MISSED");
+							}
+
+							if(!"Y".equalsIgnoreCase(pick.getTarget2Met()))
+							{
+								if(Double.valueOf(hist.getHigh()) >= Double.valueOf(pick.getExit2()))
+								{
+									pick.setTarget2Met("Y");
+									pick.setTarget2MetDate(hist.getDate());
+									if("A".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())) ||
+											"E".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())))
+									{
+										if("Y".equalsIgnoreCase(pick.getStopReached()))
+											pick.setResult("STOP-HIT-T2");
+										else
+											pick.setResult("HIT-T2");
+									}
+									else
+										pick.setResult("DELAY-HIT-T2");
+								}
+								if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) &&
+										!"Y".equalsIgnoreCase(pick.getTarget2Met()) &&
+										"A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
+									pick.setResult("MISSED");
+							}
+						}
+					}
+					else if("S".equalsIgnoreCase(pick.getType()))
+					{
+						if("A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getAddedDate())))
+						{
+							if(StringUtils.isBlank(pick.getH()) || Double.valueOf(pick.getH()) <  Double.valueOf(hist.getHigh()))
+								pick.setH(hist.getHigh());
+
+							if(StringUtils.isBlank(pick.getL()) || Double.valueOf(pick.getL()) >  Double.valueOf(hist.getLow()))
+								pick.setL(hist.getLow());
+
+							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) && !"Y".equalsIgnoreCase(pick.getTarget2Met()) && 
+									!"Y".equalsIgnoreCase(pick.getStopReached()) && Double.valueOf(hist.getHigh()) >= Double.valueOf(pick.getStop()))
+							{
+								pick.setStopReached("Y");
+								pick.setStopReachedDate(hist.getDate());
+								pick.setResult("STOPPED");
+							}
+
+							if(!"Y".equalsIgnoreCase(pick.getTarget1Met()))
+							{
+								if(Double.valueOf(hist.getLow()) <= Double.valueOf(pick.getExit1()))
+								{
+									pick.setTarget1Met("Y");
+									pick.setTarget1MetDate(hist.getDate());
+									if("A".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())) ||
+											"E".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())))
+									{
+										if("Y".equalsIgnoreCase(pick.getStopReached()))
+											pick.setResult("STOP-HIT-T1");
+										else
+											pick.setResult("HIT-T1");
+									}
+									else
+										pick.setResult("DELAY-HIT-T1");
+								}
+								if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) &&
+										!"Y".equalsIgnoreCase(pick.getTarget2Met()) &&
+										"A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
+									pick.setResult("MISSED");
+							}
+
+							if(!"Y".equalsIgnoreCase(pick.getTarget2Met()))
+							{
+								if(Double.valueOf(hist.getLow()) <= Double.valueOf(pick.getExit2()))
+								{
+									pick.setTarget2Met("Y");
+									pick.setTarget2MetDate(hist.getDate());
+									if("A".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())) ||
+											"E".equalsIgnoreCase(UtilityService.compareDates(pick.getTargetDate(), hist.getDate())))
+									{
+										if("Y".equalsIgnoreCase(pick.getStopReached()))
+											pick.setResult("STOP-HIT-T2");
+										else
+											pick.setResult("HIT-T2");
+									}
+									else
+										pick.setResult("DELAY-HIT-T2");
+								}
+								if(!"Y".equalsIgnoreCase(pick.getTarget1Met()) &&
+										!"Y".equalsIgnoreCase(pick.getTarget2Met()) &&
+										"A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), pick.getTargetDate())))
+									pick.setResult("MISSED");
+							}
 						}
 					}
 				}
 			}
 		}
-		
+
 		picksList.forEach( x -> {if(x.getL() != null) {
 			x.setMaxDiff(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(x.getL()) - Double.valueOf(x.getEntry())), false));}});
 

@@ -55,6 +55,7 @@ function createPICKSTable() {
 			       	return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 11px;width:50px'>" + cell.getValue() + "</span>";
 			    }
 			}},
+			{ title: 'TYPE', field:'type', headerFilter:true, width:63},
             { title: 'ADD-DT', field:'addedDate', headerFilter:true, width:85},
             { title: 'CHG', field: 'master.change', sorter:'number',headerFilter:true, width:60},
             { title: 'DIFF', field: 'diff', sorter:'number',headerFilter:true, width:60},

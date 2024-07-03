@@ -46,6 +46,7 @@ function createPICKSTable() {
 			       	return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 17px;width:130px'>" + cell.getValue() + "</span>";
 			    }
 			}},
+			{ title: 'TYPE', field:'type', headerFilter:true, width:76},
             { title: 'ADD-DATE', field:'addedDate', headerFilter:true, width:125},
             { title: 'PRICE ON ADD', field: 'addPrice', sorter:'number',headerFilter:true, width:155},
             { title: 'PRICE NOW', field: 'master.price', sorter:'number',headerFilter:true, width:130},

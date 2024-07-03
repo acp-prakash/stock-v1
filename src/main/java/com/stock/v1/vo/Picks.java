@@ -38,4 +38,5 @@ public class Picks implements Serializable {
 	public String maxDiff;
 	public String h;
 	public String l;
+	public String type;
 }
