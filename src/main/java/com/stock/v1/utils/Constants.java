@@ -133,4 +133,7 @@ public class Constants {
 
 	public static final List<String> MY_TRACK_LIST = Arrays.asList("AAL","AMC","BAC","CNK","DB","F","FUSN",
 			"GBDC","GEL","GOGL","HOOD","IMAX","JBI","KRP","NRDS","NU","NVGS","PLTR","SFL","TNGX","VALE");
+	
+	public static String LONG = "LONG";
+	public static String SHORT = "SHORT";
 }

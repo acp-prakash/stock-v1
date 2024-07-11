@@ -8,8 +8,8 @@ const table = createPICKSTable();
 
 function createPICKSTable() {
     return new Tabulator(`#${TABLE_CONTAINER_ID}`, {
-       	height: '78.3%',
-        maxHeight: '78.3%',
+       	height: '85%',
+        maxHeight: '85%',
         placeholder: "<div style='display:inline-block; border:4px solid #333; border-radius:10px; background:#fff; font-weight:bold; font-size:16px; color:#000; padding:10px 20px;margin-left: -7500px;'>Loading Data</div",
         data: [],
         layout: 'fitDataTable',
@@ -60,6 +60,16 @@ function createPICKSTable() {
             { title: 'CHG', field: 'master.change', sorter:'number',headerFilter:true, width:60},
             { title: 'DIFF', field: 'diff', sorter:'number',headerFilter:true, width:60},
             { title: 'MDF', field: 'maxDiff', sorter:'number',headerFilter:true, width:62},
+            { title: 'MX-L', field:'maxLoss', headerFilter:true, width:68},
+            {title:'PL', field:"profitLoss", headerFilter:true, width:57, formatter:function(cell){
+				var result = cell.getRow().getData().profitLoss;
+				if(result < 0 ){
+					 return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + (result *-1) + "</span>";
+			    }else{
+					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
+			    }
+			}},			
+            { title: 'MX-P', field:'maxProfit', headerFilter:true, width:70}, 
             { title: 'L', field: 'l', sorter:'number',headerFilter:true, width:50},
             { title: 'A-PR', field: 'addPrice', sorter:'number',headerFilter:true, width:67},
             { title: 'H', field: 'h', sorter:'number',headerFilter:true, width:50},

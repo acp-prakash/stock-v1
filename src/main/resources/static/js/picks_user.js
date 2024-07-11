@@ -14,7 +14,7 @@ function createPICKSTable() {
         data: [],
         layout: 'fitDataTable',
         pagination: 'local',
-        paginationSize: 16,
+        paginationSize: 20,
         paginationCounter: 'rows',
         movableColumns: true,
         //resizableRows: true,
@@ -22,7 +22,7 @@ function createPICKSTable() {
 	        {column:"addedDate", dir:"desc"}, //then sort by this second
 	    ],
         columns: [			
-			{ title: 'TICKER', field: 'ticker', headerFilter: true, width: 100, frozen: true,
+			{ title: 'TICKER', field: 'ticker', headerFilter: true, width: 80, frozen: true,
             	formatter: function (cell, formatterParams) {
                     return "<a href=\"#\" >"+cell.getRow().getData().ticker+"</a>";
                 },
@@ -31,33 +31,43 @@ function createPICKSTable() {
 					openHistory(cell.getRow().getData().ticker);
 				},
 			 },
-            {title:'RESULT', field:"result", headerFilter:"list", headerFilterParams:{valuesLookup:true, clearable:true}, width:130, formatter:function(cell){
+            {title:'RESULT', field:"result", headerFilter:"list", headerFilterParams:{valuesLookup:true, clearable:true}, width:97, formatter:function(cell){
 				var result = cell.getRow().getData().result;
 				if(result === "HIT-T1" || result === "HIT-T2"){
-					 return "<span style='background-color:black; color:lawngreen; font-weight:bold; display: grid;font-size: 17px;width:130px'>" + cell.getValue() + "</span>";
+					 return "<span style='background-color:black; color:lawngreen; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
 			    }else if(result === "PENDING"){
-					 return "<span style='background-color:black; color:aliceblue; font-weight:bold; display: grid;font-size: 17px;width:130px'>" + cell.getValue() + "</span>";
+					 return "<span style='background-color:black; color:aliceblue; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
 			    }else if(result === "DELAY-HIT-T1" || result === "DELAY-HIT-T2"){
-					 return "<span style='background-color:black; color:yellow; font-weight:bold; display: grid;font-size: 17px;width:130px'>" + cell.getValue() + "</span>";
+					 return "<span style='background-color:black; color:yellow; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
 			    }else if(result === "STOP-HIT-T1" || result === "STOP-HIT-T2"){
-					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 17px;width:130px'>" + cell.getValue() + "</span>";
+					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
 			    }
 			    else{
-			       	return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 17px;width:130px'>" + cell.getValue() + "</span>";
+			       	return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
 			    }
 			}},
-			{ title: 'TYPE', field:'type', headerFilter:true, width:76},
-            { title: 'ADD-DATE', field:'addedDate', headerFilter:true, width:125},
-            { title: 'PRICE ON ADD', field: 'addPrice', sorter:'number',headerFilter:true, width:155},
-            { title: 'PRICE NOW', field: 'master.price', sorter:'number',headerFilter:true, width:130},
-            { title: 'TARGET-1', field: 'exit1', headerFilter: true, width: 115 },
-            { title: 'TARGET-2', field: 'exit2', headerFilter: true, width: 115 },
-            { title: 'TARGET-DATE', field:'targetDate', headerFilter:true, width:150},
-            { title: 'TODAY\'S CHG', field: 'master.change', sorter:'number',headerFilter:true, width:145},
-            { title: 'LOW', field: 'l', sorter:'number',headerFilter:true, width:80},            
-            { title: 'HIGH', field: 'h', sorter:'number',headerFilter:true, width:80},            
-            { title: 'ENTRY', field: 'entry', sorter:'number',headerFilter:true, width:90},
-            { title: 'STOP', field: 'stop', headerFilter: true, width: 85 },                                    
+			{ title: 'TYPE', field:'type', headerFilter:true, width:67},
+            { title: 'ADD-DATE', field:'addedDate', headerFilter:true, width:102},
+            { title: 'MX-L', field:'maxLoss', headerFilter:true, width:68},
+            {title:'PL', field:"profitLoss", headerFilter:true, width:57, formatter:function(cell){
+				var result = cell.getRow().getData().profitLoss;
+				if(result < 0 ){
+					 return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + (result *-1) + "</span>";
+			    }else{
+					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
+			    }
+			}},			
+            { title: 'MX-P', field:'maxProfit', headerFilter:true, width:70},            
+            { title: 'ADD PRICE', field: 'addPrice', sorter:'number',headerFilter:true, width:102},
+            { title: 'PRICE NOW', field: 'master.price', sorter:'number',headerFilter:true, width:107},
+            { title: 'TAR-1', field: 'exit1', headerFilter: true, width: 71 },
+            { title: 'TAR-2', field: 'exit2', headerFilter: true, width: 71 },
+            { title: 'TAR-DATE', field:'targetDate', headerFilter:true, width:97},
+            { title: 'TODAY\'S CHG', field: 'master.change', sorter:'number',headerFilter:true, width:119},
+            { title: 'LOW', field: 'l', sorter:'number',headerFilter:true, width:68},
+            { title: 'HIGH', field: 'h', sorter:'number',headerFilter:true, width:68},            
+            { title: 'ENTRY', field: 'entry', sorter:'number',headerFilter:true, width:75},
+            { title: 'STOP', field: 'stop', headerFilter: true, width: 70 },
         ],
     });
 }

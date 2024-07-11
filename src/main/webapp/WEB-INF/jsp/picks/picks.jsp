@@ -18,14 +18,14 @@
     </head>
 	<body>
 		<%@ include file="../common/header.jsp" %>
-		<h2 style="text-align: left;">PICK(s)</h2>
+		<!-- <h2 style="text-align: left;">PICK(s)</h2> -->
 		<a id="clear_PICKS" href="#" style="font-size: larger;">Clear Filters</a>
 		<a id="download_PICKS" href="#" style="font-size: larger; margin-left: 15px;">Download (XLSX)</a>
 		<a id="hit" href="javascript:filterRows('hit');" style="font-size: 17px;margin-left: 15px;color: black;background-color: greenyellow;font-weight: bolder;">HIT:() %</a>
 		<a id="miss" href="javascript:filterRows('miss');" style="font-size: 17px;margin-left: 15px;color: white;background-color: orangered;font-weight: bolder;">MISS:() %</a>
 		<a id="pending" href="javascript:filterRows('pending');" style="font-size: 17px;margin-left: 15px;color: black;background-color: yellow;font-weight: bolder;">PENDING:() %</a>
 		<br>
-		<div id="PICKS" style="width: 100%; height: 60%; max-height: 80%; font: small-caption;"></div>
+		<div id="PICKS" style="width: 100%; height: 85%; max-height: 85%; font: small-caption;"></div>
 		<script type="text/javascript">
 			var ticker='${TICKER}';		 
  		</script>
