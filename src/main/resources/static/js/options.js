@@ -51,7 +51,7 @@ function createOPTIONSTable() {
 				},
 			 },
 			 { title: 'ADD-ON', field:'addedDate', headerFilter:true,width:85},
-			{ title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},
+			//{ title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},
 			{ title: 'A', field:'pattern.count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
             { title: 'P', field:'pattern.bull', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
             { title: 'N', field:'pattern.bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:44},
@@ -60,17 +60,30 @@ function createOPTIONSTable() {
             { title: 'UP', field: 'upDays', headerFilter:true,width:53},
 			{ title: 'U$', field: 'upBy', sorter:'number',headerFilter:true, width:53},			
 			{ title: 'DN', field: 'downDays', headerFilter:true,width:53},
-			{ title: 'D$', field: 'downBy', sorter:'number',headerFilter:true, width:53},           
+			{ title: 'D$', field: 'downBy', sorter:'number',headerFilter:true, width:53},
+			
+			{ title: 'ML', field:'pctMaxL', headerFilter:true,width:52},
+			{title:'PL', field:"pctPL", headerFilter:true, width:50, formatter:function(cell){
+				var result = cell.getRow().getData().pctPL;
+				if(result < 0 ){
+					 return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:40px'>" + (result *-1) + "</span>";
+			    }else{
+					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:40px'>" + cell.getValue() + "</span>";
+			    }
+			}},			
+			{ title: 'MP', field:'pctMaxP', headerFilter:true,width:53},
+			           
             { title: 'AL', field:'aLow', headerFilter:true,width:50},
-			{ title: 'LOW', field:'low', headerFilter:true,width:64},
-			{ title: 'PRICE', field:'price', headerFilter:true,width:67},						
-			{ title: 'HIGH', field:'high', headerFilter:true,width:65},
+			{ title: 'LO', field:'low', headerFilter:true,width:55},
+			{ title: 'ADD', field:'addPrice', headerFilter:true,width:61},
+			{ title: 'PRICE', field:'price', headerFilter:true,width:67},			
+			{ title: 'HI', field:'high', headerFilter:true,width:55},
 			{ title: 'AH', field:'aHigh', headerFilter:true,width:53},
 			{ title: 'CHG', field:'change', sorter:'number',headerFilter:true, width:60},
-			{ title: 'OPEN', field:'open', headerFilter:true,width:67},			
+			//{ title: 'OPEN', field:'open', headerFilter:true,width:67},
 			{ title: 'VOL', field:'volume', headerFilter:true,width:60},
 			{ title: 'O-INT', field:'interest', headerFilter:true,width:70},
-			{ title: 'DAY', field:'daysToExpire', headerFilter:true,width:60},
+			{ title: 'DAY', field:'daysToExpire', headerFilter:true,width:58},
 			{ title: 'D', field:'delta', headerFilter:true,width:45},
 			{ title: 'G', field:'gamma', headerFilter:true,width:45},
 			{ title: 'T', field:'theta', headerFilter:true,width:45},

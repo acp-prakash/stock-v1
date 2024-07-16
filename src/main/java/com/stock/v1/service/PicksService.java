@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stock.v1.cache.LiveStockCache;
+import com.stock.v1.cache.MasterStocksCache;
 import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.UtilityService;
 import com.stock.v1.vo.Master;
@@ -21,7 +22,8 @@ public class PicksService{
 	public List<Picks> getPicks()
 	{
 		List<Picks> picksList = LiveStockCache.getPicks();
-		List<Master> masterList = stockService.getMasterList();	
+		//List<Master> masterList = stockService.getMasterList();	
+		List<Master> masterList = MasterStocksCache.getMasterStocks();
 
 		picksList.forEach(x -> masterList.forEach(y -> {
 			if (x.getTicker().equalsIgnoreCase(y.getTicker())) {

@@ -6,13 +6,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.InputStream;
 import org.json.JSONObject;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.stock.v1.vo.Master;
 import com.stock.v1.vo.Rating;
 import com.stock.v1.vo.Stock;
 
@@ -259,5 +267,57 @@ public class UtilityService{
 				"VIV24".equalsIgnoreCase(ticker)  || "VIX24".equalsIgnoreCase(ticker))    		
     		return true;
     	return false;
+    }
+    
+    public static List<Master> readExcelFile() {
+        List<Master> data = new ArrayList<>();
+        String fileName = "data/stock-add-date-PL/STOCK_ADD_DATE.xlsx";
+
+        // Use ClassPathResource to get the file from resources
+        Resource resource = new ClassPathResource(fileName);
+
+        // Check if resource exists
+        if (resource.exists()) {
+            try (InputStream inputStream = resource.getInputStream();
+                 Workbook workbook = new XSSFWorkbook(inputStream)) {
+
+                Sheet sheet = workbook.getSheetAt(0);
+                Iterator<Row> rows = sheet.iterator();
+
+                while (rows.hasNext()) {
+                    Row currentRow = rows.next();
+
+                    // Skip the header row
+					/*
+					 * if (currentRow.getRowNum() == 0) { continue; }
+					 */
+
+                    Iterator<Cell> cellsInRow = currentRow.iterator();
+                    Master rowData = new Master();
+
+                    while (cellsInRow.hasNext()) {
+                        Cell currentCell = cellsInRow.next();
+                        int cellIndex = currentCell.getColumnIndex();
+
+                        switch (cellIndex) {
+                            case 0:
+                                rowData.setTicker(currentCell.getStringCellValue());
+                                break;
+                            case 1:
+                            	rowData.setEntryDate(currentCell.getStringCellValue());
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    data.add(rowData);
+                }
+            }
+            catch (Exception ex)
+            {
+            	System.err.println("Error parsing readExcelFile: " + ex);            	
+            }
+        }
+        return data;
     }
 }

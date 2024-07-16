@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stock.v1.cache.MasterStocksCache;
 import com.stock.v1.service.StockHistoryService;
 import com.stock.v1.service.StockService;
 import com.stock.v1.vo.Master;
@@ -73,7 +74,7 @@ public class StocksController {
 	@GetMapping("/getFutures")
 	public @ResponseBody List<Master> getFutures()
 	{
-		List<Master> masterList = stockService.getMasterList();
+		List<Master> masterList = MasterStocksCache.getMasterStocks();
 		return masterList.stream().filter(x -> x.isFuture()).collect(Collectors.toList());
 	}
 	

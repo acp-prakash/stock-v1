@@ -156,6 +156,16 @@ public class StockServiceDB{
 	            .collect(Collectors.toList());
 	}
 	
+	public Stock getStockHistoryForADate(String ticker, String date) {
+	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY_FOR_A_DATE, ticker, date);
+
+	    return retResultMap.stream()
+	            .map(this::mapToStock)
+	            .filter(stock -> stock != null)  // Filter out any null results
+	            .findFirst()
+	            .orElse(null);
+	}
+	
 	public List<Stock> getTop2StockHistory(String ticker) {
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY_TOP_2, ticker);
 

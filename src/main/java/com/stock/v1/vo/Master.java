@@ -50,4 +50,12 @@ public class Master implements Serializable {
 	public String contractPoint;
 	public String contractMargin;
 	public String openInterest;
+	public String e;
+	public String h;
+	public String l;	
+	public String profitLoss;
+	public String maxProfit;
+	public String maxLoss;
+	public String entryDate;
+	public boolean option = false;
 }

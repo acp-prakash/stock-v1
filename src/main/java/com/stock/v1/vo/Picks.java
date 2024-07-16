@@ -42,4 +42,5 @@ public class Picks implements Serializable {
 	public String profitLoss;
 	public String maxProfit;
 	public String maxLoss;
+	public String addPattern;
 }

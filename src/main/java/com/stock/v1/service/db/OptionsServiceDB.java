@@ -87,7 +87,7 @@ public class OptionsServiceDB{
 					options.setInterest((String) value);
 					break;
 				case "PRICE_ON_ADD":
-					options.setStockPriceOnAdd((String) value);
+					options.setAddPrice((String) value);
 					break;
 				case "ADDED_DATE":
 					options.setAddedDate((String) value);
@@ -167,7 +167,7 @@ public class OptionsServiceDB{
 				ps.setString(i, option.getLow());i++;
 				ps.setString(i, option.getVolume());i++;
 				ps.setString(i, option.getInterest());i++;
-				ps.setString(i, option.getStockPriceOnAdd());i++;
+				ps.setString(i, option.getAddPrice());i++;
 				ps.setString(i, option.getAddedDate());i++;
 				ps.setString(i, option.getDaysToExpire());i++;
 				ps.setString(i, option.getDelta());i++;
@@ -218,7 +218,7 @@ public class OptionsServiceDB{
 				ps.setString(i, option.getLow());i++;
 				ps.setString(i, option.getVolume());i++;
 				ps.setString(i, option.getInterest());i++;
-				ps.setString(i, option.getStockPriceOnAdd());i++;
+				ps.setString(i, option.getAddPrice());i++;
 				ps.setString(i, option.getAddedDate());i++;
 				ps.setString(i, option.getDaysToExpire());i++;
 				ps.setString(i, option.getDelta());i++;

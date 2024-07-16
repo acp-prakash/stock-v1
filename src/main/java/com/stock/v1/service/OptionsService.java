@@ -82,17 +82,35 @@ public class OptionsService{
 			option.setUpBy(UtilityService.stripStringToTwoDecimals(String.valueOf(upChange),false));
 			option.setDownDays(downDays);
 			option.setDownBy(UtilityService.stripStringToTwoDecimals(String.valueOf(downChange), false));
+			double add = Double.valueOf(option.getAddPrice());
+			double curr = Double.valueOf(option.getPrice());
+			double diff = ((curr - add)/add)*100;
+			option.setPctPL(String.valueOf((int)diff));
 		});
 
 		list.forEach(option -> {			
 			histList.forEach(hist -> {
 				if(option.getKey().equalsIgnoreCase(hist.getKey()))
-				{
-					
+				{					
+					double add = Double.valueOf(option.getAddPrice());
 					if(StringUtils.isBlank(option.getALow()) || Double.valueOf(hist.getLow()) < Double.valueOf(option.getALow()))
+					{
 						option.setALow(hist.getLow());
+						double low = Double.valueOf(option.getALow());
+						double diff = (((low - add)/add) * 100);
+						if (diff > 0)
+							diff = 0;						
+						option.setPctMaxL(String.valueOf((int)diff));
+					}
 					if(StringUtils.isBlank(option.getAHigh()) || Double.valueOf(hist.getHigh()) > Double.valueOf(option.getAHigh()))
+					{
 						option.setAHigh(hist.getHigh());
+						double high = Double.valueOf(option.getAHigh());
+						double diff = (((high - add)/add) * 100);
+						if (diff < 0)
+							diff = 0;
+						option.setPctMaxP(String.valueOf((int)diff));
+					}
 				}
 			});			
 		});
@@ -199,7 +217,8 @@ public class OptionsService{
 									option.setType("CALL");							        
 								else if(StringUtils.containsIgnoreCase(option.getName(), "Put"))
 									option.setType("PUT");
-
+								
+								option.setAddPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(3)), false));
 								option.setPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(4)), false));
 								option.setChange(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(5)), false));
 								String range = UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(6));
@@ -210,7 +229,10 @@ public class OptionsService{
 								option.setAddedDate(UtilityService.formatDateString(option.getAddedDate(), "MM/dd/yyyy","yyyy-MM-dd"));
 								option.setVolume(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(9)));
 								option.setInterest(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(10)));
-								option.setDelta(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(11)), false));
+								String delta = UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(11));
+								if (Double.valueOf(delta) < 0)
+									delta = String.valueOf(-1 * Double.valueOf(delta));								
+								option.setDelta(UtilityService.stripStringToTwoDecimals(delta, false));
 								option.setTheta(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(12)), false));
 								option.setGamma(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(13)), false));
 								option.setIv(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(14)), false));

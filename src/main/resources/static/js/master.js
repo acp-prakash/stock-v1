@@ -58,10 +58,26 @@ function createMASTERTable() {
 				},
 			 },
             { title: 'NAME', field: 'name', headerFilter: true, width: 140, frozen: true },
-            { title: 'CHANGE', field: 'change', sorter:'number',headerFilter:true, frozen: true, width:85},
-            { title: 'PRICE', field: 'price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", frozen: true, width:70},
-            { title: 'TRP', field: 'trackingPrice', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
-            { title: 'TRD', field: 'trackingDiff', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
+            { title: 'CHG', field: 'change', sorter:'number',headerFilter:true, frozen: true, width:65},
+            { title: 'L', field:'l', headerFilter:true, width:57},
+			{ title: 'E', field:'e', headerFilter:true, width:57},
+			{ title: 'PRICE', field: 'price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", width:70},
+			{ title: 'H', field:'h', headerFilter:true, width:57},
+			{ title: 'ED', field:'entryDate', headerFilter:true, width:65},
+            
+            { title: 'MX-L', field:'maxLoss', headerFilter:true, width:66},
+            {title:'PL', field:"profitLoss", headerFilter:true, width:57, formatter:function(cell){
+				var result = cell.getRow().getData().profitLoss;
+				if(result < 0 ){
+					 return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + (result *-1) + "</span>";
+			    }else{
+					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
+			    }
+			}},
+			{ title: 'MX-P', field:'maxProfit', headerFilter:true, width:66},
+			            
+            //{ title: 'TRP', field: 'trackingPrice', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
+            //{ title: 'TRD', field: 'trackingDiff', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
             { title: 'UP-HI', field: 'upHigh', sorter:'number',headerFilter:true, width:68},
 			{ title: 'DON-LO', field: 'downLow', sorter:'number',headerFilter:true, width:84},
             //{ title: 'MB-PT', field: 'rating.markbeatPT', sorter:'number',headerFilter:true, width:76},

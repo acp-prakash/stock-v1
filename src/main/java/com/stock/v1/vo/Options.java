@@ -26,6 +26,7 @@ public class Options implements Serializable {
 	public String entry;
 	public String exit;
 	public String price;
+	public String addPrice;
 	public String open;
 	public String high;
 	public String low;
@@ -52,4 +53,7 @@ public class Options implements Serializable {
 	public String downBy;
 	public String stockPriceChg;
 	public Pattern pattern;
+	public String pctPL;	
+	public String pctMaxP;
+	public String pctMaxL;	
 }

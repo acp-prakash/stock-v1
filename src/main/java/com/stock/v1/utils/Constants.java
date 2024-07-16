@@ -134,6 +134,15 @@ public class Constants {
 	public static final List<String> MY_TRACK_LIST = Arrays.asList("AAL","AMC","BAC","CNK","DB","F","FUSN",
 			"GBDC","GEL","GOGL","HOOD","IMAX","JBI","KRP","NRDS","NU","NVGS","PLTR","SFL","TNGX","VALE");
 	
+	public static final List<String> MY_OPTIONS = Arrays.asList("AAL","AMC","BAC","AAPL","AMZN","TSLA","NVDA",
+			"CRM","META","GOOGL","HOOD","QCOM","MU","SQ","NKE","DIS","SBUX","PLTR","ABNB","SNOW","JMIA","DAL","UAL",
+			"PYPL","AMD","PINS","F","JPM","BA","BABA","WYNN","C","CAT","CCL","CHWY","CLSK","CLF","CNK","IMAX",
+			"COIN","CSCO","CVX","CVS","DASH","DELL","DKNG","DOCU","EA","TTWO","TWLO","FDX","UPS","UPST","NRG","FUBO",
+			"GILD","GME","GS","GUSH","HP","IBM","INFY","INTC","JNJ","KBH","KMI","KO","KR","KSS","LOW","LUV",
+			"LYFT","UBER","MA","V","MARA","MMM","MRK","MRNA","MSFT","NIO","NFLX","PEP","PFE","QQQ","SPY","TQQQ",
+			"SQQQ","TNA","TZA","SOXL","RBLX","ROKU","SAVE","SHOP","WMT","SOFI","SPCE","T","VZ","SVXY","UVXY","TGT",
+			"TJX","TSM","VALE","X","XOM");
+	
 	public static String LONG = "LONG";
 	public static String SHORT = "SHORT";
 }

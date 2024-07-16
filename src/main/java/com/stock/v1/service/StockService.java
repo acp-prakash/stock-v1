@@ -52,10 +52,10 @@ public class StockService{
 
 	@Autowired
 	EarningsService earningsService;
-	
+
 	@Autowired
 	EarningsServiceDB earningsServiceDB;
-	
+
 	@Autowired
 	PatternServiceDB patternServiceDB;
 
@@ -119,7 +119,15 @@ public class StockService{
 		List<Stock> histList = LiveStockCache.getLiveStockList();
 		List<Stock> watchList = LiveStockCache.getStockWatchList();
 		List<Earnings> earningsList = earningsService.getEarningsHistory(null);
-		
+
+		processProfitLossForAllMasterStocks(list);		
+
+		list.stream().forEach(x -> {
+			if (Constants.MY_OPTIONS.contains(x.getTicker().toUpperCase())) {
+				x.setOption(true);
+			}
+		});
+
 		List<Pattern> patternList = patternServiceDB.getPatternHistory(null);
 		if(patternList != null)
 		{
@@ -136,7 +144,7 @@ public class StockService{
 		// Create a Map of Stock objects indexed by ticker
 		Map<String, Stock> stockMap = histList.stream()
 				.collect(Collectors.toMap(stock -> stock.getTicker().toLowerCase(), stock -> stock));
-		
+
 		Map<String, Stock> stockWatchListMap = watchList.stream()
 				.collect(Collectors.toMap(stock -> stock.getTicker().toLowerCase(), stock -> stock));
 
@@ -148,13 +156,13 @@ public class StockService{
 				master.setContractPoint(stock.getContractPoint());
 				master.setContractMargin(stock.getContractMargin());
 				master.setOpenInterest(stock.getOpenInterest());
-                
+
 				master.setRating(stock.getRating());
 				String btTrend = stock.getRating().getBtTrend();
 				String siusTrend = stock.getRating().getSiusRating();
 				String tvMATrend = stock.getRating().getTradingViewMARating();
 				String tickAITrend = stock.getRating().getTickeronAIRating();
-				
+
 				if(btTrend != null && ("BUY".equalsIgnoreCase(btTrend) || btTrend.toUpperCase().contains("BUY")))						
 					master.setBuyStrength(master.getBuyStrength() + 25);
 				if(siusTrend != null && ("BUY".equalsIgnoreCase(siusTrend) || siusTrend.toUpperCase().contains("BUY")))						
@@ -163,7 +171,7 @@ public class StockService{
 					master.setBuyStrength(master.getBuyStrength() + 25);
 				if(tickAITrend != null && ("B".equalsIgnoreCase(tickAITrend) || tickAITrend.toUpperCase().contains("B")))						
 					master.setBuyStrength(master.getBuyStrength() + 25);
-				
+
 				if(btTrend != null && ("SELL".equalsIgnoreCase(btTrend) || btTrend.toUpperCase().contains("SELL")))						
 					master.setSellStrength(master.getSellStrength() + 25);
 				if(siusTrend != null && ("SELL".equalsIgnoreCase(siusTrend) || siusTrend.toUpperCase().contains("SELL")))						
@@ -172,11 +180,11 @@ public class StockService{
 					master.setSellStrength(master.getSellStrength() + 25);
 				if(tickAITrend != null && ("S".equalsIgnoreCase(tickAITrend) || tickAITrend.toUpperCase().contains("S")))						
 					master.setSellStrength(master.getSellStrength() + 25);
-				
+
 				master.setBuyTrend(stock.getBuyTrend());
 				master.setSellTrend(stock.getSellTrend());
 			}
-			
+
 			Stock stockWatch = stockWatchListMap.get(master.getTicker().toLowerCase());
 			if (stockWatch != null && StringUtils.isNotBlank(master.getPrice())) {
 				master.setTrackingPrice(stockWatch.getTrackingPrice());
@@ -196,11 +204,11 @@ public class StockService{
 				master.setEarningsSuccess(UtilityService.stripStringToTwoDecimals(String.valueOf(earningsSuccess), false));
 				master.setEarningsCount(earningsFilteredList.size());
 			}
-			
+
 		}
-		
+
 		list.forEach(stock -> {
-			
+
 			List<Earnings> earningsListnew = earningsService.getEarningsHistory(stock.getTicker());
 			if(earningsListnew != null && !earningsListnew.isEmpty()) {
 				stock.setPositiveStreak(earningsListnew.get(0).getPositiveStreak());
@@ -215,9 +223,13 @@ public class StockService{
 	public List<Stock> getStockHistory(String ticker) {
 		return stockServiceDB.getStockHistory(ticker);
 	}
-	
+
 	public List<Stock> getStockHistoryByDate(String ticker, String date) {
 		return stockServiceDB.getStockHistoryByDate(ticker,date);
+	}
+
+	public Stock getStockHistoryForADate(String ticker, String date) {
+		return stockServiceDB.getStockHistoryForADate(ticker,date);
 	}
 
 	public String updatePriceUpDownAll() {
@@ -269,7 +281,7 @@ public class StockService{
 					upPrice = stock.getPrice();
 					if(upHigh < Double.valueOf(stock.getHigh()))
 						upHigh = Double.valueOf(stock.getHigh());
-						
+
 				}
 				else
 					break;
@@ -427,7 +439,7 @@ public class StockService{
 			if (list.isEmpty()) {
 				return false;
 			}
-			
+
 			if(list.size() > 1)
 			{
 				list.get(list.size()-1).setNextPrice(list.get(list.size()-2).getPrice());
@@ -452,7 +464,7 @@ public class StockService{
 			return false;
 		}
 	}
-	
+
 	public String updateNextPriceAllOld() {
 		try {
 			// Get the list of Master objects
@@ -478,7 +490,7 @@ public class StockService{
 			if (list.isEmpty()) {
 				return false;
 			}
-			
+
 			String nextPrice = list.get(list.size() - 1).getPrice(); // Initialize prevPrice with the first item's price
 			list.remove(list.size() - 1); // Remove the first item since it has no previous price
 
@@ -525,8 +537,8 @@ public class StockService{
 					if(histList != null && !histList.isEmpty())
 					{
 						List<String> histDates = histList.stream()
-                                .map(Stock::getDate)
-                                .collect(Collectors.toList());
+								.map(Stock::getDate)
+								.collect(Collectors.toList());
 						list.removeIf(stock -> histDates.contains(stock.getDate()));
 					}
 					// Add stock history to the database and return the result
@@ -562,7 +574,7 @@ public class StockService{
 	{
 		return populateDailyStockHistory();
 	}
-	
+
 	public void updateLiveStockDetails()
 	{
 		System.out.println("START -> updateLiveStockDetails");
@@ -576,7 +588,7 @@ public class StockService{
 				updateBuySellTrend(true);
 				syncLiveStockWithDBHistory();				
 			}
-			
+
 			System.out.println("END -> updateLiveStockDetails");
 		}
 		catch(Exception ex)
@@ -614,7 +626,7 @@ public class StockService{
 				updateBuySellTrend(false);
 				syncLiveStockWithDBHistory();
 			}
-			
+
 			System.out.println("END -> populateDailyStockHistory");
 			return "SUCCESS";
 		}
@@ -625,7 +637,7 @@ public class StockService{
 		System.out.println("END -> populateDailyStockHistory-FAIL");
 		return "FAILURE";
 	}
-	
+
 	public void syncLiveStockWithDBHistory()
 	{
 		System.out.println("START -> syncLiveStockWithDBHistory=> " + new Date());
@@ -638,14 +650,14 @@ public class StockService{
 		updatePriceUpDownAll();
 		System.out.println("END -> syncLiveStockWithDBHistory=> " + new Date());
 	}
-	
+
 	public List<Master> getMyTrackList()
 	{
-		return getMasterList().stream().
+		return MasterStocksCache.getMasterStocks().stream().
 				filter(mas -> Constants.MY_TRACK_LIST.stream().
 						anyMatch(my -> mas.getTicker().equalsIgnoreCase(my))).collect(Collectors.toList());				
 	}
-	
+
 	public void updateBuySellTrend(boolean isLive)
 	{
 		System.out.println("START -> updateBuySellTrend=> " + new Date());
@@ -655,7 +667,7 @@ public class StockService{
 			List<Stock> histList = stockServiceDB.getStockHistoryByDescOrder(stock.getTicker());
 			if(histList == null || histList.isEmpty())
 				continue;
-			
+
 			if(histList.get(0).getDate().equalsIgnoreCase(stock.getDate()))
 				histList.remove(0);
 			if(isLive && histList != null && !histList.isEmpty())
@@ -716,5 +728,63 @@ public class StockService{
 			stock.setSellTrend(sellCount);
 		}
 		System.out.println("END -> updateBuySellTrend=> " + new Date());
+	}
+
+	private void processProfitLossForAllMasterStocks(List<Master> list)
+	{
+		System.out.println("START -> processProfitLossForAllMasterStocks=> " + new Date());
+		List<Master> stockEntryList = UtilityService.readExcelFile();
+		if(stockEntryList != null && !stockEntryList.isEmpty())
+		{
+			for(Master m : stockEntryList)
+			{
+				List<Stock> historyList = getStockHistoryByDate(m.getTicker(), m.getEntryDate());
+				if(historyList != null)
+				{
+					final String entryPrice = getStockHistoryForADate(m.getTicker(), m.getEntryDate()).getPrice();
+					final String currPrice = list.stream()
+							.filter(m1 -> m1.getTicker().equalsIgnoreCase(m.getTicker()))
+							.findFirst()
+							.map(Master::getPrice)
+							.orElse(null);
+					for(Stock hist : historyList)
+					{
+						if("A".equalsIgnoreCase(UtilityService.compareDates(hist.getDate(), m.getEntryDate())))
+						{
+							if(StringUtils.isBlank(m.getH()) || Double.valueOf(m.getH()) <  Double.valueOf(hist.getHigh()))
+								m.setH(hist.getHigh());
+
+							if(StringUtils.isBlank(m.getL()) || Double.valueOf(m.getL()) >  Double.valueOf(hist.getLow()))
+								m.setL(hist.getLow());
+						}
+					}
+
+					double currPL = 1000 * (Double.valueOf(currPrice) - Double.valueOf(entryPrice));
+					double profit = 1000 * (Double.valueOf(m.getH()) - Double.valueOf(entryPrice));			
+					double loss = 1000 * (Double.valueOf(entryPrice) - Double.valueOf(m.getL()));
+					if(loss <= 0)
+						loss = 0;
+					m.setProfitLoss(UtilityService.stripStringToTwoDecimals(String.valueOf(currPL), false));
+					m.setMaxProfit(UtilityService.stripStringToTwoDecimals(String.valueOf(profit), false));
+					m.setMaxLoss(UtilityService.stripStringToTwoDecimals(String.valueOf(loss), false));
+					m.setE(entryPrice);
+				}
+			}
+			list.forEach(m -> {
+				stockEntryList.forEach(stockEntry -> {
+					if(m.getTicker().equalsIgnoreCase(stockEntry.getTicker()))
+					{
+						m.setProfitLoss(stockEntry.getProfitLoss());
+						m.setMaxProfit(stockEntry.getMaxProfit());
+						m.setMaxLoss(stockEntry.getMaxLoss());
+						m.setE(stockEntry.getE());
+						m.setL(stockEntry.getL());
+						m.setH(stockEntry.getH());
+						m.setEntryDate(stockEntry.getEntryDate());
+					}
+				});			
+			});
+		}
+		System.out.println("END -> processProfitLossForAllMasterStocks=> " + new Date());
 	}
 }

@@ -57,17 +57,22 @@ function createPICKSTable() {
 					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
 			    }
 			}},			
-            { title: 'MX-P', field:'maxProfit', headerFilter:true, width:70},            
+            { title: 'MX-P', field:'maxProfit', headerFilter:true, width:70},
+            { title: 'PP', field:'addPattern', headerFilter:"number", headerFilterFunc:">=", width:50},
+            { title: 'A', field:'master.pattern.count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:44},
+            { title: 'P', field:'master.pattern.bull', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:44},
+            { title: 'N', field:'master.pattern.bear', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},            
             { title: 'ADD PRICE', field: 'addPrice', sorter:'number',headerFilter:true, width:102},
             { title: 'PRICE NOW', field: 'master.price', sorter:'number',headerFilter:true, width:107},
             { title: 'TAR-1', field: 'exit1', headerFilter: true, width: 71 },
             { title: 'TAR-2', field: 'exit2', headerFilter: true, width: 71 },
             { title: 'TAR-DATE', field:'targetDate', headerFilter:true, width:97},
-            { title: 'TODAY\'S CHG', field: 'master.change', sorter:'number',headerFilter:true, width:119},
+            { title: 'CHG', field: 'master.change', sorter:'number',headerFilter:true, width:65},
             { title: 'LOW', field: 'l', sorter:'number',headerFilter:true, width:68},
             { title: 'HIGH', field: 'h', sorter:'number',headerFilter:true, width:68},            
             { title: 'ENTRY', field: 'entry', sorter:'number',headerFilter:true, width:75},
             { title: 'STOP', field: 'stop', headerFilter: true, width: 70 },
+            
         ],
     });
 }
@@ -120,6 +125,7 @@ function getPicks() {
             let stophitt2 = 0;
             let delayhitt1 = 0;
             let delayhitt2 = 0;
+            let overallPL = 0;
             for(let i=0; i<response.length; i++)
             {
 				if(response[i].result === "PENDING")
@@ -140,6 +146,9 @@ function getPicks() {
 					delayhitt1++;
 				if(response[i].result === "DELAY-HIT-T2")
 					delayhitt2++;
+				
+				if(response[i].profitLoss != null)
+					overallPL = +overallPL + +response[i].profitLoss;
 			}
 			const hit = hitt1 + hitt2 + stophitt1 + stophitt2 + delayhitt1 + delayhitt2;
 			const miss = stopped + missed;
@@ -147,6 +156,7 @@ function getPicks() {
 			document.querySelector('#hit').innerText = 'HIT:('+hit+') '+Math.round((hit/(total)*100).toFixed(2))+'%';
 			document.querySelector('#miss').innerText = 'MISS:('+miss+') '+Math.round((miss/(total)*100).toFixed(2))+'%';
 			document.querySelector('#pending').innerText = 'PENDING:('+pending+') ';
+			document.querySelector('#overallPL').innerText = overallPL;
         },
         error: function (error) {
             console.log(error);
