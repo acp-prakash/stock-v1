@@ -56,6 +56,10 @@ public class CookiesController {
 			cookies.put("PORTFOLIO123_COOKIE", request.getParameter("PORTFOLIO123_COOKIE"));
 		if(StringUtils.isNotBlank(request.getParameter("PORTFOLIO123_TOKEN")))
 			cookies.put("PORTFOLIO123_TOKEN", request.getParameter("PORTFOLIO123_TOKEN"));
+		if(StringUtils.isNotBlank(request.getParameter("STOCKINVEST_US_COOKIE")))
+			cookies.put("STOCKINVEST_US_COOKIE", request.getParameter("STOCKINVEST_US_COOKIE"));
+		if(StringUtils.isNotBlank(request.getParameter("STOCKINVEST_US_TOKEN")))
+			cookies.put("STOCKINVEST_US_TOKEN", request.getParameter("STOCKINVEST_US_TOKEN"));
 		
 		CookieCache.setCookies(cookies);
 		return "SUCCESS";

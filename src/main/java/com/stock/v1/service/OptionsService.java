@@ -161,6 +161,11 @@ public class OptionsService{
 		return optionsServiceDB.getOptions();
 	}
 	
+	public List<Options> updateOptions(List<Options> list)
+	{
+		return optionsServiceDB.updateOptions(list);
+	}
+	
 	public List<Options> populateOptions()
 	{
 		String url = Constants.ETRADE_OPTIONS;
@@ -219,6 +224,7 @@ public class OptionsService{
 									option.setType("PUT");
 								
 								option.setAddPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(3)), false));
+								option.setEntry(option.getAddPrice());
 								option.setPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(4)), false));
 								option.setChange(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(5)), false));
 								String range = UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(6));

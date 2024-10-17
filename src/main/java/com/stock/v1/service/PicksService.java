@@ -19,6 +19,7 @@ public class PicksService{
 
 	@Autowired
 	StockService stockService;
+
 	public List<Picks> getPicks()
 	{
 		List<Picks> picksList = LiveStockCache.getPicks();
@@ -206,5 +207,5 @@ public class PicksService{
 					pick.setResult("MISSED");
 			}
 		}
-	}
+	}	
 }

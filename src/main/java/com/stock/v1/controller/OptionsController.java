@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,5 +73,12 @@ public class OptionsController {
 		List<Options> list = optionsService.populateOptions();
 		handler.sendMessage(optionsService.getOptions());
 		return list;
+	}
+	
+	@CrossOrigin	
+	@PostMapping("/options/updateOptions")
+	public @ResponseBody List<Options> updateOptions(@RequestBody List<Options> updatedList)
+	{		
+		return optionsService.updateOptions(updatedList);		
 	}
 }

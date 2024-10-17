@@ -56,6 +56,13 @@ public class Master implements Serializable {
 	public String profitLoss;
 	public String maxProfit;
 	public String maxLoss;
+	public String profitLosspt;
+	public String maxProfitpt;
+	public String maxLosspt;
 	public String entryDate;
 	public boolean option = false;
+	public String gCShortDays;
+	public String dCShortDays;
+	public String gCLongDays;
+	public String dCLongDays;
 }

@@ -30,10 +30,11 @@ public class StocksController {
 	StockHistoryService stockHistoryService;
 
 	@GetMapping({Constants.CONTEXT_STOCK_MASTER})
-	public ModelAndView loadMasterView()
+	public ModelAndView loadMasterView(String cache)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(PAGES.MASTER.value);
+		mv.addObject("CACHE",cache);
 		return mv;
 	}
 	
@@ -64,9 +65,11 @@ public class StocksController {
 	
 	@CrossOrigin
 	@GetMapping("/stock/masterList")
-	public @ResponseBody List<Master> getMasterStocks()
+	public @ResponseBody List<Master> getMasterStocks(String cache)
 	{
-		List<Master> masterList = stockService.getMasterList();
+		List<Master> masterList = MasterStocksCache.getMasterStocks();
+		if(!"Y".equalsIgnoreCase(cache))
+			masterList = stockService.getMasterList();
 		return masterList.stream().filter(x -> !x.isFuture()).collect(Collectors.toList());
 	}
 	

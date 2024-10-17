@@ -21,6 +21,7 @@ import com.stock.v1.cache.LiveStockCache;
 import com.stock.v1.utils.DBConstants;
 import com.stock.v1.utils.UtilityService;
 import com.stock.v1.vo.Master;
+import com.stock.v1.vo.Monitor;
 import com.stock.v1.vo.Rating;
 import com.stock.v1.vo.Stock;
 
@@ -271,6 +272,18 @@ public class StockServiceDB{
 	                case "SIUS_DAYS":
 	                	stock.getRating().setSiusDays((String) value);
 	                    break;
+	                case "SIUS_GCS":
+	                	stock.setGCShortDate((String) value);
+	                    break;
+	                case "SIUS_DCS":
+	                	stock.setDCShortDate((String) value);
+	                    break;
+	                case "SIUS_GCL":
+	                	stock.setGCLongDate((String) value);
+	                    break;
+	                case "SIUS_DCL":
+	                	stock.setDCLongDate((String) value);
+	                    break;
 	                case "NASDAQ_RATING":
 	                	stock.getRating().setNasdaqRating((String) value);
 	                    break;
@@ -419,7 +432,7 @@ public class StockServiceDB{
         		+ "NEXT_EARNING_DATE,PREV_PRICE, BARCHART_ANALYSTS,BARCHART_ANALYSTS_RATING,BARCHART_SHORT_RATING,"
         		+ "BARCHART_LONG_RATING,BARCHART_RATING,BARCHART_TREND,PRICE_CHANGE_5, "
         		+ "PRICE_CHANGE_10,ZACKS_RANK,ZACKS_RATING,SIUS_SCORE,SIUS_RATING, "
-        		+ "SIUS_DAYS,NASDAQ_RATING,TIP_RATING,TIP_BUYHOLDSELL,STREET_RATING, "
+        		+ "SIUS_DAYS,SIUS_GCS,SIUS_DCS,SIUS_GCL,SIUS_DCL,NASDAQ_RATING,TIP_RATING,TIP_BUYHOLDSELL,STREET_RATING, "
         		+ "STREET_SCORE,MARKETBEAT_RATING,MARKETBEAT_PT,MARKETBEAT_UPDOWN,"
         		+ "ZEN_RATING,ZEN_PT,ZEN_UPDOWN,ZEN_SCORE,STANALYSIS_RATING,STANALYSIS_PT,STANALYSIS_UPDOWN,"
         		+ "INVOBSERVE_SCORE,INVOBSERVE_LOW_PT,INVOBSERVE_HIGH_PT,INVESTING_RATING,INVESTING_PT,"
@@ -433,7 +446,7 @@ public class StockServiceDB{
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
                 + " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
                 + ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
-                + ", ?, ?, ?, ?, ?)";
+                + ", ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -462,7 +475,11 @@ public class StockServiceDB{
                 ps.setString(i, stock.getRating().getZacksRating());i++;                           
                 ps.setString(i, stock.getRating().getSiusScore());i++;
                 ps.setString(i, stock.getRating().getSiusRating());i++;
-                ps.setString(i, stock.getRating().getSiusDays());i++;
+                ps.setString(i, stock.getRating().getSiusDays());i++;                
+                ps.setString(i, stock.getGCShortDate());i++;
+                ps.setString(i, stock.getDCShortDate());i++;
+                ps.setString(i, stock.getGCLongDate());i++;
+                ps.setString(i, stock.getDCLongDate());i++;
                 ps.setString(i, stock.getRating().getNasdaqRating());i++;
                 ps.setString(i, stock.getRating().getTipRating());i++;
                 ps.setString(i, stock.getRating().getTipBuyHoldSell());i++;
@@ -661,6 +678,189 @@ public class StockServiceDB{
 	    } catch (SQLException ex) {
 	    	System.err.println("ERROR ==> updatePriceUpDown ==> "+ ex);
 	        return false;
+	    }
+	}
+	
+	public List<Monitor> getMonitorList() {
+	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_MONITOR_LIST);
+
+	    return retResultMap.stream()
+	            .map(this::mapToMonitor)
+	            .filter(stock -> stock != null)  // Filter out any null results
+	            .collect(Collectors.toList());
+	}
+	
+	private Monitor mapToMonitor(Map<String, Object> retRes) {
+		Monitor monitor = new Monitor();
+	    retRes.forEach((key, value) -> {
+	        if (value != null) {
+	            switch (key.toUpperCase()) {	              
+	                case "TICKER":
+	                	monitor.setTicker((String) value);
+	                    break;	                
+	                case "MONITOR_PRICE":
+	                	monitor.setMonitorPrice((String) value);
+	                    break;	                
+	                case "CURRENT_PRICE":
+	                	monitor.setCurrentPrice((String) value);
+	                    break;
+	                case "MONITOR_CHG":
+	                	monitor.setMonitorChg((String) value);
+	                    break;
+	                case "CURRENT_CHG":
+	                	monitor.setCurrentChg((String) value);
+	                    break;
+	                case "UP":
+	                	monitor.setUpDays((String) value);
+	                    break;
+	                case "PRICE_UP":
+	                	monitor.setUpPrice((String) value);
+	                    break;
+	                case "DOWN":
+	                	monitor.setDownDays((String) value);
+	                    break;
+	                case "PRICE_DOWN":
+	                	monitor.setDownPrice((String) value);
+	                    break;
+	                case "TARGET":
+	                	monitor.setTarget((String) value);
+	                    break;
+	                case "TARGET_DATE":
+	                	monitor.setTargetDate((String) value);
+	                    break;
+	                case "COMMENTS":
+	                	monitor.setComments((String) value);
+	                    break;
+	                case "STATUS":
+	                	monitor.setStatus((String) value);
+	                    break;
+	                case "ADD_DATE":
+	                	monitor.setAddDate((String) value);
+	                    break;
+	                case "OFF_DATE":
+	                	monitor.setOffDate((String) value);
+	                    break;
+	                default:
+	                    break;  // Handle other keys if needed
+	            }
+	        }
+	    });
+	    
+	    return monitor;
+	}
+	
+	public boolean addToMonitor(List<Monitor> list) {
+        String sql = "INSERT INTO MONITOR (TICKER, MONITOR_PRICE, CURRENT_PRICE, MONITOR_CHG, CURRENT_CHG, UP, PRICE_UP,"
+        		+ " DOWN, PRICE_DOWN, TARGET, TARGET_DATE, COMMENTS, STATUS, ADD_DATE, OFF_DATE) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+        	for (Monitor monitor : list) {        		        		
+        		int i = 1;
+        		ps.setString(i, monitor.getTicker());i++;
+        		ps.setString(i, monitor.getMonitorPrice());i++;
+        		ps.setString(i, monitor.getCurrentPrice());i++;
+        		ps.setString(i, monitor.getMonitorChg());i++;
+        		ps.setString(i, monitor.getCurrentChg());i++;
+        		ps.setString(i, monitor.getUpDays());i++;
+        		ps.setString(i, monitor.getUpPrice());i++;
+        		ps.setString(i, monitor.getDownDays());i++;
+        		ps.setString(i, monitor.getDownPrice());i++;
+        		ps.setString(i, monitor.getTarget());i++;
+        		ps.setString(i, monitor.getTargetDate());i++;
+        		ps.setString(i, monitor.getComments());i++;
+        		ps.setString(i, monitor.getStatus());i++;
+        		ps.setString(i, monitor.getAddDate());i++;
+        		ps.setString(i, monitor.getOffDate());i++;
+        		ps.addBatch();
+        	}
+            
+            int[] batchResult = ps.executeBatch();
+            
+            // Check if all the batch statements were successful
+            for (int result : batchResult) {
+                if (result == PreparedStatement.EXECUTE_FAILED) {
+                    return false;
+                }
+            }            
+            return true;
+        } catch (SQLException ex) {
+        	System.err.println("ERROR ==> addToMonitor ==> "+ ex);
+            return false;
+        }
+    }
+
+	public boolean updateMonitor(Monitor monitor) {
+
+	    String sql = "UPDATE MONITOR SET MONITOR_PRICE=?,CURRENT_PRICE=?,MONITOR_CHG=?,CURRENT_CHG=?,"
+	    		+ "UP=?,PRICE_UP=?,DOWN=?,PRICE_DOWN=?,TARGET=?, TARGET_DATE=?,COMMENTS=?,STATUS=?,"
+	    		+ "ADD_DATE=?,OFF_DATE=? WHERE TICKER = ?";
+	    
+	    List<Monitor> monitorList = getMonitorList();
+	    
+	    monitorList.stream().forEach(x -> {
+			if (monitor.getTicker().equalsIgnoreCase(x.getTicker())) {
+				
+				if(StringUtils.isBlank(monitor.getMonitorPrice()))
+					monitor.setMonitorPrice(x.getMonitorPrice());
+				if(StringUtils.isBlank(monitor.getCurrentPrice()))
+					monitor.setCurrentPrice(x.getCurrentPrice());
+				if(StringUtils.isBlank(monitor.getMonitorChg()))
+					monitor.setMonitorChg(x.getMonitorChg());
+				if(StringUtils.isBlank(monitor.getCurrentChg()))
+					monitor.setCurrentChg(x.getCurrentChg());
+				if(StringUtils.isBlank(monitor.getUpDays()))
+					monitor.setUpDays(x.getUpDays());
+				if(StringUtils.isBlank(monitor.getUpPrice()))
+					monitor.setUpPrice(x.getUpPrice());
+				if(StringUtils.isBlank(monitor.getDownDays()))
+					monitor.setDownDays(x.getDownDays());
+				if(StringUtils.isBlank(monitor.getDownPrice()))
+					monitor.setDownPrice(x.getDownPrice());
+				if(StringUtils.isBlank(monitor.getTarget()))
+					monitor.setTarget(x.getTarget());
+				if(StringUtils.isBlank(monitor.getTargetDate()))
+					monitor.setTargetDate(x.getTargetDate());
+				if(StringUtils.isBlank(monitor.getComments()))
+					monitor.setComments(x.getComments());
+				else
+					monitor.setComments(monitor.getComments() +"~"+x.getComments());					
+				if(StringUtils.isBlank(monitor.getStatus()))
+					monitor.setStatus(x.getStatus());
+				if(StringUtils.isBlank(monitor.getAddDate()))
+					monitor.setAddDate(x.getAddDate());
+				if(StringUtils.isBlank(monitor.getOffDate()))
+					monitor.setOffDate(x.getOffDate());				
+			}
+		});
+
+	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
+	    		PreparedStatement ps = conn.prepareStatement(sql)) {
+	    	
+	    	int i = 1;	    	
+    		ps.setString(i, monitor.getMonitorPrice());i++;
+    		ps.setString(i, monitor.getCurrentPrice());i++;
+    		ps.setString(i, monitor.getMonitorChg());i++;
+    		ps.setString(i, monitor.getCurrentChg());i++;
+    		ps.setString(i, monitor.getUpDays());i++;
+    		ps.setString(i, monitor.getUpPrice());i++;
+    		ps.setString(i, monitor.getDownDays());i++;
+    		ps.setString(i, monitor.getDownPrice());i++;
+    		ps.setString(i, monitor.getTarget());i++;
+    		ps.setString(i, monitor.getTargetDate());i++;
+    		ps.setString(i, monitor.getComments());i++;
+    		ps.setString(i, monitor.getStatus());i++;
+    		ps.setString(i, monitor.getAddDate());i++;
+    		ps.setString(i, monitor.getOffDate());i++;
+    		ps.setString(i, monitor.getTicker());i++;
+    		
+	    	int rowsAffected = ps.executeUpdate();
+	    	return rowsAffected > 0;
+	    } catch (SQLException ex) {
+	    	System.err.println("ERROR ==> updateMonitor ==> "+ ex);
+	    	return false;
 	    }
 	}
 }

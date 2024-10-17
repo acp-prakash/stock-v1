@@ -21,8 +21,9 @@
 	<body>
 		<%@ include file="../common/header.jsp" %>
 		<h2 style="text-align: left;">OPTIONS</h2>
-		<a id="clear_OPTIONS" href="#" style="font-size: larger;">Clear Filters</a>
-		<a id="download_OPTIONS" href="#" style="font-size: larger; margin-left: 15px;">Download (XLSX)</a>
+		<a id="clear" href="#" style="font-size: larger;">Clear Filters</a>
+		<a id="download" href="#" style="font-size: larger; margin-left: 15px;">Download (XLSX)</a>
+		<a id="save" href="#" style="font-size: larger; margin-left: 15px;">SAVE</a>
 		<br>
 		<div id="OPTIONS" style="width: 95.5%; height: 80%; max-height: 80%; font: small-caption;"></div>
 			

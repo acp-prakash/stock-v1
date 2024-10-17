@@ -3,6 +3,7 @@ package com.stock.v1.utils;
 public class DBConstants {
 	
 	public static final String GET_MASTER_LIST = "select * from stock_master order by ticker";
+	public static final String GET_MONITOR_LIST = "select * from MONITOR order by ADD_DATE desc";
 	public static final String GET_STOCK_HISTORY = "select * from stock_history where ticker = ? order by hist_date";
 	public static final String GET_STOCK_HISTORY_DESC_ORDER = "select * from stock_history where ticker = ? order by hist_date desc";
 	public static final String GET_STOCK_HISTORY_BY_DATE = "select * from stock_history where ticker = ? and to_date(hist_date, 'yyyy-mm-dd') >= to_date(?, 'yyyy-mm-dd') order by hist_date";

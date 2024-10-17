@@ -41,6 +41,7 @@ import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.UtilityService;
 import com.stock.v1.vo.Earnings;
 import com.stock.v1.vo.Master;
+import com.stock.v1.vo.Monitor;
 import com.stock.v1.vo.Pattern;
 import com.stock.v1.vo.Stock;
 
@@ -120,7 +121,7 @@ public class StockService{
 		List<Stock> watchList = LiveStockCache.getStockWatchList();
 		List<Earnings> earningsList = earningsService.getEarningsHistory(null);
 
-		processProfitLossForAllMasterStocks(list);		
+		processProfitLossForAllMasterStocks(list);
 
 		list.stream().forEach(x -> {
 			if (Constants.MY_OPTIONS.contains(x.getTicker().toUpperCase())) {
@@ -156,6 +157,10 @@ public class StockService{
 				master.setContractPoint(stock.getContractPoint());
 				master.setContractMargin(stock.getContractMargin());
 				master.setOpenInterest(stock.getOpenInterest());
+				master.setGCShortDays(stock.getGCShortDate());
+				master.setDCShortDays(stock.getDCShortDate());
+				master.setGCLongDays(stock.getGCLongDate());
+				master.setDCLongDays(stock.getDCLongDate());
 
 				master.setRating(stock.getRating());
 				String btTrend = stock.getRating().getBtTrend();
@@ -768,6 +773,14 @@ public class StockService{
 					m.setMaxProfit(UtilityService.stripStringToTwoDecimals(String.valueOf(profit), false));
 					m.setMaxLoss(UtilityService.stripStringToTwoDecimals(String.valueOf(loss), false));
 					m.setE(entryPrice);
+					
+					double currPLpt = ((Double.valueOf(currPrice) - Double.valueOf(entryPrice))/Double.valueOf(entryPrice))*100;
+					double profitpt = ((Double.valueOf(m.getH()) - Double.valueOf(entryPrice))/Double.valueOf(entryPrice))*100;			
+					double losspt = ((Double.valueOf(entryPrice) - Double.valueOf(m.getL()))/Double.valueOf(entryPrice))*100;
+					
+					m.setProfitLosspt(UtilityService.stripStringToTwoDecimals(String.valueOf(currPLpt), false));
+					m.setMaxProfitpt(UtilityService.stripStringToTwoDecimals(String.valueOf(profitpt), false));
+					m.setMaxLosspt(UtilityService.stripStringToTwoDecimals(String.valueOf(losspt), false));					
 				}
 			}
 			list.forEach(m -> {
@@ -777,6 +790,9 @@ public class StockService{
 						m.setProfitLoss(stockEntry.getProfitLoss());
 						m.setMaxProfit(stockEntry.getMaxProfit());
 						m.setMaxLoss(stockEntry.getMaxLoss());
+						m.setProfitLosspt(stockEntry.getProfitLosspt());
+						m.setMaxProfitpt(stockEntry.getMaxProfitpt());
+						m.setMaxLosspt(stockEntry.getMaxLosspt());
 						m.setE(stockEntry.getE());
 						m.setL(stockEntry.getL());
 						m.setH(stockEntry.getH());
@@ -786,5 +802,20 @@ public class StockService{
 			});
 		}
 		System.out.println("END -> processProfitLossForAllMasterStocks=> " + new Date());
+	}
+	
+	public List<Monitor> getMonitors()
+	{
+		List<Monitor> monitorList = stockServiceDB.getMonitorList();	
+		List<Master> masterList = MasterStocksCache.getMasterStocks();
+
+		monitorList.forEach(x -> masterList.forEach(y -> {
+			if (x.getTicker().equalsIgnoreCase(y.getTicker())) {
+				x.setMaster(y);				
+				x.setMonitorChg(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(y.getPrice()) - Double.valueOf(x.getMonitorPrice())), false));
+			}
+		})
+				);
+		return monitorList;		
 	}
 }

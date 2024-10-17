@@ -75,6 +75,17 @@ function createMASTERTable() {
 			    }
 			}},
 			{ title: 'MX-P', field:'maxProfit', headerFilter:true, width:66},
+			
+			{ title: 'L-PT', field:'maxLosspt', headerFilter:true, width:66},
+            {title:'PT', field:"profitLosspt", headerFilter:true, width:57, formatter:function(cell){
+				var result = cell.getRow().getData().profitLosspt;
+				if(result < 0 ){
+					 return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + (result *-1) + "</span>";
+			    }else{
+					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
+			    }
+			}},
+			{ title: 'P-PT', field:'maxProfitpt', headerFilter:true, width:66},
 			            
             //{ title: 'TRP', field: 'trackingPrice', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
             //{ title: 'TRD', field: 'trackingDiff', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
@@ -98,6 +109,10 @@ function createMASTERTable() {
 			{ title: 'CUR-LAST-DIFF', field:'currAndLastPriceEffectDiff', headerFilter:true,width:125},
 			{ title: 'B', field:'buyTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
             { title: 'S', field:'sellTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
+            { title: 'GS', field:'gCShortDays', headerFilter:true, width:75},
+            { title: 'GL', field:'gCLongDays',  headerFilter:true, width:75},
+            { title: 'DS', field:'dCShortDays', headerFilter:true, width:75},
+            { title: 'DL', field:'dCLongDays',  headerFilter:true, width:75},
             { title: 'F', field: 'isFuture', sorter:'boolean',headerFilter:true, width:45},            
 			{ title: 'LAST EAR', field: 'lastEarningsDate', headerFilter:true, width:90},
 			{ title: 'NEXT EAR', field: 'nextEarningsDate', headerFilter:true, width:92},

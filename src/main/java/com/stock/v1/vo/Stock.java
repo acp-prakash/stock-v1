@@ -45,4 +45,8 @@ public class Stock implements Serializable {
 	public String contractPoint;
 	public String contractMargin;
 	public String openInterest;
+	public String gCShortDate;
+	public String dCShortDate;
+	public String gCLongDate;
+	public String dCLongDate;
 }

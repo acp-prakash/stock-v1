@@ -1,12 +1,14 @@
 // Define your constants
 const TABLE_CONTAINER_ID = 'OPTIONS';
-const DOWNLOAD_BUTTON_ID = 'download_OPTIONS';
-const CLEAR_BUTTON_ID = 'clear_OPTIONS';
+const DOWNLOAD_BUTTON_ID = 'download';
+const CLEAR_BUTTON_ID = 'clear';
+const SAVE_BUTTON_ID = 'save';
 const DATA_URL = 'options/getOptions';
+const UPDATE_URL = 'options/updateOptions';
 var ticker;
+var updatedRows=[];
 // Initialize Tabulator
 const table = createOPTIONSTable();
-
 function createOPTIONSTable() {
     return new Tabulator(`#${TABLE_CONTAINER_ID}`, {
         height: '78.5%',
@@ -52,17 +54,8 @@ function createOPTIONSTable() {
 			 },
 			 { title: 'ADD-ON', field:'addedDate', headerFilter:true,width:85},
 			//{ title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},
-			{ title: 'A', field:'pattern.count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
-            { title: 'P', field:'pattern.bull', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
-            { title: 'N', field:'pattern.bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:44},
-            { title: 'B', field:'pattern.all.buyTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
-            { title: 'S', field:'pattern.all.sellTrend', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:45},
-            { title: 'UP', field: 'upDays', headerFilter:true,width:53},
-			{ title: 'U$', field: 'upBy', sorter:'number',headerFilter:true, width:53},			
-			{ title: 'DN', field: 'downDays', headerFilter:true,width:53},
-			{ title: 'D$', field: 'downBy', sorter:'number',headerFilter:true, width:53},
-			
-			{ title: 'ML', field:'pctMaxL', headerFilter:true,width:52},
+						
+			/*{ title: 'ML', field:'pctMaxL', headerFilter:true,width:52},
 			{title:'PL', field:"pctPL", headerFilter:true, width:50, formatter:function(cell){
 				var result = cell.getRow().getData().pctPL;
 				if(result < 0 ){
@@ -71,33 +64,58 @@ function createOPTIONSTable() {
 					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:40px'>" + cell.getValue() + "</span>";
 			    }
 			}},			
-			{ title: 'MP', field:'pctMaxP', headerFilter:true,width:53},
-			           
+			{ title: 'MP', field:'pctMaxP', headerFilter:true,width:53},*/
+			{ title: 'STATUS', field:'status', headerFilter:true,width:78,editor: "input",
+				cellEdited:function(cell)
+				{
+					updateRows(cell.getRow());
+				}},
+			{ title: 'ENTRY', field:'addPrice', headerFilter:true,width:72,editor: "input",
+				cellEdited:function(cell)
+				{
+					updateRows(cell.getRow());
+				}},
+			{ title: 'EXIT', field:'exit', headerFilter:true, width:60,editor: "input",
+				cellEdited:function(cell)
+				{
+					updateRows(cell.getRow());
+				}},           
+            { title: 'CHG', field:'change', sorter:'number',headerFilter:true, width:60},
             { title: 'AL', field:'aLow', headerFilter:true,width:50},
-			{ title: 'LO', field:'low', headerFilter:true,width:55},
-			{ title: 'ADD', field:'addPrice', headerFilter:true,width:61},
-			{ title: 'PRICE', field:'price', headerFilter:true,width:67},			
+			{ title: 'LO', field:'low', headerFilter:true,width:55},			
+			{ title: 'PRICE', field:'price', headerFilter:true,width:67},
 			{ title: 'HI', field:'high', headerFilter:true,width:55},
-			{ title: 'AH', field:'aHigh', headerFilter:true,width:53},
-			{ title: 'CHG', field:'change', sorter:'number',headerFilter:true, width:60},
+			{ title: 'AH', field:'aHigh', headerFilter:true,width:53},			
 			//{ title: 'OPEN', field:'open', headerFilter:true,width:67},
 			{ title: 'VOL', field:'volume', headerFilter:true,width:60},
-			{ title: 'O-INT', field:'interest', headerFilter:true,width:70},
-			{ title: 'DAY', field:'daysToExpire', headerFilter:true,width:58},
+			{ title: 'O-INT', field:'interest', headerFilter:true,width:70},			
 			{ title: 'D', field:'delta', headerFilter:true,width:45},
 			{ title: 'G', field:'gamma', headerFilter:true,width:45},
+			{ title: 'A', field:'pattern.count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
+            { title: 'P', field:'pattern.bull', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
+            { title: 'N', field:'pattern.bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:44},
+            { title: 'B', field:'pattern.all.buyTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
+            { title: 'S', field:'pattern.all.sellTrend', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:45},
+            { title: 'UP', field: 'upDays', headerFilter:true,width:53},
+			/*{ title: 'U$', field: 'upBy', sorter:'number',headerFilter:true, width:53},*/			
+			{ title: 'DN', field: 'downDays', headerFilter:true,width:53},
+			/*{ title: 'D$', field: 'downBy', sorter:'number',headerFilter:true, width:53},*/
+			{ title: 'DAY', field:'daysToExpire', headerFilter:true,width:58},
 			{ title: 'T', field:'theta', headerFilter:true,width:45},
 			{ title: 'IV', field:'iv', headerFilter:true,width:48},			
-			{ title: 'S-PRICE', field:'stockPrice', headerFilter:true,width:80},
-			{ title: 'SP-CHG', field:'stockPriceChg', headerFilter:true,width:78},
-			{ title: 'A-PRICE', field:'stockPriceOnAdd', headerFilter:true,width:80},			
-			{ title: 'STATUS', field:'status', headerFilter:true,width:78},
-			{ title: 'SOURCE', field:'source', headerFilter:true,width:80},			
-			{ title: 'EXT-ON', field:'exitDate', headerFilter:true,width:80},
+			/*{ title: 'S-PRICE', field:'stockPrice', headerFilter:true,width:80,editor: "input"},
+			{ title: 'SP-CHG', field:'stockPriceChg', headerFilter:true,width:78,editor: "input"},
+			{ title: 'A-PRICE', field:'stockPriceOnAdd', headerFilter:true,width:80},*/
+			{ title: 'SOURCE', field:'source', headerFilter:true,width:80,editor: "input",
+				cellEdited:function(cell)
+				{
+					updateRows(cell.getRow());
+				}},
+			//{ title: 'EXT-ON', field:'exitDate', headerFilter:true,width:80},
 			 { title: 'TYPE', field: 'type', headerFilter: true, width: 64},
-            { title: 'ENTRY', field: 'entry', headerFilter: true, width: 75 },
-            { title: 'EXIT', field:'exit', headerFilter:true, width:60},
-        ],
+            /*{ title: 'ENTRY', field: 'entry', headerFilter: true, width: 75 },
+            { title: 'EXIT', field:'exit', headerFilter:true, width:60},*/
+        ],        
     });
 }
 
@@ -158,3 +176,36 @@ function openStockHistory(key) {
 function openPattern(key) {    	
     window.open("pattern/getPatternHistory?ticker="+key, "_blank");
 };
+
+function updateRows(selectedRow) {	
+	
+	var existingIndex = updatedRows.findIndex(row => row.key === selectedRow.getData().key);
+
+    if (existingIndex === -1) {
+        // If the row doesn't exist in the store, add it
+        updatedRows.push(selectedRow.getData());
+    } else {
+        // If the row exists, update the values
+        updatedRows[existingIndex] = selectedRow.getData();
+    }
+};
+	
+document.getElementById(SAVE_BUTTON_ID).addEventListener('click', () => {
+	if (updatedRows.length > 0) {
+		$.ajax({
+			type : "POST",
+			url: UPDATE_URL,
+	        cache: false,
+	        contentType: 'application/json;',
+			data:JSON.stringify(updatedRows),
+			success: function (response) {
+				updatedRows=[];
+	            //table.replaceData(response);
+	            //table.redraw(true);
+	        },
+	        error: function (error) {
+	            console.log(error);
+	        }
+		});
+	}
+});

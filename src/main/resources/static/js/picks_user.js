@@ -46,7 +46,7 @@ function createPICKSTable() {
 			       	return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
 			    }
 			}},
-			{ title: 'TYPE', field:'type', headerFilter:true, width:67},
+			
             { title: 'ADD-DATE', field:'addedDate', headerFilter:true, width:102},
             { title: 'MX-L', field:'maxLoss', headerFilter:true, width:68},
             {title:'PL', field:"profitLoss", headerFilter:true, width:57, formatter:function(cell){
@@ -58,10 +58,20 @@ function createPICKSTable() {
 			    }
 			}},			
             { title: 'MX-P', field:'maxProfit', headerFilter:true, width:70},
+            { title: 'TYPE', field:'type', headerFilter:true, width:67},
             { title: 'PP', field:'addPattern', headerFilter:"number", headerFilterFunc:">=", width:50},
             { title: 'A', field:'master.pattern.count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:44},
             { title: 'P', field:'master.pattern.bull', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:44},
-            { title: 'N', field:'master.pattern.bear', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},            
+            { title: 'N', field:'master.pattern.bear', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
+            { title: 'B', field:'master.buyTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
+            { title: 'S', field:'master.sellTrend', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:45},
+            { title: 'GS', field:'master.gCShortDays', headerFilter:true, width:78},
+            { title: 'GL', field:'master.gCLongDays',  headerFilter:true, width:78},
+            { title: 'DS', field:'master.dCShortDays', headerFilter:true, width:78},
+            { title: 'DL', field:'master.dCLongDays',  headerFilter:true, width:78},
+            { title: 'BT-S', field: 'master.rating.btShortRating', sorter:'string',headerFilter:true, width:80},
+			{ title: 'BT-L', field: 'master.rating.btLongRating', sorter:'string',headerFilter:true, width:70},
+			{ title: 'BT-R', field: 'master.rating.btRating', sorter:'string',headerFilter:true, width:80},            
             { title: 'ADD PRICE', field: 'addPrice', sorter:'number',headerFilter:true, width:102},
             { title: 'PRICE NOW', field: 'master.price', sorter:'number',headerFilter:true, width:107},
             { title: 'TAR-1', field: 'exit1', headerFilter: true, width: 71 },

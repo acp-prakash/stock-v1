@@ -26,7 +26,7 @@
 		<a id="download_PICKS" href="#" style="font-size: small; margin-left: 12px;">Download (XLSX)</a>
 		<br>
 		<div id="PICKS" style="width: 91%; height: 83%; max-height: 83%; font: small-caption; font-size:13px;"></div>
-		<div id="overallPL" style="margin-left: 415px;font-weight: bold;background: black;width: fit-content;color: yellowgreen;">19490</div>
+		<div id="overallPL" style="margin-left: 350px;font-weight: bold;background: black;width: fit-content;color: yellowgreen;">19490</div>
 		<script type="text/javascript">
 			var ticker='${TICKER}';		 
  		</script>
