@@ -215,14 +215,16 @@ public class OptionsServiceDB{
 	public boolean addToOptions(List<Options> addList) {
 		String sql = "insert into STOCK_OPTIONS (KEY, TICKER, NAME, TYPE, PRICE, CHANGE, OPEN,"
 				+ "HIGH, LOW, VOLUME, INTEREST, PRICE_ON_ADD, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV,"
-				+ "STATUS) "
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "STATUS,ENTRY, EXIT, SOURCE, EXIT_DATE) "
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		List<Options> existingOptions = getOptions();
 		if(existingOptions != null && !existingOptions.isEmpty())
 		{
 			mergeOptions(existingOptions, addList);
 		}
+		else
+			existingOptions = addList;
 
 		try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -249,6 +251,10 @@ public class OptionsServiceDB{
 				ps.setString(i, option.getGamma());i++;
 				ps.setString(i, option.getIv());i++;
 				ps.setString(i, option.getStatus());i++;
+				ps.setString(i, option.getEntry());i++;
+				ps.setString(i, option.getExit());i++;
+				ps.setString(i, option.getSource());i++;
+				ps.setString(i, option.getExitDate());i++;
 
 				ps.addBatch();
 			}

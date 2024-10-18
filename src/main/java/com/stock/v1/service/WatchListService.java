@@ -60,20 +60,40 @@ public class WatchListService{
 	}
 	
 	public void dataFetch() {
-	    // Run all three tasks in parallel
-	    CompletableFuture<Void> fetchPatternTask = CompletableFuture.runAsync(() -> 
-	        getWatchList().stream().forEach(x -> patternService.fetchPatternDetails(x.getTicker()))
-	    );
+	    // Run all tasks in parallel
+	    CompletableFuture<Void> fetchPatternTask = CompletableFuture.runAsync(() -> {
+	        List<CompletableFuture<Void>> futures = getWatchList().stream()
+	            .map(item -> CompletableFuture.runAsync(() -> patternService.fetchPatternDetails(item.getTicker()))
+	                .exceptionally(ex -> {
+	                    // Log or handle the exception for each item
+	                    System.err.println("Error fetching pattern details for " + item.getTicker() + ": " + ex.getMessage());
+	                    return null;
+	                }))
+	            .collect(Collectors.toList());
+
+	        // Wait for all pattern detail fetches to complete
+	        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+	    });
 
 	    CompletableFuture<Void> populateOptionsTask = CompletableFuture.runAsync(() -> 
 	        optionsService.populateOptions()
-	    );
+	    ).exceptionally(ex -> {
+	        // Log or handle the exception
+	        System.err.println("Error populating options: " + ex.getMessage());
+	        return null;
+	    });
 
 	    CompletableFuture<Void> updateStockDetailsTask = CompletableFuture.runAsync(() -> 
 	        stockService.updateLiveStockDetails()
-	    );
+	    ).exceptionally(ex -> {
+	        // Log or handle the exception
+	        System.err.println("Error updating stock details: " + ex.getMessage());
+	        return null;
+	    });
 
 	    // Wait for all tasks to complete
 	    CompletableFuture.allOf(fetchPatternTask, populateOptionsTask, updateStockDetailsTask).join();
 	}
+
+
 }

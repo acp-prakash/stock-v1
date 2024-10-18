@@ -582,7 +582,7 @@ public class StockService{
 
 	public void updateLiveStockDetails()
 	{
-		System.out.println("START -> updateLiveStockDetails");
+		System.out.println("START -> updateLiveStockDetails"+ new Date());
 		try
 		{
 			List<Stock> list = barchartRatingService.populateBarchartRatings(Constants.BARCHART_URL_INTRA);			
@@ -594,7 +594,7 @@ public class StockService{
 				syncLiveStockWithDBHistory();				
 			}
 
-			System.out.println("END -> updateLiveStockDetails");
+			System.out.println("END -> updateLiveStockDetails"+ new Date());
 		}
 		catch(Exception ex)
 		{

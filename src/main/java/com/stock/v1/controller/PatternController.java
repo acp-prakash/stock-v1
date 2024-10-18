@@ -2,6 +2,8 @@ package com.stock.v1.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,17 +58,31 @@ public class PatternController {
 		return patternService.getPatternHistory(ticker);
 	}
 	
-	@CrossOrigin	
+	@CrossOrigin
 	@GetMapping(Constants.CONTEXT_FETCH_PATTERNS)
-	public @ResponseBody List<Pattern> fetchPatternDetails(String ticker)
-	{
-		if(StringUtils.isBlank(ticker))
-		{
-			List<Master> list = stockServiceDB.getMasterList();
-			list.stream().forEach(x->patternService.fetchPatternDetails(x.getTicker()));
-			return new ArrayList<>();
-		}
-		else
-			return patternService.fetchPatternDetails(ticker);
+	public @ResponseBody List<Pattern> fetchPatternDetails(String ticker) {
+	    if (StringUtils.isBlank(ticker)) {
+	        List<Master> list = stockServiceDB.getMasterList();
+	        
+	        // Use parallel processing with CompletableFuture for multiple tickers
+	        List<CompletableFuture<Void>> futures = list.stream()
+	            .map(x -> CompletableFuture.runAsync(() -> patternService.fetchPatternDetails(x.getTicker()))
+	                .exceptionally(ex -> {
+	                    // Log or handle the exception for each ticker
+	                    System.err.println("Error fetching pattern details for " + x.getTicker() + ": " + ex.getMessage());
+	                    return null;
+	                }))
+	            .collect(Collectors.toList());
+
+	        // Wait for all the tasks to complete
+	        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+	        
+	        // Return an empty list as no specific ticker was passed
+	        return new ArrayList<>();
+	    } else {
+	        // Fetch pattern details for the given ticker
+	        return patternService.fetchPatternDetails(ticker);
+	    }
 	}
+
 }

@@ -2,6 +2,8 @@ package com.stock.v1.controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,14 +65,27 @@ public class EarningsController {
 	    List<Master> list = stockServiceDB.getMasterList();
 	    
 	    System.out.println("START -> historicEarningsHistoryAll");
-	    list.forEach(master -> {
-	        List<Earnings> earningList = earningsService.getHistoricEarningsHistory(master.getTicker());
-	        earningsServiceDB.addToEarnings(earningList);
-	    });
+	    
+	    // Create a list of CompletableFutures to process earnings in parallel
+	    List<CompletableFuture<Void>> futures = list.stream()
+	        .map(master -> CompletableFuture.runAsync(() -> {
+	            List<Earnings> earningList = earningsService.getHistoricEarningsHistory(master.getTicker());
+	            earningsServiceDB.addToEarnings(earningList);
+	        }).exceptionally(ex -> {
+	            // Handle or log exceptions for each master ticker
+	            System.err.println("Error processing earnings for ticker " + master.getTicker() + ": " + ex.getMessage());
+	            return null;
+	        }))
+	        .collect(Collectors.toList());
+
+	    // Wait for all tasks to complete
+	    CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+	    
 	    System.out.println("END -> historicEarningsHistoryAll");
 
-	    return Collections.emptyList(); // or return null as before
+	    return Collections.emptyList(); // or return null if required
 	}
+
 	
 	@CrossOrigin
 	@PostMapping("/earnings/updatePriceEffect/{ticker}")
