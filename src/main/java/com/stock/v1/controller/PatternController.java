@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stock.v1.service.PatternService;
+import com.stock.v1.service.WatchListService;
 import com.stock.v1.service.db.StockServiceDB;
 import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.Constants.PAGES;
@@ -27,6 +28,9 @@ public class PatternController {
 	
 	@Autowired
 	StockServiceDB stockServiceDB;
+	
+	@Autowired
+	WatchListService watchListService;
 
 	@GetMapping(Constants.CONTEXT_PATTERN)
 	public ModelAndView loadPatternView(String ticker)

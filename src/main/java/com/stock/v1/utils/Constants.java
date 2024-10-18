@@ -108,6 +108,11 @@ public class Constants {
 	public static final String CONTEXT_PICKS_USER = "/picks_user";
 	public static final String CONTEXT_GET_PICKS = "/getPicks";
 	
+	public static final String CONTEXT_WATCHLIST = "/WatchList";
+	public static final String CONTEXT_GET_WATCHLIST = "/WatchList/getWatchList";
+	public static final String CONTEXT_ADD_WATCHLIST = "/WatchList/addWatchList";
+	public static final String CONTEXT_DELETE_WATCHLIST = "/WatchList/deleteWatchList";
+	public static final String CONTEXT_DATA_FETCH = "/WatchList/dataFetch";	
 	
 	public static final String CONTEXT_OPTIONS_WS = "/ws-options";
 
@@ -123,7 +128,8 @@ public class Constants {
 		PATTERN("pattern/pattern"),
 		PICKS("picks/picks"),
 		PICKS_USER("picks/picks_user"),
-		OPTIONS_WS("websocket/options/ws-options");
+		OPTIONS_WS("websocket/options/ws-options"),
+		WATCHLIST("stock/watchlist");
 
 	    public final String value;
 
