@@ -5,10 +5,12 @@ const DELETE_BUTTON_ID = 'delete';
 const DOWNLOAD_BUTTON_ID = 'download';
 const CLEAR_BUTTON_ID = 'clear';
 const UPDATE_BUTTON_ID = 'datafetch';
+const AUTOMATION_BUTTON_ID = 'automation';
 const GET_DATA_URL = 'WatchList/getWatchList';
 const ADD_DATA_URL = 'WatchList/addWatchList';
 const DELETE_DATA_URL = 'WatchList/deleteWatchList';
 const DATA_FETCH_URL = 'WatchList/dataFetch';
+const AUTOMATION_URL = 'automation/StartAutomation';
 var ticker;
 
 // Initialize Tabulator
@@ -80,11 +82,29 @@ document.getElementById(UPDATE_BUTTON_ID).addEventListener('click', () => {
 	updateAllData();    
 });
 
+document.getElementById(AUTOMATION_BUTTON_ID).addEventListener('click', () => {
+	startAutomation();    
+});
+
 
 function updateAllData() {
     $.ajax({
         type: 'GET',
         url: DATA_FETCH_URL,
+        cache: false,
+        contentType: 'application/json;',
+        success: function (response) {            
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+function startAutomation() {
+    $.ajax({
+        type: 'GET',
+        url: AUTOMATION_URL,
         cache: false,
         contentType: 'application/json;',
         success: function (response) {            

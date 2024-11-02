@@ -2,6 +2,7 @@ package com.stock.v1.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -35,9 +36,19 @@ public class PatternService{
 	{
 		return patternServiceDB.getPatternHistory(ticker);
 	}	
+	public void deletePattern(List<String> tickerList)
+	{
+		patternServiceDB.deletePattern(tickerList);
+	}
+	
+	public void addToPattern(List<Pattern> list)
+	{
+		patternServiceDB.addToPattern(list);		
+	}	
 	
 	public List<Pattern> fetchPatternDetails(String ticker)
 	{
+		System.out.println("START -> fetchPatternDetails: " + new Date());
 		if(UtilityService.excludedTick(ticker))
 			return new ArrayList<>();
 		String url = Constants.ETRADE_PATTRN_URL
@@ -95,8 +106,8 @@ public class PatternService{
 			        }
 				}
 			}
-		}
-		patternServiceDB.addToPattern(ticker, list);
+		}		
+		System.out.println("END -> fetchPatternDetails: " + ticker + ", COUNT - " + list.size() +" " +new Date());
 		return list;
 	}
 }

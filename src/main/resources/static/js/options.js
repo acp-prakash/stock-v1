@@ -43,7 +43,7 @@ function createOPTIONSTable() {
 					openStockHistory(cell.getRow().getData().ticker);
 				},
 			 },
-            { title: 'NAME', field: 'name', headerFilter: true, width: 140, frozen: true,
+            { title: 'NAME', field: 'name', headerFilter: true, width: 145, frozen: true,
             	formatter: function (cell, formatterParams) {
                     return "<a href=\"#\" >"+cell.getRow().getData().name+"</a>";
                 },
@@ -52,7 +52,7 @@ function createOPTIONSTable() {
 					openHistory(cell.getRow().getData().key);
 				},
 			 },
-			 { title: 'ADD-ON', field:'addedDate', headerFilter:true,width:85},
+			 
 			//{ title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},
 						
 			/*{ title: 'ML', field:'pctMaxL', headerFilter:true,width:52},
@@ -66,29 +66,61 @@ function createOPTIONSTable() {
 			}},			
 			{ title: 'MP', field:'pctMaxP', headerFilter:true,width:53},*/
 			{ title: 'STATUS', field:'status', headerFilter:true,width:78,editor: "input",
+				formatter:function(cell){
+					var status = cell.getRow().getData().status;
+					if(status === "REACHED"){
+						 return "<span style='background-color:black; color:lawngreen; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
+				    }else if(status === "ACTIVE"){
+						 return "<span style='background-color:black; color:aliceblue; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
+				    }else if(status === "STOPPED" || status === "MISSED"){
+						 return "<span style='background-color:black; color:yellow; font-weight:bold; display: grid;font-size: 14px;width:95px'>" + cell.getValue() + "</span>";
+				    }
+				},
 				cellEdited:function(cell)
 				{
 					updateRows(cell.getRow());
 				}},
-			{ title: 'ENTRY', field:'addPrice', headerFilter:true,width:72,editor: "input",
+			{ title: 'ENTRY', field:'entry', headerFilter:true,width:72,editor: "input",
 				cellEdited:function(cell)
 				{
 					updateRows(cell.getRow());
 				}},
+			{ title: 'PRICE', field:'price', headerFilter:true,width:67},
 			{ title: 'EXIT', field:'exit', headerFilter:true, width:60,editor: "input",
 				cellEdited:function(cell)
 				{
 					updateRows(cell.getRow());
 				}},           
-            { title: 'CHG', field:'change', sorter:'number',headerFilter:true, width:60},
+            { title: 'A-CHG', field:'addChange', sorter:'number',headerFilter:true, width:80,
+            	formatter:function(cell){
+					var addChange = cell.getRow().getData().addChange;
+					if(addChange < 0 ){
+						 return "<span style='background-color:black; color:orangered; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + (addChange *-1) + "</span>";
+				    }else{
+						 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
+				    }
+				}
+			},
+            { title: 'T-CHG', field:'change', sorter:'number',headerFilter:true, width:80},
             { title: 'AL', field:'aLow', headerFilter:true,width:50},
 			{ title: 'LO', field:'low', headerFilter:true,width:55},			
-			{ title: 'PRICE', field:'price', headerFilter:true,width:67},
 			{ title: 'HI', field:'high', headerFilter:true,width:55},
 			{ title: 'AH', field:'aHigh', headerFilter:true,width:53},			
-			//{ title: 'OPEN', field:'open', headerFilter:true,width:67},
 			{ title: 'VOL', field:'volume', headerFilter:true,width:60},
 			{ title: 'O-INT', field:'interest', headerFilter:true,width:70},			
+			{ title: 'SOURCE', field:'source', headerFilter:true,width:80,editor: "input",
+				cellEdited:function(cell)
+				{
+					updateRows(cell.getRow());
+				}
+			},
+			{ title: 'ADD-ON', field:'addedDate', headerFilter:true,width:85},			
+			{ title: 'EXIT-DT', field:'exitDate', headerFilter:true,width:80,editor: "input",
+				cellEdited:function(cell)
+				{
+					updateRows(cell.getRow());
+				}
+			},			
 			{ title: 'D', field:'delta', headerFilter:true,width:45},
 			{ title: 'G', field:'gamma', headerFilter:true,width:45},
 			{ title: 'A', field:'pattern.count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:43},
@@ -102,19 +134,7 @@ function createOPTIONSTable() {
 			/*{ title: 'D$', field: 'downBy', sorter:'number',headerFilter:true, width:53},*/
 			{ title: 'DAY', field:'daysToExpire', headerFilter:true,width:58},
 			{ title: 'T', field:'theta', headerFilter:true,width:45},
-			{ title: 'IV', field:'iv', headerFilter:true,width:48},			
-			/*{ title: 'S-PRICE', field:'stockPrice', headerFilter:true,width:80,editor: "input"},
-			{ title: 'SP-CHG', field:'stockPriceChg', headerFilter:true,width:78,editor: "input"},
-			{ title: 'A-PRICE', field:'stockPriceOnAdd', headerFilter:true,width:80},*/
-			{ title: 'SOURCE', field:'source', headerFilter:true,width:80,editor: "input",
-				cellEdited:function(cell)
-				{
-					updateRows(cell.getRow());
-				}},
-			//{ title: 'EXT-ON', field:'exitDate', headerFilter:true,width:80},
-			 { title: 'TYPE', field: 'type', headerFilter: true, width: 64},
-            /*{ title: 'ENTRY', field: 'entry', headerFilter: true, width: 75 },
-            { title: 'EXIT', field:'exit', headerFilter:true, width:60},*/
+			{ title: 'IV', field:'iv', headerFilter:true,width:48},            
         ],        
     });
 }

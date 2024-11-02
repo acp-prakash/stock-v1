@@ -26,6 +26,7 @@
 		<a id="clear" href="#" style="font-size: larger; margin-left: 15px;">Clear</a>		
 		<a id="download" href="#" style="font-size: larger; margin-left: 15px;">Download (XLSX)</a>
 		<a id="datafetch" href="#" style="font-size: larger; margin-left: 15px;">FETCH DATA</a>		
+		<a id="automation" href="#" style="font-size: larger; margin-left: 15px;">AUTOMATION</a>
 		<br>
 		<div id="WATCHLIST" style="width: 95.6%; height: 80%; max-height: 80%; font: small-caption;"></div>
 	

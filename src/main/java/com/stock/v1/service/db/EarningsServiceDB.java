@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.stock.v1.cache.EarningsCache;
 import com.stock.v1.utils.DBConstants;
 import com.stock.v1.utils.UtilityService;
 import com.stock.v1.vo.Earnings;
@@ -24,19 +24,20 @@ public class EarningsServiceDB{
 	@Qualifier("ihelpJdbcTemplate")
 	private JdbcTemplate ihelpJdbcTemplate;
 	
-	private List<Earnings> globalEarnList = null;
-	
-	public List<Earnings> getEarningsHistory(String ticker)
+	public List<Earnings> getEarningsHistory()
 	{
-		String sql = DBConstants.GET_EARNINGS_HISTORY;
-		if(StringUtils.isNotBlank(ticker))
-			sql = sql + " where ticker = '" +ticker+ "' order by earning_date desc";
-		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(sql);
+		List<Earnings> list = EarningsCache.getEarningsHistory();
+		if(list != null && !list.isEmpty())
+			return list;
+		System.out.println( "getEarningsHistory - DB CALL");
+		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_EARNINGS_HISTORY);
 
-	    return retResultMap.stream()
+		list = retResultMap.stream()
 	            .map(this::mapToEarnings)
 	            .filter(earning -> earning != null)  // Filter out any null results
 	            .collect(Collectors.toList());
+		EarningsCache.setEarningsHistory(list);
+		return list;
 	}	
 	
 	private Earnings mapToEarnings(Map<String, Object> retRes) {
@@ -77,8 +78,8 @@ public class EarningsServiceDB{
 	}
 	
 	public boolean addToEarnings(List<Earnings> earningsList) {
-		if(globalEarnList == null || globalEarnList.isEmpty())
-			globalEarnList = getEarningsHistory(null);
+		System.out.println( "addToEarnings - DB CALL");
+		List<Earnings> list = getEarningsHistory();
 		String sql = "INSERT INTO STOCK_EARNING_HISTORY (EARNING_DATE, EARNING_TIME, TICKER, EPS_EST, EPS_ACT) "
                 + "VALUES (?, ?, ?, ?, ?)";
 
@@ -87,7 +88,7 @@ public class EarningsServiceDB{
 
 			for (Earnings earning : earningsList) {
 				boolean exists = false;
-				for (Earnings lst : globalEarnList) {
+				for (Earnings lst : list) {
 					if(lst.getTicker().equalsIgnoreCase(earning.getTicker()) &&
 							lst.getDate().equalsIgnoreCase(earning.getDate()))
 						exists = true;
@@ -99,6 +100,7 @@ public class EarningsServiceDB{
 					ps.setString(4, earning.getEpsEst());
 					ps.setString(5, earning.getEpsAct());
 					ps.addBatch();
+					EarningsCache.getEarningsHistory().add(earning);
 				}            	
             }
             
@@ -118,6 +120,7 @@ public class EarningsServiceDB{
     }
 	
 	public boolean updatePriceEffect(Earnings earning) {
+		System.out.println( "updatePriceEffect - DB CALL");
 	    String sql = "UPDATE STOCK_EARNING_HISTORY SET PRICE_BEFORE=?, PRICE_AFTER=?, PRICE_EFFECT=? WHERE EARNING_DATE = ? AND TICKER = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();

@@ -47,7 +47,9 @@ public class EarningsService{
 		
 	public List<Earnings> getEarningsHistory(String ticker)
 	{
-		List<Earnings> earningsList = earningsServiceDB.getEarningsHistory(ticker);
+		List<Earnings> earningsList = earningsServiceDB.getEarningsHistory();
+		if(StringUtils.isNotBlank(ticker))
+			earningsList = earningsList.stream().filter(x -> x.getTicker().equalsIgnoreCase(ticker)).toList();
 		stockServiceDB.populateLiveStockList();
 		List<Stock> liveStockList = LiveStockCache.getLiveStockList();
 		earningsList.forEach(earning -> {
@@ -158,7 +160,7 @@ public class EarningsService{
 				return false;
 			}
 
-			List<Earnings> earningsList = earningsServiceDB.getEarningsHistory(ticker);
+			List<Earnings> earningsList = earningsServiceDB.getEarningsHistory();
 			if (earningsList.isEmpty()) {
 				return false;
 			}
@@ -167,6 +169,9 @@ public class EarningsService{
 			if (stockHistoryList.isEmpty()) {
 				return false;
 			}
+			
+			if(StringUtils.isNotBlank(ticker))
+				earningsList = earningsList.stream().filter(x -> x.getTicker().equalsIgnoreCase(ticker)).toList();
 
 			earningsList.forEach(earning -> {
 				Stock matchingStock = stockHistoryList.stream()

@@ -1,8 +1,10 @@
 package com.stock.v1.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,14 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stock.v1.cache.CookieCache;
+import com.stock.v1.service.AutomationService;
 import com.stock.v1.utils.Constants;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-
 @Controller
 public class CookiesController {
 
+	@Autowired
+	AutomationService automationService;
+	
 	@CrossOrigin
 	@GetMapping(Constants.CONTEXT_GET_COOKIES)
 	public @ResponseBody Map<String, String> getCookies()
@@ -70,6 +75,18 @@ public class CookiesController {
 	public @ResponseBody String clearCookies()
 	{
 		CookieCache.clearAllCookies();
+		return "SUCCESS";
+	}
+	
+	@CrossOrigin
+	@GetMapping(Constants.CONTEXT_START_AUTOMATION)
+	public @ResponseBody String startAutomation()
+	{
+		try {
+			automationService.startAutomationJobs();
+		} catch (IOException e) {			
+			System.err.println(e);
+		}
 		return "SUCCESS";
 	}
 }

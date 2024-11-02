@@ -2,6 +2,7 @@ package com.stock.v1.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,8 @@ import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.Constants.PAGES;
 import com.stock.v1.vo.Options;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class OptionsController {
 	
@@ -25,12 +28,16 @@ public class OptionsController {
 	
 	@Autowired
 	MyWebSocketHandler handler;
-
-	@GetMapping(Constants.CONTEXT_OPTIONS)
-	public ModelAndView loadOptionsView(String ticker)
+	
+	@GetMapping({Constants.CONTEXT_PATH_SLASH, Constants.CONTEXT_HOME, Constants.CONTEXT_PATH_WELCOME, Constants.CONTEXT_OPTIONS})
+	public ModelAndView loadOptionsView(HttpServletRequest request, String ticker, String user)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(PAGES.OPTIONS.value);
+		if(StringUtils.isBlank(user))
+			user = (String) request.getSession().getAttribute("USER");
+		mv.addObject("USER", user);
+		request.getSession().setAttribute("USER", user);
 		return mv;
 	}
 	

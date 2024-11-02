@@ -24,6 +24,7 @@ public class TaskServiceDB{
 	
 	public List<Task> getTasks()
 	{
+		System.out.println( "getTasks- DB CALL");
 		String sql = DBConstants.GET_TASKS;		
 		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(sql);
 
@@ -71,6 +72,7 @@ public class TaskServiceDB{
 	}
 	
 	public boolean addToTask(Task task) {
+		System.out.println( "addToTask- DB CALL");
 		String sql = "INSERT INTO STOCK_TASKS (SEQ, NAME) "
 				+ "VALUES (?, ?)";
 

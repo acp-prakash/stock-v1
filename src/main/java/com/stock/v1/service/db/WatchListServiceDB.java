@@ -21,6 +21,7 @@ public class WatchListServiceDB{
 	
 	public List<Master> getWatchList()
 	{
+		System.out.println( "getWatchList- DB CALL");
 		String sql = DBConstants.GET_WATCHLIST;
 		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(sql);
 
@@ -33,7 +34,8 @@ public class WatchListServiceDB{
 	public void addWatchList(String ticker)
 	{
 		try
-		{			
+		{		
+			System.out.println( "addWatchList- DB CALL");
 			ihelpJdbcTemplate.update(DBConstants.ADD_WATCHLIST, ticker);
 		}
 		catch(Exception ex)
@@ -45,7 +47,8 @@ public class WatchListServiceDB{
 	public void deleteWatchList(String ticker)
 	{
 		try
-		{			
+		{	
+			System.out.println( "deleteWatchList- DB CALL");
 			ihelpJdbcTemplate.update(DBConstants.DELETE_WATCHLIST, ticker);
 		}
 		catch(Exception ex)

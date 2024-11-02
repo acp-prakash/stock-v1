@@ -1,5 +1,6 @@
 package com.stock.v1.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.stock.v1.cache.CookieCache;
-import com.stock.v1.cache.LiveStockCache;
 import com.stock.v1.service.db.OptionsServiceDB;
 import com.stock.v1.service.db.PatternServiceDB;
 import com.stock.v1.utils.Constants;
@@ -41,8 +41,9 @@ public class OptionsService{
 		List<Options> list = optionsServiceDB.getOptions();
 		List<Options> histList = optionsServiceDB.getOptionsHistory(null);
 		List<Pattern> patternList = patternServiceDB.getPatternHistory(null);
+		List<Options> statusToBeUpdatedList = new ArrayList<>();
 
-		list.forEach(option -> {			
+		list.forEach(option -> {
 			List<Options> hList = optionsServiceDB.getOptionsHistory(option.getKey());
 			String upPrice = hList.get(0).getPrice();
 			String downPrice = hList.get(0).getPrice();
@@ -82,47 +83,31 @@ public class OptionsService{
 			option.setUpBy(UtilityService.stripStringToTwoDecimals(String.valueOf(upChange),false));
 			option.setDownDays(downDays);
 			option.setDownBy(UtilityService.stripStringToTwoDecimals(String.valueOf(downChange), false));
-			double add = Double.valueOf(option.getAddPrice());
-			double curr = Double.valueOf(option.getPrice());
-			double diff = ((curr - add)/add)*100;
-			option.setPctPL(String.valueOf((int)diff));
+			
+			if(updateOptionStatus(option))
+				statusToBeUpdatedList.add(option);
 		});
+		
+		if(!statusToBeUpdatedList.isEmpty())
+		{
+			optionsServiceDB.updateOptions(statusToBeUpdatedList, false);			
+		}
 
-		list.forEach(option -> {			
+		list.forEach(option -> {
 			histList.forEach(hist -> {
 				if(option.getKey().equalsIgnoreCase(hist.getKey()))
 				{					
-					double add = Double.valueOf(option.getAddPrice());
 					if(StringUtils.isBlank(option.getALow()) || Double.valueOf(hist.getLow()) < Double.valueOf(option.getALow()))
 					{
-						option.setALow(hist.getLow());
-						double low = Double.valueOf(option.getALow());
-						double diff = (((low - add)/add) * 100);
-						if (diff > 0)
-							diff = 0;						
-						option.setPctMaxL(String.valueOf((int)diff));
+						option.setALow(hist.getLow());						
 					}
 					if(StringUtils.isBlank(option.getAHigh()) || Double.valueOf(hist.getHigh()) > Double.valueOf(option.getAHigh()))
 					{
-						option.setAHigh(hist.getHigh());
-						double high = Double.valueOf(option.getAHigh());
-						double diff = (((high - add)/add) * 100);
-						if (diff < 0)
-							diff = 0;
-						option.setPctMaxP(String.valueOf((int)diff));
+						option.setAHigh(hist.getHigh());						
 					}
 				}
-			});			
-		});
-
-		list.forEach(option -> {
-			LiveStockCache.getLiveStockList().forEach(stock -> {
-				if(option.getTicker().equalsIgnoreCase(stock.getTicker()))
-				{
-					option.setStockPrice(stock.getPrice());
-					option.setStockPriceChg(UtilityService.stripStringToTwoDecimals(stock.getChange(), false));
-				}
-			});			
+			});
+			option.setAddChange(UtilityService.stripStringToTwoDecimals(String.valueOf(Double.valueOf(option.getPrice()) - Double.valueOf(option.getEntry())), false));
 		});
 
 		list.forEach(option -> {
@@ -145,6 +130,30 @@ public class OptionsService{
 		return list;		
 	}
 	
+	private boolean updateOptionStatus(Options option)
+	{
+		try
+		{
+			if(StringUtils.isNotBlank(option.getHigh()) && StringUtils.isNotBlank(option.getExit()) &&
+					!"REACHED".equalsIgnoreCase(option.getStatus()))
+			{
+				double high = Double.valueOf(option.getHigh());
+				double exit = Double.valueOf(option.getExit());
+				if(high >= exit)
+				{
+					option.setStatus("REACHED");
+					option.setExitDate(UtilityService.formatLocalDateToString(LocalDate.now()));
+					return true;
+				}
+			}
+		}
+		catch(Exception ex)
+		{
+			System.err.println("Exception in updateOptionStatus =>" + ex);
+		}
+		return false;
+	}
+	
 	public List<Options> getOptionsHistory(String name)
 	{
 		return optionsServiceDB.getOptionsHistory(name);
@@ -163,7 +172,7 @@ public class OptionsService{
 	
 	public List<Options> updateOptions(List<Options> list)
 	{
-		return optionsServiceDB.updateOptions(list);
+		return optionsServiceDB.updateOptions(list, true);
 	}
 	
 	public List<Options> populateOptions()
@@ -223,8 +232,7 @@ public class OptionsService{
 								else if(StringUtils.containsIgnoreCase(option.getName(), "Put"))
 									option.setType("PUT");
 								
-								option.setAddPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(3)), false));
-								option.setEntry(option.getAddPrice());
+								option.setEntry(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(3)), false));								
 								option.setPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(4)), false));
 								option.setChange(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(5)), false));
 								String range = UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(6));

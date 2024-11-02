@@ -7,19 +7,19 @@
 	</head>  
     <body>		 
 	 	<nav style="text-align: -webkit-center;margin: 5px">
-	        <ul class="menu">
-	            <li><a href="/stock-v1/WatchList">WATCHLIST</a></li>
-	            <li><a href="/stock-v1/Monitor">MONITOR</a></li>
-	            <!-- <li><a href="/stock-v1/picks_user">PICKS</a></li> -->
-	            <%-- <c:if test="${USER ne 'ACP'}"> --%>
-		            <li><a href="/stock-v1/master">MASTER</a></li>
-		            <li><a href="/stock-v1/pattern/getPatternHistory">PATTERNS</a></li>
-		            <!-- <li><a href="/stock-v1/futures">FUTURES</a></li> -->
-		            <li><a href="/stock-v1/options">OPTIONS</a></li>
-	                <li><a href="/stock-v1/earnings">EARNINGS</a></li>	                
+	        <ul class="menu">	        	
+	            <c:if test="${USER eq 'ACP'}">		            
+		            <li><a href="/stock-v1/WatchList">WATCHLIST</a></li>
+		            <li><a href="/stock-v1/Monitor">MONITOR</a></li>
+		            <li><a href="/stock-v1/master">MASTER</a></li>		            	            
+	            	<!-- <li><a href="/stock-v1/picks_user">PICKS</a></li> -->	            	
+		            <!-- <li><a href="/stock-v1/futures">FUTURES</a></li> -->		            	                	                
 	                <!-- <li><a href="/stock-v1/track">TRACK</a></li>
 	                <li><a href="/stock-v1/picks">CUST</a></li> -->
-                <%-- </c:if> --%>
+                </c:if>
+                <li><a href="/stock-v1/pattern/getPatternHistory">PATTERNS</a></li>
+	            <li><a href="/stock-v1/options">OPTIONS</a></li>
+	            <li><a href="/stock-v1/earnings">EARNINGS</a></li>
 	        </ul>
 	    </nav>   
     </body>

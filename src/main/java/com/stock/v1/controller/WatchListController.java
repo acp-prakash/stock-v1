@@ -2,6 +2,7 @@ package com.stock.v1.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +17,8 @@ import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.Constants.PAGES;
 import com.stock.v1.vo.Master;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class WatchListController {
 
@@ -23,10 +26,14 @@ public class WatchListController {
 	WatchListService watchListService;
 		
 	@GetMapping(Constants.CONTEXT_WATCHLIST)
-	public ModelAndView loadWatchListView()
+	public ModelAndView loadWatchListView(HttpServletRequest request, String user)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(PAGES.WATCHLIST.value);
+		if(StringUtils.isBlank(user))
+			user = (String) request.getSession().getAttribute("USER");
+		mv.addObject("USER", user);
+		request.getSession().setAttribute("USER", user);
 		return mv;
 	}
 	

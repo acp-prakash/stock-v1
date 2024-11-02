@@ -3,6 +3,7 @@ package com.stock.v1.service.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.stock.v1.cache.MasterStocksCache;
+import com.stock.v1.cache.PatternsCache;
 import com.stock.v1.utils.DBConstants;
 import com.stock.v1.utils.UtilityService;
 import com.stock.v1.vo.Master;
@@ -30,44 +32,54 @@ public class PatternServiceDB{
 	
 	public List<Pattern> getPatternHistory(String ticker)
 	{
-		masList = MasterStocksCache.getMasterStocks();
-		String sql = DBConstants.GET_PATTERN_HISTORY;
-		if(StringUtils.isNotBlank(ticker))
-			sql = sql + " where ticker = '" +ticker+ "' order by hist_date desc";
-		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(sql);
+		List<Pattern> patternList = null;//PatternsCache.getPatternHistory();
+		if(patternList == null || patternList.isEmpty())
+		{
+			System.out.println("START -> getPatternHistory: DB CALL " + new Date());
+			masList = MasterStocksCache.getMasterStocks();
 
-		List<Pattern> patternList  = retResultMap.stream()
-	            .map(this::mapToPattern)
-	            .filter(pattern -> pattern != null)  // Filter out any null results
-	            .collect(Collectors.toList());
+			List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_PATTERN_HISTORY);
 
-		
-		// Create a map to store matching patterns
-		Map<String, Long> longCountByTicker = patternList.stream()
-		        .filter(pattern -> "long".equalsIgnoreCase(pattern.getTrend()) && "Y".equalsIgnoreCase(pattern.getStatus()))
-		        .collect(Collectors.groupingBy(Pattern::getTicker, Collectors.counting()));
-		
-		Map<String, Long> shortCountByTicker = patternList.stream()
-				.filter(pattern -> "short".equalsIgnoreCase(pattern.getTrend()) && "Y".equalsIgnoreCase(pattern.getStatus()))
-		        .collect(Collectors.groupingBy(Pattern::getTicker, Collectors.counting()));
-		
-		// Loop through patternList and update the bull attribute
-        patternList.forEach(pattern -> {
-            String tick = pattern.getTicker();
-            long bullCount = 0;
-            long bearCount = 0;
-            if (longCountByTicker.containsKey(tick)) {
-                bullCount = longCountByTicker.get(tick);
-                pattern.setBull((int) bullCount); // Assuming bull is an integer
-            }
-            if (shortCountByTicker.containsKey(tick)) {
-                bearCount = shortCountByTicker.get(tick);
-                pattern.setBear((int) bearCount); // Assuming bear is an integer
-            }
-            pattern.setCount((int) bullCount + (int) bearCount);
-        });		
-      
-		return patternList ;
+			patternList  = retResultMap.stream()
+					.map(this::mapToPattern)
+					.filter(pattern -> pattern != null)  // Filter out any null results
+					.collect(Collectors.toList());
+
+
+			// Create a map to store matching patterns
+			Map<String, Long> longCountByTicker = patternList.stream()
+					.filter(pattern -> "long".equalsIgnoreCase(pattern.getTrend()) && "Y".equalsIgnoreCase(pattern.getStatus()))
+					.collect(Collectors.groupingBy(Pattern::getTicker, Collectors.counting()));
+
+			Map<String, Long> shortCountByTicker = patternList.stream()
+					.filter(pattern -> "short".equalsIgnoreCase(pattern.getTrend()) && "Y".equalsIgnoreCase(pattern.getStatus()))
+					.collect(Collectors.groupingBy(Pattern::getTicker, Collectors.counting()));
+
+			// Loop through patternList and update the bull attribute
+			patternList.forEach(pattern -> {
+				String tick = pattern.getTicker();
+				long bullCount = 0;
+				long bearCount = 0;
+				if (longCountByTicker.containsKey(tick)) {
+					bullCount = longCountByTicker.get(tick);
+					pattern.setBull((int) bullCount); // Assuming bull is an integer
+				}
+				if (shortCountByTicker.containsKey(tick)) {
+					bearCount = shortCountByTicker.get(tick);
+					pattern.setBear((int) bearCount); // Assuming bear is an integer
+				}
+				pattern.setCount((int) bullCount + (int) bearCount);
+			});
+
+			System.out.println("END -> getPatternHistory: " + new Date());
+
+			PatternsCache.setPatternHistory(patternList);
+		}
+        
+        if(StringUtils.isNotBlank(ticker))
+			return patternList.stream().filter(x -> x.getTicker().equalsIgnoreCase(ticker)).toList();
+        else
+        	return patternList;      
 	}	
 	
 	private Pattern mapToPattern(Map<String, Object> retRes) {
@@ -137,23 +149,24 @@ public class PatternServiceDB{
 	    return pattern;
 	}
 
-	public boolean addToPattern(String ticker, List<Pattern> patternList) {
-		List<Pattern> list = getPatternHistory(ticker);
+	public boolean addToPattern(List<Pattern> patternList) {
+		System.out.println( "addToPattern- DB CALL - " + patternList.size());
+		//List<Pattern> list = getPatternHistory(ticker);
 		String sql = "INSERT INTO stock_pattern_history (HIST_DATE,TICKER,ID,ENTRY,MINPT,MAXPT,"
 				+ "STOP,TARGET_DATE,NAME,TREND,STATUS) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		List<Pattern> existingPatternList = list.stream()
+		/*List<Pattern> existingPatternList = list.stream()
 		        .filter(lst -> patternList.stream()
 		                .anyMatch(pat -> lst.getId().equalsIgnoreCase(pat.getId())))
 		        .collect(Collectors.toList());
-		existingPatternList.forEach(this::deletePattern);
+		existingPatternList.forEach(this::deletePattern);*/
 		
-		List<Pattern> removedPatternList = list.stream()
+		/*List<Pattern> removedPatternList = list.stream()
 		        .filter(lst -> patternList.stream()
 		                .noneMatch(pat -> lst.getId().equalsIgnoreCase(pat.getId())))
 		        .collect(Collectors.toList());
-		removedPatternList.forEach(this::markPatternInActive);
+		removedPatternList.forEach(this::markPatternInActive);*/
 
 		try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -198,6 +211,7 @@ public class PatternServiceDB{
     }
 
 	public boolean markPatternInActive(Pattern inactive) {
+		System.out.println( "markPatternInActive- DB CALL");
 		String sql = "UPDATE STOCK_PATTERN_HISTORY SET STATUS='N' WHERE STATUS='Y' and ID = ?";
 
 		try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -212,7 +226,8 @@ public class PatternServiceDB{
 		}
 	}
 	
-	public boolean deletePattern(Pattern pattern) {
+	public boolean deletePatternById(Pattern pattern) {
+		System.out.println( "deletePatternById- DB CALL");
 		String sql = "DELETE FROM STOCK_PATTERN_HISTORY WHERE ID = ?";
 
 		try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -221,8 +236,45 @@ public class PatternServiceDB{
 			int rowsAffected = ps.executeUpdate();
 			return rowsAffected > 0;
 		} catch (SQLException ex) {
-			System.err.println("Exception in deletePattern =>" + ex);
+			System.err.println("Exception in deletePatternById =>" + ex);
 			return false;
 		}
+	}
+	
+	public boolean deletePattern(List<String> tickerList) {
+		System.out.println( "deletePattern- DB CALL - " + tickerList);
+		String sql = "DELETE FROM STOCK_PATTERN_HISTORY WHERE TICKER = ?";
+
+		try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
+		         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+		        // Set auto-commit to false to manage transaction manually
+		        //conn.setAutoCommit(false);
+
+		        // Loop through each ticker in the list and add to batch
+		        for (String ticker : tickerList) {
+		            ps.setString(1, ticker.toUpperCase());
+		            ps.addBatch(); // Add to batch
+		        }
+
+		        // Execute batch
+		        int[] result = ps.executeBatch();
+		        
+		        // Commit the transaction
+		        //conn.commit();
+
+		        // Check if any delete operation failed
+		        for (int rowsAffected : result) {
+		            if (rowsAffected == 0) {
+		                return false; // If any delete operation affected 0 rows, return false
+		            }
+		        }
+
+		        return true; // All deletes were successful
+
+		    } catch (SQLException ex) {
+		        System.err.println("Exception in deletePattern => " + ex);
+		        return false;
+		    }
 	}
 }

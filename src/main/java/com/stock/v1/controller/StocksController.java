@@ -3,6 +3,7 @@ package com.stock.v1.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,9 @@ import com.stock.v1.service.StockHistoryService;
 import com.stock.v1.service.StockService;
 import com.stock.v1.vo.Master;
 import com.stock.v1.vo.Stock;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import com.stock.v1.utils.Constants;
 import com.stock.v1.utils.Constants.PAGES;
 
@@ -30,11 +34,15 @@ public class StocksController {
 	StockHistoryService stockHistoryService;
 
 	@GetMapping({Constants.CONTEXT_STOCK_MASTER})
-	public ModelAndView loadMasterView(String cache)
+	public ModelAndView loadMasterView(HttpServletRequest request, String cache, String user)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(PAGES.MASTER.value);
 		mv.addObject("CACHE",cache);
+		if(StringUtils.isBlank(user))
+			user = (String) request.getSession().getAttribute("USER");
+		mv.addObject("USER", user);
+		request.getSession().setAttribute("USER", user);
 		return mv;
 	}
 	
@@ -183,7 +191,7 @@ public class StocksController {
 	@GetMapping("/stock/syncLiveStockWithDBHistory")
 	public void syncLiveStockWithDBHistory()
 	{
-		stockService.syncLiveStockWithDBHistory();
+		stockService.syncLiveStockWithDBHistory(false);
 	}	
 	
 	@CrossOrigin

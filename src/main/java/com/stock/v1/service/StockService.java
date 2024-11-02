@@ -1,10 +1,12 @@
 package com.stock.v1.service;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -121,7 +123,7 @@ public class StockService{
 		List<Stock> watchList = LiveStockCache.getStockWatchList();
 		List<Earnings> earningsList = earningsService.getEarningsHistory(null);
 
-		processProfitLossForAllMasterStocks(list);
+		//processProfitLossForAllMasterStocks(list);
 
 		list.stream().forEach(x -> {
 			if (Constants.MY_OPTIONS.contains(x.getTicker().toUpperCase())) {
@@ -346,18 +348,22 @@ public class StockService{
 	public boolean markEarningDay(String ticker) {
 		try
 		{
-			List<Earnings> list = earningsServiceDB.getEarningsHistory(ticker);
-			if (list.isEmpty()) {
-				return false;
-			}
+			List<Earnings> list = earningsServiceDB.getEarningsHistory();
+			if (list.isEmpty())
+				return false;			
 
 			List<Stock> stockHistoryList = stockServiceDB.getStockHistory(ticker);
-			if (stockHistoryList.isEmpty()) {
-				return false;
-			}
+			if (stockHistoryList.isEmpty())
+				return false;			
+			
+			final List<Earnings> filteredEarnings = StringUtils.isNotBlank(ticker) 
+				    ? list.stream()
+				            .filter(x -> x.getTicker().equalsIgnoreCase(ticker))
+				            .collect(Collectors.toList())
+				    : list;			
 
 			List<Stock> updateList = stockHistoryList.stream()
-					.filter(stock -> list.stream()
+					.filter(stock -> filteredEarnings.stream()
 							.anyMatch(earning ->
 							stock.getTicker().equalsIgnoreCase(earning.getTicker()) &&
 							stock.getDate().equalsIgnoreCase(earning.getDate())))
@@ -580,27 +586,32 @@ public class StockService{
 		return populateDailyStockHistory();
 	}
 
-	public void updateLiveStockDetails()
-	{
-		System.out.println("START -> updateLiveStockDetails"+ new Date());
-		try
-		{
-			List<Stock> list = barchartRatingService.populateBarchartRatings(Constants.BARCHART_URL_INTRA);			
+	public void updateLiveStockDetails() {
+	    System.out.println("START -> updateLiveStockDetails: " + new Date());
+	    
+	    try {
+	        List<Stock> list = barchartRatingService.populateBarchartRatings(Constants.BARCHART_URL_INTRA);
 
-			if(list != null && !list.isEmpty())
-			{
-				LiveStockCache.setLiveStockList(list);				
-				updateBuySellTrend(true);
-				syncLiveStockWithDBHistory();				
-			}
+	        if (list != null && !list.isEmpty()) {
+	            // Set live stock list
+	            LiveStockCache.setLiveStockList(list);
 
-			System.out.println("END -> updateLiveStockDetails"+ new Date());
-		}
-		catch(Exception ex)
-		{
-			System.err.println("ERROR ==> updateLiveStockDetails " + ex);
-		}		
+	            // Run these two methods asynchronously in a sequence (synchronously with each other)
+	            CompletableFuture.runAsync(() -> {
+	                //updateBuySellTrend(true);  // This will run first
+	                syncLiveStockWithDBHistory(false);  // This will run after updateBuySellTrend
+	            }).exceptionally(ex -> {
+	                System.err.println("Error in updating buy/sell trends and syncing live stock: " + ex.getMessage());
+	                return null;
+	            });
+	        }
+
+	        System.out.println("END -> updateLiveStockDetails: " + new Date());
+	    } catch (Exception ex) {
+	        System.err.println("ERROR ==> updateLiveStockDetails: " + ex);
+	    }
 	}
+
 
 	public String populateDailyStockHistory()
 	{
@@ -609,27 +620,39 @@ public class StockService{
 		{
 			List<Stock> list = barchartRatingService.populateBarchartRatings(Constants.BARCHART_URL_DAILY);			
 
-			if(list != null && !list.isEmpty())
-			{
-				LiveStockCache.setLiveStockList(list);
-				streetRatingService.populateStreetRatings();
-				//marketBeatRatingService.populateMarketBeatRatings();
-				tipRanksRatingService.populateTipRankRatings();
-				seekingAlphaRatingService.populateSeekingAlphaRatings();
-				stockInvestRatingService.populateStockInvestUSRatings();
-				zenRatingService.populateWallstreetZenRatings();
-				stockAnalysisRatingService.populateStockAnalysisRatings();
-				//nasdaqRatingService.populateNasdaqRatings();
-				zacksRatingService.populateZacksRatings();				
-				investingComRatingService.populateInvestingComRatings();
-				investorObserverRatingService.populateInvestorObserverRatings();
-				portfolio123RatingService.populatePortfolio123Ratings();
-				//marketEdgeRatingService.populateMarketEdgeRatings();				
-				tradingViewRatingService.populateTradingViewRatings();				
-				tickeronRatingService.populateTickeronRatings();				
-				finscreenerRatingService.populateFinscreenerRatings();
-				updateBuySellTrend(false);
-				syncLiveStockWithDBHistory();
+			if (list != null && !list.isEmpty()) {
+			    LiveStockCache.setLiveStockList(list);
+			    
+			    // Create a list of CompletableFutures for each rating service
+			    List<CompletableFuture<Void>> ratingTasks = Arrays.asList(
+			        CompletableFuture.runAsync(() -> streetRatingService.populateStreetRatings()),
+			        //CompletableFuture.runAsync(() -> marketBeatRatingService.populateMarketBeatRatings()), // Uncomment if needed
+			        CompletableFuture.runAsync(() -> tipRanksRatingService.populateTipRankRatings()),
+			        CompletableFuture.runAsync(() -> seekingAlphaRatingService.populateSeekingAlphaRatings()),
+			        CompletableFuture.runAsync(() -> stockInvestRatingService.populateStockInvestUSRatings()),
+			        CompletableFuture.runAsync(() -> zenRatingService.populateWallstreetZenRatings()),
+			        CompletableFuture.runAsync(() -> stockAnalysisRatingService.populateStockAnalysisRatings()),
+			        //CompletableFuture.runAsync(() -> nasdaqRatingService.populateNasdaqRatings()), // Uncomment if needed
+			        CompletableFuture.runAsync(() -> zacksRatingService.populateZacksRatings()),
+			        CompletableFuture.runAsync(() -> investingComRatingService.populateInvestingComRatings()),
+			        CompletableFuture.runAsync(() -> investorObserverRatingService.populateInvestorObserverRatings()),
+			        CompletableFuture.runAsync(() -> portfolio123RatingService.populatePortfolio123Ratings()),
+			        //CompletableFuture.runAsync(() -> marketEdgeRatingService.populateMarketEdgeRatings()), // Uncomment if needed
+			        CompletableFuture.runAsync(() -> tradingViewRatingService.populateTradingViewRatings()),
+			        CompletableFuture.runAsync(() -> tickeronRatingService.populateTickeronRatings()),
+			        CompletableFuture.runAsync(() -> finscreenerRatingService.populateFinscreenerRatings())
+			    );
+
+			    // Wait for all rating tasks to complete
+			    CompletableFuture.allOf(ratingTasks.toArray(new CompletableFuture[0]))
+			        .thenRun(() -> {
+			            // These will run sequentially after all the rating tasks have completed
+			            updateBuySellTrend(false);
+			            syncLiveStockWithDBHistory(true);
+			        }).exceptionally(ex -> {
+			            System.err.println("Error during rating population or follow-up tasks: " + ex.getMessage());
+			            return null;
+			        });
 			}
 
 			System.out.println("END -> populateDailyStockHistory");
@@ -643,7 +666,7 @@ public class StockService{
 		return "FAILURE";
 	}
 
-	public void syncLiveStockWithDBHistory()
+	public void syncLiveStockWithDBHistory(boolean executeMore)
 	{
 		System.out.println("START -> syncLiveStockWithDBHistory=> " + new Date());
 		stockServiceDB.deleteFromStockHistory(UtilityService.formatLocalDateToString(LocalDate.now()));
@@ -651,8 +674,11 @@ public class StockService{
 		{
 			stockServiceDB.addToMaster(LiveStockCache.getLiveStockList());
 		}
-		updateNextPriceAll();
-		updatePriceUpDownAll();
+		if(executeMore)
+		{
+			updateNextPriceAll();
+			updatePriceUpDownAll();
+		}
 		System.out.println("END -> syncLiveStockWithDBHistory=> " + new Date());
 	}
 

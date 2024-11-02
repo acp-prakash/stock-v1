@@ -2,6 +2,7 @@ package com.stock.v1.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,11 +32,13 @@ public class PicksController {
 		return mv;
 	}
 	
-	@GetMapping({Constants.CONTEXT_PATH_SLASH, Constants.CONTEXT_HOME, Constants.CONTEXT_PATH_WELCOME, Constants.CONTEXT_PICKS_USER})
+	@GetMapping(Constants.CONTEXT_PICKS_USER)
 	public ModelAndView loadPicksUserView(HttpServletRequest request, String user)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(PAGES.PICKS_USER.value);
+		if(StringUtils.isBlank(user))
+			user = (String) request.getSession().getAttribute("USER");
 		mv.addObject("USER", user);
 		request.getSession().setAttribute("USER", user);
 		return mv;

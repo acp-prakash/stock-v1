@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.stock.v1.cache.OptionsCache;
 import com.stock.v1.utils.DBConstants;
 import com.stock.v1.utils.UtilityService;
 import com.stock.v1.vo.Options;
@@ -29,13 +30,19 @@ public class OptionsServiceDB{
 
 	public List<Options> getOptions()
 	{
+		List<Options> list = OptionsCache.getOptions();
+		if(list != null && !list.isEmpty())
+			return list;
+		System.out.println( "getOptions - DB CALL");
 		String sql = DBConstants.GET_OPTIONS;		
 		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(sql);
 
-		return retResultMap.stream()
+		list = retResultMap.stream()
 				.map(this::mapToOptions)
 				.filter(options -> options != null)  // Filter out any null results
 				.collect(Collectors.toList());
+		//OptionsCache.setOptions(list);
+		return list;
 	}	
 
 	private Options mapToOptions(Map<String, Object> retRes) {
@@ -84,10 +91,7 @@ public class OptionsServiceDB{
 					break;
 				case "INTEREST":
 					options.setInterest((String) value);
-					break;
-				case "PRICE_ON_ADD":
-					options.setAddPrice((String) value);
-					break;
+					break;				
 				case "ADDED_DATE":
 					options.setAddedDate((String) value);
 					break;
@@ -125,6 +129,10 @@ public class OptionsServiceDB{
 
 	public List<Options> getOptionsHistory(String key)
 	{
+		List<Options> list = OptionsCache.getOptionsHistory();
+		if(list != null && !list.isEmpty())
+			return list;
+		System.out.println( "getOptionsHistory - DB CALL");
 		String sql = DBConstants.GET_OPTIONS_HISTORY;
 		
 		if(StringUtils.isNotBlank(key))
@@ -134,10 +142,12 @@ public class OptionsServiceDB{
 			
 		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(sql);
 
-		return retResultMap.stream()
+		list = retResultMap.stream()
 				.map(this::mapToOptions)
 				.filter(options -> options != null)  // Filter out any null results
 				.collect(Collectors.toList());
+		//OptionsCache.setOptionsHistory(list);
+		return list;
 	}
 	
 	public void mergeOptions(List<Options> existingOptions, List<Options> addList) {
@@ -198,9 +208,8 @@ public class OptionsServiceDB{
 	        for (Options update : updatedList) {
 	            Options existingOption = existingOptionsMap.get(update.getKey().toLowerCase());
 	            if (existingOption != null) {
-	                // Update existing option
-	                existingOption.setAddPrice(update.getAddPrice());
-	                existingOption.setEntry(update.getAddPrice());
+	                // Update existing option	                
+	                existingOption.setEntry(update.getEntry());
 	                existingOption.setExit(update.getExit());
 	                existingOption.setStatus(update.getStatus());
 	                existingOption.setExitDate(update.getExitDate());
@@ -213,10 +222,11 @@ public class OptionsServiceDB{
 	}
 
 	public boolean addToOptions(List<Options> addList) {
+		System.out.println( "addToOptions - DB CALL");
 		String sql = "insert into STOCK_OPTIONS (KEY, TICKER, NAME, TYPE, PRICE, CHANGE, OPEN,"
-				+ "HIGH, LOW, VOLUME, INTEREST, PRICE_ON_ADD, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV,"
+				+ "HIGH, LOW, VOLUME, INTEREST, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV,"
 				+ "STATUS,ENTRY, EXIT, SOURCE, EXIT_DATE) "
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		List<Options> existingOptions = getOptions();
 		if(existingOptions != null && !existingOptions.isEmpty())
@@ -242,8 +252,7 @@ public class OptionsServiceDB{
 				ps.setString(i, option.getHigh());i++;
 				ps.setString(i, option.getLow());i++;
 				ps.setString(i, option.getVolume());i++;
-				ps.setString(i, option.getInterest());i++;
-				ps.setString(i, option.getAddPrice());i++;
+				ps.setString(i, option.getInterest());i++;				
 				ps.setString(i, option.getAddedDate());i++;
 				ps.setString(i, option.getDaysToExpire());i++;
 				ps.setString(i, option.getDelta());i++;
@@ -275,17 +284,22 @@ public class OptionsServiceDB{
 		}
 	}
 	
-	public List<Options> updateOptions(List<Options> updatedList)
+	public List<Options> updateOptions(List<Options> updatedList, boolean merge)
 	{
+		System.out.println( "updateOptions - DB CALL");
 		List<Options> toBeUpdatedList = new ArrayList<>();
 		String sql = "insert into STOCK_OPTIONS (KEY, TICKER, NAME, TYPE, PRICE, CHANGE, OPEN,"
-				+ "HIGH, LOW, VOLUME, INTEREST, PRICE_ON_ADD, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV,"
+				+ "HIGH, LOW, VOLUME, INTEREST, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV,"
 				+ "STATUS, ENTRY, EXIT, SOURCE, EXIT_DATE) "
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		List<Options> existingOptions = getOptions();
 		
-		if(existingOptions != null && !existingOptions.isEmpty())
+		if(!merge)
+		{
+			toBeUpdatedList = updatedList;
+		}
+		else if(existingOptions != null && !existingOptions.isEmpty())
 		{
 			toBeUpdatedList = mergeOptionsForUpdate(existingOptions, updatedList);
 		}
@@ -307,8 +321,7 @@ public class OptionsServiceDB{
 					ps.setString(i, option.getHigh());i++;
 					ps.setString(i, option.getLow());i++;
 					ps.setString(i, option.getVolume());i++;
-					ps.setString(i, option.getInterest());i++;
-					ps.setString(i, option.getAddPrice());i++;
+					ps.setString(i, option.getInterest());i++;					
 					ps.setString(i, option.getAddedDate());i++;
 					ps.setString(i, option.getDaysToExpire());i++;
 					ps.setString(i, option.getDelta());i++;
@@ -339,9 +352,10 @@ public class OptionsServiceDB{
 	}
 	
 	public boolean addToOptionsHistory(List<Options> addList) {
+		System.out.println( "addToOptionsHistory - DB CALL");
 		String sql = "insert into STOCK_OPTIONS_HISTORY (KEY,HIST_DATE, TICKER, NAME, TYPE, PRICE, CHANGE, OPEN,"
-				+ "HIGH, LOW, VOLUME, INTEREST, PRICE_ON_ADD, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV, STATUS, ENTRY, EXIT, SOURCE, EXIT_DATE) "
-				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "HIGH, LOW, VOLUME, INTEREST, ADDED_DATE, DAYS, DELTA, THETA, GAMMA, IV, STATUS, ENTRY, EXIT, SOURCE, EXIT_DATE) "
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -360,8 +374,7 @@ public class OptionsServiceDB{
 				ps.setString(i, option.getHigh());i++;
 				ps.setString(i, option.getLow());i++;
 				ps.setString(i, option.getVolume());i++;
-				ps.setString(i, option.getInterest());i++;
-				ps.setString(i, option.getAddPrice());i++;
+				ps.setString(i, option.getInterest());i++;				
 				ps.setString(i, option.getAddedDate());i++;
 				ps.setString(i, option.getDaysToExpire());i++;
 				ps.setString(i, option.getDelta());i++;
@@ -393,6 +406,7 @@ public class OptionsServiceDB{
 	}
 	
 	public boolean deleteFromOptions(String key) {
+		System.out.println( "deleteFromOptions - DB CALL");
 	    String sql = "DELETE FROM STOCK_OPTIONS WHERE KEY = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -407,6 +421,7 @@ public class OptionsServiceDB{
 	}
 	
 	public boolean deleteFromOptionsHistory(String key, String histDate) {
+		System.out.println( "deleteFromOptionsHistory 1- DB CALL");
 	    String sql = "DELETE FROM STOCK_OPTIONS_HISTORY WHERE KEY = ? and HIST_DATE = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -422,6 +437,7 @@ public class OptionsServiceDB{
 	}
 	
 	public boolean deleteFromOptionsHistory(String key) {
+		System.out.println( "deleteFromOptionsHistory 2- DB CALL");
 	    String sql = "DELETE FROM STOCK_OPTIONS_HISTORY WHERE KEY = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();

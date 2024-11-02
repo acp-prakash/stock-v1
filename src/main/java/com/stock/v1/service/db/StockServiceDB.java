@@ -43,6 +43,7 @@ public class StockServiceDB{
 	}
 	
 	public List<Master> getMasterList() {
+		System.out.println( "getMasterList - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_MASTER_LIST);
 
 	    return retResultMap.stream()
@@ -121,6 +122,7 @@ public class StockServiceDB{
 	}
 	
 	public List<Stock> getLatestStockHistory() {
+		System.out.println( "getLatestStockHistory - DB CALL");
 		List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_LATEST_STOCK_HISTORY);
 
 	    return retResultMap.stream()
@@ -131,6 +133,7 @@ public class StockServiceDB{
 	
 	
 	public List<Stock> getStockHistory(String ticker) {
+		System.out.println( "getStockHistory - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY, ticker);
 
 	    return retResultMap.stream()
@@ -140,6 +143,7 @@ public class StockServiceDB{
 	}
 	
 	public List<Stock> getStockHistoryByDescOrder(String ticker) {
+		System.out.println( "getStockHistoryByDescOrder - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY_DESC_ORDER, ticker);
 
 	    return retResultMap.stream()
@@ -149,6 +153,7 @@ public class StockServiceDB{
 	}
 	
 	public List<Stock> getStockHistoryByDate(String ticker, String date) {
+		System.out.println( "getStockHistoryByDate - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY_BY_DATE, ticker, date);
 
 	    return retResultMap.stream()
@@ -158,6 +163,7 @@ public class StockServiceDB{
 	}
 	
 	public Stock getStockHistoryForADate(String ticker, String date) {
+		System.out.println( "getStockHistoryForADate - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY_FOR_A_DATE, ticker, date);
 
 	    return retResultMap.stream()
@@ -168,6 +174,7 @@ public class StockServiceDB{
 	}
 	
 	public List<Stock> getTop2StockHistory(String ticker) {
+		System.out.println( "getTop2StockHistory - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_STOCK_HISTORY_TOP_2, ticker);
 
 	    return retResultMap.stream()
@@ -428,6 +435,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean addToStockHistory(List<Stock> list) {
+		System.out.println( "addToStockHistory - DB CALL");
         String sql = "INSERT INTO STOCK_HISTORY (HIST_DATE, TICKER, PRICE, VOLUME, OPEN, HIGH, LOW, CHANGE,"
         		+ "NEXT_EARNING_DATE,PREV_PRICE, BARCHART_ANALYSTS,BARCHART_ANALYSTS_RATING,BARCHART_SHORT_RATING,"
         		+ "BARCHART_LONG_RATING,BARCHART_RATING,BARCHART_TREND,PRICE_CHANGE_5, "
@@ -549,6 +557,7 @@ public class StockServiceDB{
     }
 	
 	public boolean deleteFromStockHistory(String date) {
+		System.out.println( "deleteFromStockHistory - DB CALL");
 	    String sql = "DELETE FROM STOCK_HISTORY WHERE HIST_DATE = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -563,6 +572,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean addToMaster(List<Stock> list) {
+		System.out.println( "addToMaster - DB CALL");
         String sql = "INSERT INTO STOCK_MASTER (TICKER, NAME, LAST_EARNING_DATE, NEXT_EARNING_DATE) "
                 + "VALUES (?, ?, ?, ?)";
         
@@ -598,6 +608,7 @@ public class StockServiceDB{
     }
 	
 	public boolean updateMaster(Master master) {
+		System.out.println( "updateMaster - DB CALL");
 	    String sql = "UPDATE STOCK_MASTER SET NEXT_EARNING_DATE = ? WHERE TICKER = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -613,6 +624,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean updatePrevPrice(Stock stock) {
+		System.out.println( "updatePrevPrice - DB CALL");
 	    String sql = "UPDATE STOCK_HISTORY SET PREV_PRICE = ? WHERE HIST_DATE = ? AND TICKER = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -629,6 +641,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean updateNextPrice(Stock stock) {
+		System.out.println( "updateNextPrice - DB CALL");
 	    String sql = "UPDATE STOCK_HISTORY SET NEXT_PRICE = ? WHERE HIST_DATE = ? AND TICKER = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -645,6 +658,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean markEarningDay(Stock stock) {
+		System.out.println( "markEarningDay - DB CALL");
 	    String sql = "UPDATE STOCK_HISTORY SET EARNINGS_DAY = 'Y' WHERE HIST_DATE = ? AND TICKER = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -660,6 +674,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean updatePriceUpDown(Master master) {
+		System.out.println( "updatePriceUpDown - DB CALL");
 	    String sql = "UPDATE STOCK_MASTER SET PRICE=?, CHANGE=?, UP=?, PRICE_UP=?, DOWN=?, PRICE_DOWN=?, UP_HIGH=?, DOWN_LOW=? WHERE TICKER = ?";
 
 	    try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
@@ -682,6 +697,7 @@ public class StockServiceDB{
 	}
 	
 	public List<Monitor> getMonitorList() {
+		System.out.println( "getMonitorList - DB CALL");
 	    List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_MONITOR_LIST);
 
 	    return retResultMap.stream()
@@ -750,6 +766,7 @@ public class StockServiceDB{
 	}
 	
 	public boolean addToMonitor(List<Monitor> list) {
+		System.out.println( "addToMonitor - DB CALL");
         String sql = "INSERT INTO MONITOR (TICKER, MONITOR_PRICE, CURRENT_PRICE, MONITOR_CHG, CURRENT_CHG, UP, PRICE_UP,"
         		+ " DOWN, PRICE_DOWN, TARGET, TARGET_DATE, COMMENTS, STATUS, ADD_DATE, OFF_DATE) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -793,6 +810,7 @@ public class StockServiceDB{
     }
 
 	public boolean updateMonitor(Monitor monitor) {
+		System.out.println( "updateMonitor - DB CALL");
 
 	    String sql = "UPDATE MONITOR SET MONITOR_PRICE=?,CURRENT_PRICE=?,MONITOR_CHG=?,CURRENT_CHG=?,"
 	    		+ "UP=?,PRICE_UP=?,DOWN=?,PRICE_DOWN=?,TARGET=?, TARGET_DATE=?,COMMENTS=?,STATUS=?,"

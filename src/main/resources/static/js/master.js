@@ -58,8 +58,9 @@ function createMASTERTable() {
 				},
 			 },
             { title: 'NAME', field: 'name', headerFilter: true, width: 140, frozen: true },
+            { title: 'PRICE', field: 'price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", width:70},
             { title: 'CHG', field: 'change', sorter:'number',headerFilter:true, frozen: true, width:65},
-            { title: 'L', field:'l', headerFilter:true, width:57},
+            /*{ title: 'L', field:'l', headerFilter:true, width:57},
 			{ title: 'E', field:'e', headerFilter:true, width:57},
 			{ title: 'PRICE', field: 'price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", width:70},
 			{ title: 'H', field:'h', headerFilter:true, width:57},
@@ -85,12 +86,12 @@ function createMASTERTable() {
 					 return "<span style='background-color:black; color:yellowgreen; font-weight:bold; display: grid;font-size: 14px;width:70px'>" + cell.getValue() + "</span>";
 			    }
 			}},
-			{ title: 'P-PT', field:'maxProfitpt', headerFilter:true, width:66},
+			{ title: 'P-PT', field:'maxProfitpt', headerFilter:true, width:66},*/
 			            
             //{ title: 'TRP', field: 'trackingPrice', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
             //{ title: 'TRD', field: 'trackingDiff', sorter:'number',headerFilter:"number", headerFilterFunc:"<=",  width:70},
-            { title: 'UP-HI', field: 'upHigh', sorter:'number',headerFilter:true, width:68},
-			{ title: 'DON-LO', field: 'downLow', sorter:'number',headerFilter:true, width:84},
+            /*{ title: 'UP-HI', field: 'upHigh', sorter:'number',headerFilter:true, width:68},
+			{ title: 'DON-LO', field: 'downLow', sorter:'number',headerFilter:true, width:84},*/
             //{ title: 'MB-PT', field: 'rating.markbeatPT', sorter:'number',headerFilter:true, width:76},
             /*{ title: 'ZN-PT', field: 'rating.zenTarget', sorter:'string',headerFilter:true, width:70},
             { title: 'STA-PT', field: 'rating.stockAnalysisTarget', sorter:'number',headerFilter:true, width:76},
@@ -99,10 +100,10 @@ function createMASTERTable() {
 			{ title: 'INV-PT', field: 'rating.investComTarget', sorter:'number',headerFilter:true, width:75},
 			{ title: 'P123-HT', field: 'rating.portfolio123HighPT', sorter:'string',headerFilter:true, width:83},
 			{ title: 'P123-LT', field: 'rating.portfolio123LowPT', sorter:'string',headerFilter:true, width:80},*/			
-			{ title: 'UP', field: 'upDays', headerFilter:true,width:53},
+			/*{ title: 'UP', field: 'upDays', headerFilter:true,width:53},
 			{ title: 'UP $', field: 'upBy', sorter:'number',headerFilter:true, width:65},			
 			{ title: 'DOWN', field: 'downDays', headerFilter:true,width:75},
-			{ title: 'DOWN $', field: 'downBy', sorter:'number',headerFilter:true, width:84},			
+			{ title: 'DOWN $', field: 'downBy', sorter:'number',headerFilter:true, width:84},*/			
 			{ title: 'EARN-DAYS', field: 'daysToEarnings', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:103},
 			{ title: 'P-STREAK', field:'positiveStreak', sorter:'number',headerFilter:"number", headerFilterFunc:">=",width:95},
 			{ title: 'N-STREAK', field:'negativeStreak', sorter:'number',headerFilter:"number", headerFilterFunc:">=",width:95},
@@ -113,7 +114,7 @@ function createMASTERTable() {
             { title: 'GL', field:'gCLongDays',  headerFilter:true, width:75},
             { title: 'DS', field:'dCShortDays', headerFilter:true, width:75},
             { title: 'DL', field:'dCLongDays',  headerFilter:true, width:75},
-            { title: 'F', field: 'isFuture', sorter:'boolean',headerFilter:true, width:45},            
+            /*{ title: 'F', field: 'isFuture', sorter:'boolean',headerFilter:true, width:45},*/            
 			{ title: 'LAST EAR', field: 'lastEarningsDate', headerFilter:true, width:90},
 			{ title: 'NEXT EAR', field: 'nextEarningsDate', headerFilter:true, width:92},
 			{ title: 'Earnings', field: 'earningsCount', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:85},

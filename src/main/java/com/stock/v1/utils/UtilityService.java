@@ -49,7 +49,7 @@ public class UtilityService{
             return ""; // Return an empty string or handle the error as needed
         }
     }
-			
+
 	public static List<Stock> readCsvFileForStockHistory(String filePath, String ticker) {
         List<Stock> list = new ArrayList<>();
 
