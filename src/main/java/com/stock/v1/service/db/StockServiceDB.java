@@ -673,6 +673,39 @@ public class StockServiceDB{
 	    }
 	}
 	
+	public boolean updateLivePriceToMaster() {
+		System.out.println( "updateLivePriceToMaster - DB CALL");
+        String sql = "UPDATE STOCK_MASTER SET PRICE=?, CHANGE=? WHERE TICKER=? ";
+        
+        List<Stock> liveList = LiveStockCache.getLiveStockList();
+        
+        try (Connection conn = ihelpJdbcTemplate.getDataSource().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+        	for (Stock stock : liveList) {        		
+        		int i = 1;
+
+        		ps.setString(i, UtilityService.stripStringToTwoDecimals(stock.getPrice(), false));i++;        		
+        		ps.setString(i, UtilityService.stripStringToTwoDecimals(stock.getChange(), false));i++;        		
+        		ps.setString(i, stock.getTicker());i++;
+        		ps.addBatch();                
+        	}
+            
+            int[] batchResult = ps.executeBatch();
+
+            // Check if all the batch statements were successful
+            for (int result : batchResult) {
+                if (result == PreparedStatement.EXECUTE_FAILED) {
+                    return false;
+                }
+            }            
+            return true;
+        } catch (SQLException ex) {
+        	System.err.println("ERROR ==> updateLivePriceToMaster ==> "+ ex);
+            return false;
+        }
+	}
+
 	public boolean updatePriceUpDown(Master master) {
 		System.out.println( "updatePriceUpDown - DB CALL");
 	    String sql = "UPDATE STOCK_MASTER SET PRICE=?, CHANGE=?, UP=?, PRICE_UP=?, DOWN=?, PRICE_DOWN=?, UP_HIGH=?, DOWN_LOW=? WHERE TICKER = ?";

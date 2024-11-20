@@ -600,6 +600,7 @@ public class StockService{
 	            CompletableFuture.runAsync(() -> {
 	                //updateBuySellTrend(true);  // This will run first
 	                syncLiveStockWithDBHistory(false);  // This will run after updateBuySellTrend
+	                stockServiceDB.updateLivePriceToMaster();
 	            }).exceptionally(ex -> {
 	                System.err.println("Error in updating buy/sell trends and syncing live stock: " + ex.getMessage());
 	                return null;
