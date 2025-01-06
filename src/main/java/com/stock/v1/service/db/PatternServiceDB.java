@@ -3,6 +3,7 @@ package com.stock.v1.service.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,9 @@ public class PatternServiceDB{
 		{
 			System.out.println("START -> getPatternHistory: DB CALL " + new Date());
 			masList = MasterStocksCache.getMasterStocks();
+			
+			patternList = getPatternList(false);
+			patternList.addAll(getPatternList(true));
 
 			List<Map<String, Object>> retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_PATTERN_HISTORY);
 
@@ -80,7 +84,50 @@ public class PatternServiceDB{
 			return patternList.stream().filter(x -> x.getTicker().equalsIgnoreCase(ticker)).toList();
         else
         	return patternList;      
-	}	
+	}
+	
+	private List<Pattern> getPatternList(boolean daily)
+	{
+		List<Map<String, Object>> retResultMap = null;
+		if(daily)
+			retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_PATTERN_HISTORY_DAILY);
+		else
+			retResultMap = ihelpJdbcTemplate.queryForList(DBConstants.GET_PATTERN_HISTORY);
+			
+		List<Pattern> patternList = new ArrayList<>();
+
+		patternList  = retResultMap.stream()
+				.map(this::mapToPattern)
+				.filter(pattern -> pattern != null)  // Filter out any null results
+				.collect(Collectors.toList());
+
+
+		// Create a map to store matching patterns
+		Map<String, Long> longCountByTicker = patternList.stream()
+				.filter(pattern -> "long".equalsIgnoreCase(pattern.getTrend()) && "Y".equalsIgnoreCase(pattern.getStatus()))
+				.collect(Collectors.groupingBy(Pattern::getTicker, Collectors.counting()));
+
+		Map<String, Long> shortCountByTicker = patternList.stream()
+				.filter(pattern -> "short".equalsIgnoreCase(pattern.getTrend()) && "Y".equalsIgnoreCase(pattern.getStatus()))
+				.collect(Collectors.groupingBy(Pattern::getTicker, Collectors.counting()));
+
+		// Loop through patternList and update the bull attribute
+		patternList.forEach(pattern -> {
+			String tick = pattern.getTicker();
+			long bullCount = 0;
+			long bearCount = 0;
+			if (longCountByTicker.containsKey(tick)) {
+				bullCount = longCountByTicker.get(tick);
+				pattern.setBull((int) bullCount); // Assuming bull is an integer
+			}
+			if (shortCountByTicker.containsKey(tick)) {
+				bearCount = shortCountByTicker.get(tick);
+				pattern.setBear((int) bearCount); // Assuming bear is an integer
+			}
+			pattern.setCount((int) bullCount + (int) bearCount);
+		});
+		return patternList;
+	}
 	
 	private Pattern mapToPattern(Map<String, Object> retRes) {
 		Pattern pattern = new Pattern();

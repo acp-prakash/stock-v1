@@ -119,9 +119,9 @@ public class StocksController {
 	
 	@CrossOrigin
 	@PostMapping("/stock/updateLiveStockDetails")
-	public void updateLiveStockDetails()
+	public @ResponseBody String updateLiveStockDetails()
 	{
-		stockService.updateLiveStockDetails();		
+		return stockService.updateLiveStockDetails();		
 	}
 	
 	@CrossOrigin

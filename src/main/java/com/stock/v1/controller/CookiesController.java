@@ -65,6 +65,8 @@ public class CookiesController {
 			cookies.put("STOCKINVEST_US_COOKIE", request.getParameter("STOCKINVEST_US_COOKIE"));
 		if(StringUtils.isNotBlank(request.getParameter("STOCKINVEST_US_TOKEN")))
 			cookies.put("STOCKINVEST_US_TOKEN", request.getParameter("STOCKINVEST_US_TOKEN"));
+		if(StringUtils.isNotBlank(request.getParameter("WEBULL_TOKEN")))
+			cookies.put("WEBULL_TOKEN", request.getParameter("WEBULL_TOKEN"));
 		
 		CookieCache.setCookies(cookies);
 		return "SUCCESS";

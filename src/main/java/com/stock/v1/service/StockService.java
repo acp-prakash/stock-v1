@@ -586,21 +586,21 @@ public class StockService{
 		return populateDailyStockHistory();
 	}
 
-	public void updateLiveStockDetails() {
+	public String updateLiveStockDetails() {
 	    System.out.println("START -> updateLiveStockDetails: " + new Date());
-	    
+	    String result = "FAILURE";
 	    try {
 	        List<Stock> list = barchartRatingService.populateBarchartRatings(Constants.BARCHART_URL_INTRA);
 
-	        if (list != null && !list.isEmpty()) {
+	        if (list != null && !list.isEmpty()) {	        	
 	            // Set live stock list
 	            LiveStockCache.setLiveStockList(list);
-
+	            result = "SUCCESS";
 	            // Run these two methods asynchronously in a sequence (synchronously with each other)
 	            CompletableFuture.runAsync(() -> {
 	                //updateBuySellTrend(true);  // This will run first
 	                syncLiveStockWithDBHistory(false);  // This will run after updateBuySellTrend
-	                stockServiceDB.updateLivePriceToMaster();
+	                stockServiceDB.updateLivePriceToMaster();	                
 	            }).exceptionally(ex -> {
 	                System.err.println("Error in updating buy/sell trends and syncing live stock: " + ex.getMessage());
 	                return null;
@@ -611,8 +611,8 @@ public class StockService{
 	    } catch (Exception ex) {
 	        System.err.println("ERROR ==> updateLiveStockDetails: " + ex);
 	    }
+	    return result;
 	}
-
 
 	public String populateDailyStockHistory()
 	{

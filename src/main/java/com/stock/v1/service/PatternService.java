@@ -51,7 +51,7 @@ public class PatternService{
 		System.out.println("START -> fetchPatternDetails: " + new Date());
 		if(UtilityService.excludedTick(ticker))
 			return new ArrayList<>();
-		String url = Constants.ETRADE_PATTRN_URL
+		String url = Constants.ETRADE_PATTRN_15MIN_URL
 				.replace("TICKER", ticker).replace("----",",");
 		
 		url = url + CookieCache.getCookie("ETRADE_TOKEN");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +19,7 @@ public class LiveStockCache {
 	private static final ReentrantLock lock = new ReentrantLock(true);
 
 	private static List<Stock> liveStockList;
+	private static List<String> newStocksToAddList;
 
 	private LiveStockCache() {}
 	public static void clearLiveStockList() {
@@ -57,6 +59,46 @@ public class LiveStockCache {
 				}
 			} catch (Exception ex) {
 				logger.error(()-> "LiveStockCache - setLiveStockList exception:-" + ex);
+			}
+		}
+	}
+	public static void clearNewStocksToAdd() {
+		try
+		{
+			if (null != newStocksToAddList && !newStocksToAddList.isEmpty() )
+			{
+				newStocksToAddList = new ArrayList<>();
+			}
+		}
+		catch (Exception ex) {
+			logger.error(()-> "LiveStockCache - clearNewStocksToAdd exception:-" + ex);
+		}
+	}
+
+	public static List<String> getNewStocksToAdd() {
+		if (null != newStocksToAddList && !newStocksToAddList.isEmpty() )
+		{
+			return newStocksToAddList;
+		}
+		else
+		{
+			return new ArrayList<>();
+		}
+	}
+
+	public static void setNewStocksToAdd(String ticker) {
+		if (StringUtils.isNotBlank(ticker)) {
+			try {
+				lock.lock();
+				try {
+					newStocksToAddList.add(ticker);
+				} finally {
+					if (lock.isLocked()) {
+						lock.unlock();
+					}
+				}
+			} catch (Exception ex) {
+				logger.error(()-> "LiveStockCache - setNewStocksToAdd exception:-" + ex);
 			}
 		}
 	}

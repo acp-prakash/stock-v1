@@ -2,7 +2,9 @@
 const TABLE_CONTAINER_ID = 'PATTERN';
 const DOWNLOAD_BUTTON_ID = 'download_PATTERN';
 const CLEAR_BUTTON_ID = 'clear_PATTERN';
+const SHOW_BUTTON_ID = 'SHOW';
 const DATA_URL = 'getPatternHistory?ticker=';
+const SHOW_DATA_URL = 'showPatterns?ticker=';
 var ticker;
 const table = createPATTERNTable();
 
@@ -25,22 +27,24 @@ function createPATTERNTable() {
 	        
 	    ],
         columns: [
-            { title: 'TICK', field: 'ticker', headerFilter: true, width: 63, frozen: true },
-            { title: 'CHG', field: 'all.change', sorter:'number',headerFilter:true, frozen: true, width:60},            
-            { title: 'DATE', field: 'histDate', headerFilter: true, width: 80 },
-            { title: 'NAME', field: 'name', headerFilter: true, width: 110 },
+            { title: 'CHG', field: 'all.change', sorter:'number',headerFilter:true, frozen: true, width:60},
+            { title: 'TICK', field: 'ticker', headerFilter: true, width: 63, frozen: true },            
+            { title: 'PRICE', field: 'all.price', sorter:'number',headerFilter:"number", headerFilterFunc: function(headerValue, rowValue) {
+                return parseFloat(rowValue) <= parseFloat(headerValue);
+            }, width:70},
+            { title: 'MN-PT', field:'minPT', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:75},
+			{ title: 'MX-PT', field:'maxPT', headerFilter:"number", headerFilterFunc:">=", width:73},            
+            { title: 'TGT-DT', field:'targetDate', headerFilter:true, width:80},            
             { title: 'TREND', field: 'trend', headerFilter: true, width: 75 },
-            { title: 'STATUS', field:'status', headerFilter:true, width:78},
-            { title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},            
+            //{ title: 'STATUS', field:'status', headerFilter:true, width:78},            
             { title: 'AL', field:'count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:50},
             { title: 'BL', field:'bull', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},
-            { title: 'BR', field:'bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},
-            { title: 'PRICE', field: 'all.price', sorter:'number',headerFilter:"number", headerFilterFunc:"<=", width:70},            
-			{ title: 'ENTRY', field:'entry', headerFilter:"number", headerFilterFunc:">=", width:75},
-			{ title: 'MN-PT', field:'minPT', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:75},
-			{ title: 'MX-PT', field:'maxPT', headerFilter:"number", headerFilterFunc:">=", width:73},
+            { title: 'BR', field:'bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},                        
+			{ title: 'ENTRY', field:'entry', headerFilter:"number", headerFilterFunc:">=", width:75},			
 			{ title: 'STOP', field:'stop', headerFilter:"number", headerFilterFunc:">=", width:65},
-			{ title: 'TGT-DT', field:'targetDate', headerFilter:true, width:80},
+			{ title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},		
+			{ title: 'DATE', field: 'histDate', headerFilter: true, width: 80 },
+            { title: 'NAME', field: 'name', headerFilter: true, width: 110 },	
 			{ title: 'GS', field:'all.gCShortDays', headerFilter:true, width:75},
             { title: 'GL', field:'all.gCLongDays',  headerFilter:true, width:75},
             { title: 'DS', field:'all.dCShortDays', headerFilter:true, width:75},
@@ -172,3 +176,24 @@ function getPatternHistory() {
         }
     });
 }
+
+document.getElementById(SHOW_BUTTON_ID).addEventListener('click', () => {	
+	showPatterns(document.getElementById("ticker").value);	
+});
+
+function showPatterns(tick) {
+
+	$.ajax({
+        type: 'GET',
+        url: SHOW_DATA_URL+tick,
+        cache: false,
+        contentType: 'application/json;',
+        success: function (response) {
+            table.replaceData(response);
+            table.redraw(true);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+};

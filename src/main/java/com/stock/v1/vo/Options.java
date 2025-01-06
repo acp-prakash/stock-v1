@@ -17,6 +17,7 @@ public class Options implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	public int webullId;
 	public String key;
 	public String histDate;
 	public String name;

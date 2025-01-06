@@ -21,6 +21,8 @@
 		<h2 style="text-align: left;">PATTERN(s)</h2>
 		<a id="clear_PATTERN" href="#" style="font-size: larger;">Clear Filters</a>
 		<a id="download_PATTERN" href="#" style="font-size: larger; margin-left: 15px;">Download (XLSX)</a>
+		<input type="text" id="ticker" style="font-size: larger; width: 75px;">		
+		<a id="SHOW" href="#" style="font-size: larger; margin-left: 15px;">SHOW</a>
 		<br>
 		<div id="PATTERN" style="width: 90.6%; height: 60%; max-height: 80%; font: small-caption;"></div>
 		<script type="text/javascript">

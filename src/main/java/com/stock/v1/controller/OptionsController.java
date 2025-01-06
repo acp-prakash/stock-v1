@@ -1,5 +1,6 @@
 package com.stock.v1.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,5 +89,15 @@ public class OptionsController {
 	public @ResponseBody List<Options> updateOptions(@RequestBody List<Options> updatedList)
 	{		
 		return optionsService.updateOptions(updatedList);		
+	}
+	
+	@CrossOrigin	
+	@PostMapping("/options/webullScan/{ticker}")
+	public @ResponseBody List<Options> webullScan(@PathVariable String ticker)
+	{
+		List<Options> all = new ArrayList<>();
+		all.addAll(optionsService.webullScan(ticker, false));
+		all.addAll(optionsService.webullScan(ticker, true));
+		return all;
 	}
 }

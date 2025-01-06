@@ -1,9 +1,16 @@
 package com.stock.v1.service;
 
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -29,10 +36,10 @@ public class OptionsService{
 
 	@Autowired
 	Environment appProp;
-	
+
 	@Autowired
 	OptionsServiceDB optionsServiceDB;
-	
+
 	@Autowired
 	PatternServiceDB patternServiceDB;
 
@@ -50,7 +57,7 @@ public class OptionsService{
 			double upChange = 0;
 			double downChange = 0;			
 			hList.remove(0);
-			
+
 			int upDays =0;
 			ListIterator<Options> listIteratorUp = hList.listIterator();
 			while (listIteratorUp.hasNext()) {
@@ -83,11 +90,11 @@ public class OptionsService{
 			option.setUpBy(UtilityService.stripStringToTwoDecimals(String.valueOf(upChange),false));
 			option.setDownDays(downDays);
 			option.setDownBy(UtilityService.stripStringToTwoDecimals(String.valueOf(downChange), false));
-			
+
 			if(updateOptionStatus(option))
 				statusToBeUpdatedList.add(option);
 		});
-		
+
 		if(!statusToBeUpdatedList.isEmpty())
 		{
 			optionsServiceDB.updateOptions(statusToBeUpdatedList, false);			
@@ -129,7 +136,7 @@ public class OptionsService{
 
 		return list;		
 	}
-	
+
 	private boolean updateOptionStatus(Options option)
 	{
 		try
@@ -153,28 +160,28 @@ public class OptionsService{
 		}
 		return false;
 	}
-	
+
 	public List<Options> getOptionsHistory(String name)
 	{
 		return optionsServiceDB.getOptionsHistory(name);
 	}
-	
+
 	public boolean deleteOption(String key)
 	{
 		optionsServiceDB.deleteFromOptions(key);
 		return optionsServiceDB.deleteFromOptionsHistory(key);
 	}	
-	
+
 	public List<Options> populateOptionsHistory()
 	{
 		return optionsServiceDB.getOptions();
 	}
-	
+
 	public List<Options> updateOptions(List<Options> list)
 	{
 		return optionsServiceDB.updateOptions(list, true);
 	}
-	
+
 	public List<Options> populateOptions()
 	{
 		String url = Constants.ETRADE_OPTIONS;
@@ -198,7 +205,7 @@ public class OptionsService{
 		optionsServiceDB.addToOptions(list);
 		return list;
 	}
-	
+
 	private List<Options> processResponse(String json)
 	{
 		List<Options> list = new ArrayList<>();
@@ -222,16 +229,16 @@ public class OptionsService{
 							{
 								JSONArray jsonArrayEntryValuesList = (JSONArray)jsonColumnValues.get("entryValuesList");
 								Options option = new Options();
-								
+
 								option.setName(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(0)));
 								option.setKey(option.getName().replace(".", "_").replace("$", "").replace("'", "").replace(" ", "_"));
 								option.setTicker(option.getName().split(" ")[0]);
-								
+
 								if(StringUtils.containsIgnoreCase(option.getName(), "Call"))
 									option.setType("CALL");							        
 								else if(StringUtils.containsIgnoreCase(option.getName(), "Put"))
 									option.setType("PUT");
-								
+
 								option.setEntry(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(3)), false));								
 								option.setPrice(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(4)), false));
 								option.setChange(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(5)), false));
@@ -252,7 +259,7 @@ public class OptionsService{
 								option.setIv(UtilityService.stripStringToTwoDecimals(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(14)), false));
 								option.setDaysToExpire(UtilityService.checkForPresenceNoKey(jsonArrayEntryValuesList.get(15)));
 								option.setStatus("ACTIVE");
-																	
+
 								list.add(option);					
 							}
 						}
@@ -261,5 +268,132 @@ public class OptionsService{
 			}
 		}
 		return list;
+	}
+
+	public List<Options> webullScan(String ticker, boolean put)
+	{
+		String url = appProp.getProperty("webull.options.scanner");
+		RestTemplate restTemplate = new RestTemplate();
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);		
+		headers.add("Access_token", CookieCache.getCookie("WEBULL_TOKEN"));
+
+		JSONObject filter = new JSONObject();        
+		// Add expireDate
+		filter.put("options.screener.rule.expireDate", "gte=6&lte=28");        
+		// Add volume
+		filter.put("options.screener.rule.volume", "gte=5000&lte=140705");        
+		// Add openInterest
+		filter.put("options.screener.rule.openInterest", "gte=500&lte=20000");        
+		// Add delta
+		if(put)
+			filter.put("options.screener.rule.delta", "gte=-0.6&lte=-0.25");
+		else
+			filter.put("options.screener.rule.delta", "gte=0.25&lte=0.6");
+		
+		// Add source as an array
+		JSONArray sourceArray = new JSONArray();
+		sourceArray.put(appProp.getProperty(ticker));
+		filter.put("options.screener.rule.source", sourceArray);
+		// Create the page object
+		JSONObject page = new JSONObject();
+		page.put("fetchSize", 200);
+		// Create the main request JSON
+		JSONObject requestJSON = new JSONObject();
+		requestJSON.put("filter", filter);
+		requestJSON.put("page", page);
+		HttpEntity<String> request = new HttpEntity<>(requestJSON.toString(),headers);	
+		String response = restTemplate.postForEntity(url, request, String.class).getBody();
+		System.out.println(response);
+		List<Options> optList = processWebullScanResponse(response);
+		optList = fetchWebullBatch(optList);		
+		return optList;
+	}
+
+	private List<Options> processWebullScanResponse(String json)
+	{
+		List<Options> list = new ArrayList<>();
+		if(StringUtils.isNotBlank(json))
+		{
+			JSONObject jsonObject = new JSONObject(json);
+			if(jsonObject.has("datas") && !jsonObject.isNull("datas"))
+			{
+				JSONArray jsonArrayDatas = (JSONArray)jsonObject.get("datas");
+				for (int i = 0, size = jsonArrayDatas.length(); i < size; i++)
+				{
+					Options opt = new Options();
+					JSONObject jsonData = jsonArrayDatas.getJSONObject(i);
+					opt.setWebullId(jsonData.getInt("derivativeId"));
+					JSONObject derivativeObj = jsonData.getJSONObject("derivative");		            
+					opt.setKey(derivativeObj.getString("symbol"));
+					opt.setTicker(derivativeObj.getString("unSymbol"));
+					list.add(opt);
+				}
+			}
+		}
+		return list;
+	}
+	
+	public List<Options> fetchWebullBatch(List<Options> optList)
+	{
+		String url = appProp.getProperty("webull.options.batch");
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		String joinedIds = optList.stream()
+				.map(option -> String.valueOf(option.getWebullId())) // Convert Integer to String
+				.collect(Collectors.joining(","));
+
+		// Encode the joined string
+		String encodedIds = URLEncoder.encode(joinedIds, StandardCharsets.UTF_8);
+		try {
+            // Create the HttpClient
+            HttpClient client = HttpClient.newHttpClient();
+            System.out.println("encodedIds ===>" + encodedIds);
+
+            // Create the HttpRequest
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url+encodedIds))
+                    .GET()
+                    .build();
+
+            // Send the GET request and receive the response
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Print the response            
+            System.out.println("Response Body: " + response.body());
+            return processWebullBatchResponse(response.body());
+        } catch (Exception e) {
+            System.err.println("Exception in fetchWebullBatch ==>" + e);
+        }		
+		return new ArrayList<>();
+	}
+	
+	public List<Options> processWebullBatchResponse(String response)
+	{
+		List<Options> list = new ArrayList<>();
+		if(StringUtils.isNotBlank(response))
+		{
+			JSONArray jsonArray = new JSONArray(response);
+			for (int i = 0, size = jsonArray.length(); i < size; i++)
+			{
+				Options opt = new Options();
+				JSONObject jsonData = jsonArray.getJSONObject(i);
+				opt.setTicker(jsonData.getString("unSymbol"));
+				opt.setKey(jsonData.getString("symbol"));
+				opt.setWebullId(jsonData.getInt("tickerId"));
+				opt.setOpen(UtilityService.stripStringToTwoDecimals(jsonData.getString("open"), false));
+				opt.setHigh(UtilityService.stripStringToTwoDecimals(jsonData.getString("high"), false));
+				opt.setLow(UtilityService.stripStringToTwoDecimals(jsonData.getString("low"), false));
+				opt.setPrice(UtilityService.stripStringToTwoDecimals(jsonData.getString("close"), false));
+				opt.setVolume(jsonData.getString("volume"));
+				opt.setInterest(String.valueOf(jsonData.getInt("openInterest")));
+				opt.setDelta(UtilityService.stripStringToTwoDecimals(jsonData.getString("delta"), false));
+				opt.setAddedDate(UtilityService.formatLocalDateToString(LocalDate.now()));
+				list.add(opt);
+			}
+		}
+		return list;		
 	}
 }

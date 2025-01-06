@@ -116,5 +116,11 @@ public class PatternController {
 	    	
 	    return finalList;
 	}
+	
+	@CrossOrigin
+	@GetMapping(Constants.CONTEXT_SHOW_PATTERNS)
+	public @ResponseBody List<Pattern> showPatterns(String ticker) {
+		return patternService.fetchPatternDetails(ticker);
+	}
 
 }

@@ -22,6 +22,7 @@ public class DBConstants {
 	public static final String GET_OPTIONS_HISTORY = "select * from stock_options_history";
 	
 	public static final String GET_PATTERN_HISTORY = "select * from stock_pattern_history where STATUS = 'Y' order by hist_date desc";
+	public static final String GET_PATTERN_HISTORY_DAILY = "select * from stock_pattern_history_daily where STATUS = 'Y' order by hist_date desc";
 	
 	
 	
