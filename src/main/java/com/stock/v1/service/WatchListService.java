@@ -66,7 +66,7 @@ public class WatchListService{
 	
 	public void dataFetch() {
 	    // Run all tasks in parallel
-		PatternsCache.clearPatternHistory();
+		/*PatternsCache.clearPatternHistory();
 		patternService.getPatternHistory(null);
 		List<String> tickerList = getWatchList().stream().map(x -> x.getTicker()).collect(Collectors.toList());
 		patternService.deletePattern(tickerList);
@@ -114,6 +114,6 @@ public class WatchListService{
 	    });
 
 	    // Wait for all tasks to complete
-	    CompletableFuture.allOf(populateOptionsTask, updateStockDetailsTask).join();
+	    CompletableFuture.allOf(populateOptionsTask, updateStockDetailsTask).join();*/
 	}
 }

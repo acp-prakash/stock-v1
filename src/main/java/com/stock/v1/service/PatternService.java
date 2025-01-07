@@ -41,18 +41,21 @@ public class PatternService{
 		patternServiceDB.deletePattern(tickerList);
 	}
 	
-	public void addToPattern(List<Pattern> list)
+	public void addToPattern(List<Pattern> list, boolean daily)
 	{
-		patternServiceDB.addToPattern(list);		
+		patternServiceDB.addToPattern(list, daily);		
 	}	
 	
-	public List<Pattern> fetchPatternDetails(String ticker)
+	public List<Pattern> fetchPatternDetails(String ticker, boolean daily)
 	{
 		System.out.println("START -> fetchPatternDetails: " + new Date());
 		if(UtilityService.excludedTick(ticker))
 			return new ArrayList<>();
 		String url = Constants.ETRADE_PATTRN_15MIN_URL
 				.replace("TICKER", ticker).replace("----",",");
+		if(daily)
+			url = Constants.ETRADE_PATTRN_DAILY_URL
+			.replace("TICKER", ticker).replace("----",",");			
 		
 		url = url + CookieCache.getCookie("ETRADE_TOKEN");
 

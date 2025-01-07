@@ -83,44 +83,65 @@ public class PatternController {
 	    if (StringUtils.isBlank(ticker)) {
 	        List<Master> list = stockServiceDB.getMasterList();
 	        
-	        ExecutorService executorService = Executors.newFixedThreadPool(10); // Customize the thread pool size
-
+	        ExecutorService executorService = Executors.newFixedThreadPool(10); // Customize pool size
 	        try {
-	            List<CompletableFuture<List<Pattern>>> futures = list.stream()
-	                .map(x -> CompletableFuture.supplyAsync(() -> patternService.fetchPatternDetails(x.getTicker()), executorService)
-	                    .exceptionally(ex -> {
-	                        // Log or handle the exception for each ticker
-	                        System.err.println("Error fetching pattern details for " + x.getTicker() + ": " + ex.getMessage());
-	                        return Collections.emptyList(); // Return an empty list on exception
-	                    }))
-	                .collect(Collectors.toList());
+	            // Process daily patterns
+	        	finalList = processPatternType(list, true, executorService);
 
-	            // Wait for all the tasks to complete
-	            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-
-	            // Combine all the results into a single list
-	            finalList = futures.stream()
-	                .flatMap(future -> future.join().stream()) // Flatten the lists
-	                .collect(Collectors.toList());
-	            
+	            // Process 15-minute patterns
+	        	finalList.addAll(processPatternType(list, false, executorService));
 	        } finally {
-	            executorService.shutdown(); // Always shut down the executor
-	        }	        
+	            executorService.shutdown(); // Ensure the executor is shut down
+	        }
 	        // Return an empty list as no specific ticker was passed	        
 	    } else {
 	        // Fetch pattern details for the given ticker
-	    	finalList = patternService.fetchPatternDetails(ticker);
+	    	finalList = patternService.fetchPatternDetails(ticker, false);
+	    }	    	
+	    return finalList;
+	}
+	
+	private List<Pattern> processPatternType(List<Master> masterList, boolean daily, ExecutorService executorService) {
+	    System.out.println("Processing patterns for type: " + daily);
+	    List<Pattern> finalList = new ArrayList<>();
+
+	    try {
+	        List<CompletableFuture<List<Pattern>>> futures = masterList.stream()
+	            .map(master -> CompletableFuture.supplyAsync(
+	                () -> patternService.fetchPatternDetails(master.getTicker(), daily), executorService)
+	                .exceptionally(ex -> {
+	                    // Log the exception
+	                    System.err.println("Error fetching " + daily + " pattern details for " + master.getTicker() + ": " + ex.getMessage());
+	                    return Collections.emptyList(); // Return empty list in case of error
+	                }))
+	            .collect(Collectors.toList());
+
+	        // Wait for all tasks to complete
+	        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+
+	        // Combine all results into a single list
+	        finalList = futures.stream()
+	            .map(CompletableFuture::join)
+	            .flatMap(List::stream)
+	            .collect(Collectors.toList());
+
+	        // Insert patterns into the appropriate table
+	        if (finalList != null && !finalList.isEmpty()) {
+	            patternService.addToPattern(finalList, daily);
+	        }
+	    } catch (Exception e) {
+	        System.err.println("Exception during " + daily + " pattern processing: " + e.getMessage());
 	    }
-	    if(finalList != null && !finalList.isEmpty())
-	    	patternService.addToPattern(finalList);
-	    	
 	    return finalList;
 	}
 	
 	@CrossOrigin
 	@GetMapping(Constants.CONTEXT_SHOW_PATTERNS)
 	public @ResponseBody List<Pattern> showPatterns(String ticker) {
-		return patternService.fetchPatternDetails(ticker);
+		List<Pattern> finalList = new ArrayList<>();
+		finalList = patternService.fetchPatternDetails(ticker, true);
+		finalList.addAll(patternService.fetchPatternDetails(ticker, false));
+		return finalList;
 	}
 
 }

@@ -31,6 +31,10 @@ public class Pattern implements Serializable {
 	public int bull;
 	public int bear;
 	public int count;
+	public int tbull;
+	public int tbear;
+	public int tcount;
 	public Master all = new Master();
 	public String fromPtPc;
+	public String type;
 }

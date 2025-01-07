@@ -29,6 +29,7 @@ function createPATTERNTable() {
         columns: [
             { title: 'CHG', field: 'all.change', sorter:'number',headerFilter:true, frozen: true, width:60},
             { title: 'TICK', field: 'ticker', headerFilter: true, width: 63, frozen: true },            
+            { title: 'TYPE', field: 'type', headerFilter: true, width: 66, frozen: true },
             { title: 'PRICE', field: 'all.price', sorter:'number',headerFilter:"number", headerFilterFunc: function(headerValue, rowValue) {
                 return parseFloat(rowValue) <= parseFloat(headerValue);
             }, width:70},
@@ -39,7 +40,10 @@ function createPATTERNTable() {
             //{ title: 'STATUS', field:'status', headerFilter:true, width:78},            
             { title: 'AL', field:'count', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:50},
             { title: 'BL', field:'bull', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},
-            { title: 'BR', field:'bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},                        
+            { title: 'BR', field:'bear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:50},
+            { title: 'TAL', field:'tcount', sorter:'number',headerFilter:"number", headerFilterFunc:">=", width:55},
+            { title: 'TBL', field:'tbull', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:55},
+            { title: 'TBR', field:'tbear', sorter:'number',headerFilter:"number", headerFilterFunc:"<", width:57},                                                
 			{ title: 'ENTRY', field:'entry', headerFilter:"number", headerFilterFunc:">=", width:75},			
 			{ title: 'STOP', field:'stop', headerFilter:"number", headerFilterFunc:">=", width:65},
 			{ title: 'PT%', field:'fromPtPc', headerFilter:true, width:60},		
